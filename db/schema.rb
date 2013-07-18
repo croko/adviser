@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130718082325) do
+ActiveRecord::Schema.define(version: 20130718112247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20130718082325) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website_url"
+    t.string   "email"
   end
 
   create_table "admin_users", force: true do |t|
@@ -86,6 +87,9 @@ ActiveRecord::Schema.define(version: 20130718082325) do
     t.integer  "likes_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
+    t.string   "last_name"
+    t.string   "type"
   end
 
   create_table "comments", force: true do |t|
@@ -136,7 +140,6 @@ ActiveRecord::Schema.define(version: 20130718082325) do
     t.string   "authentication_token"
     t.string   "name"
     t.string   "last_name"
-    t.string   "type"
     t.integer  "likes_count",            default: 0
     t.integer  "comments_count",         default: 0
     t.datetime "created_at"
@@ -146,6 +149,10 @@ ActiveRecord::Schema.define(version: 20130718082325) do
     t.boolean  "published",              default: true
     t.string   "status"
     t.text     "description"
+    t.string   "type"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "first_name"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

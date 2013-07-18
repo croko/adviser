@@ -9,6 +9,8 @@ FactoryGirl.define do
     city Faker::Address.city
     state Faker::Address.state
     zip_code Faker::Address.zip_code
+    email Faker::Internet.email
+    website_url Faker::Internet.url
   end
 
   factory :address_new_york, parent: :address do

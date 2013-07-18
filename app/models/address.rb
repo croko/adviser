@@ -17,6 +17,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  website_url         :string(255)
+#  email               :string(255)
 #
 
 class Address < ActiveRecord::Base

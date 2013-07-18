@@ -19,9 +19,8 @@
 #  authentication_token   :string(255)
 #  name                   :string(255)
 #  last_name              :string(255)
-#  type                   :string(255)
 #  likes_count            :integer          default(0)
-#  reviews_count          :integer          default(0)
+#  comments_count         :integer          default(0)
 #  created_at             :datetime
 #  updated_at             :datetime
 #  category_id            :integer
@@ -29,6 +28,10 @@
 #  published              :boolean          default(TRUE)
 #  status                 :string(255)
 #  description            :text
+#  type                   :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  first_name             :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -43,5 +46,19 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   #validates_acceptance_of :terms_of_service, on: :create
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(last_name: auth.extra.raw_info.last_name,
+                         first_name: auth.extra.raw_info.first_name,
+                         provider: auth.provider,
+                         uid: auth.uid,
+                         email: auth.info.email,
+                         password: Devise.friendly_token[0, 20]
+      )
+    end
+    user
+  end
 end

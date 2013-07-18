@@ -2,6 +2,5 @@
 
 FactoryGirl.define do
   factory :manager, parent: :user, class: 'Manager' do
-    category nil
   end
 end

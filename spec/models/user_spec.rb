@@ -19,9 +19,8 @@
 #  authentication_token   :string(255)
 #  name                   :string(255)
 #  last_name              :string(255)
-#  type                   :string(255)
 #  likes_count            :integer          default(0)
-#  reviews_count          :integer          default(0)
+#  comments_count         :integer          default(0)
 #  created_at             :datetime
 #  updated_at             :datetime
 #  category_id            :integer
@@ -29,6 +28,10 @@
 #  published              :boolean          default(TRUE)
 #  status                 :string(255)
 #  description            :text
+#  type                   :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  first_name             :string(255)
 #
 
 require 'spec_helper'

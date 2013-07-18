@@ -2,17 +2,20 @@
 #
 # Table name: clinics
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  description   :text
-#  status        :string(255)
-#  user_id       :integer
-#  published     :boolean          default(TRUE)
-#  reviews_count :integer
-#  rating        :float
-#  likes_count   :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :text
+#  status         :string(255)
+#  user_id        :integer
+#  published      :boolean          default(TRUE)
+#  comments_count :integer
+#  rating         :float
+#  likes_count    :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  full_name      :string(255)
+#  last_name      :string(255)
+#  type           :string(255)
 #
 
 require 'spec_helper'

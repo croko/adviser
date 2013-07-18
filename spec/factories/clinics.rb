@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :clinic do
-    name Faker::Lorem.word
+    full_name Faker::Lorem.word
     description Faker::Lorem.sentence
     status "MyString"
     published false
-    reviews_count 1
+    comments_count 1
     rating { rand(0..5) }
     likes_count 1
     manager

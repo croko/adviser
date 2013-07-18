@@ -7,4 +7,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def main
+
+  end
 end
