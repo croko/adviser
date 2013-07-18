@@ -227,8 +227,7 @@ Devise.setup do |config|
   config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {:scope => 'publish_stream,offline_access,email'}
   config.omniauth :twitter, SOCIALS_CONFIG['twitter']['key'], SOCIALS_CONFIG['twitter']['secret']
   config.omniauth :google_oauth2, SOCIALS_CONFIG['google']['key'], SOCIALS_CONFIG['google']['secret'],{ access_type: 'offline',
-                                                                                                        approval_prompt: 'auto',
-                                                                                                        scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar'}
+                                                                                                        approval_prompt: ''}
 
 
   #config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {:client_options => { :ssl => { :ca_file => "#{Rails.root.to_s}/config/ca-bundle.crt" }}, :scope => 'publish_stream,offline_access,email'}

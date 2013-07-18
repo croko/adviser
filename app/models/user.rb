@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   #validates_acceptance_of :terms_of_service, on: :create
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -56,6 +56,20 @@ class User < ActiveRecord::Base
                          provider: auth.provider,
                          uid: auth.uid,
                          email: auth.info.email,
+                         password: Devise.friendly_token[0, 20]
+      )
+    end
+    user
+  end
+
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+    data = access_token.info
+    user = User.where(:email => data["email"]).first
+
+    unless user
+      user = User.create(first_name: data["first_name"],
+                         last_name: data["last_name"],
+                         email: data["email"],
                          password: Devise.friendly_token[0, 20]
       )
     end
