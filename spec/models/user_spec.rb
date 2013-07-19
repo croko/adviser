@@ -17,15 +17,9 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  authentication_token   :string(255)
-#  name                   :string(255)
 #  last_name              :string(255)
-#  likes_count            :integer          default(0)
-#  comments_count         :integer          default(0)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  category_id            :integer
-#  rating                 :float
-#  published              :boolean          default(TRUE)
 #  status                 :string(255)
 #  description            :text
 #  type                   :string(255)
