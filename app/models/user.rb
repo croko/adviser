@@ -41,21 +41,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
-  belongs_to :category
   has_many :comments
 
   validates :email, uniqueness: true
   #validates_acceptance_of :terms_of_service, on: :create
-  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+  devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    user = User.where(provider: access_token.provider, uid: access_token.uid).first
     unless user
-      user = User.create(last_name: auth.extra.raw_info.last_name,
-                         first_name: auth.extra.raw_info.first_name,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         email: auth.info.email,
+      user = User.create(last_name: access_token.extra.raw_info.last_name,
+                         first_name: access_token.extra.raw_info.first_name,
+                         provider: access_token.provider,
+                         uid: access_token.uid,
+                         email: access_token.info.email,
                          password: Devise.friendly_token[0, 20]
       )
     end
@@ -64,12 +63,51 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(:email => data["email"]).first
+    user = User.where(email: data["email"]).first
 
     unless user
       user = User.create(first_name: data["first_name"],
                          last_name: data["last_name"],
+                         provider: access_token.provider,
+                         uid: access_token.uid,
                          email: data["email"],
+                         password: Devise.friendly_token[0, 20]
+      )
+    end
+    user
+  end
+
+  def self.find_for_vkontakte(access_token, signed_in_resource=nil)
+    data = access_token.info
+    email = access_token.extra.raw_info['screen_name'].to_s + '@vk.com'
+    user = User.where(provider: access_token.provider, uid: access_token.uid).first
+
+    unless user
+      user = User.create(first_name: data["first_name"],
+                         last_name: data["last_name"],
+                         provider: access_token.provider,
+                         uid: access_token.uid,
+                         email: email,
+                         password: Devise.friendly_token[0, 20]
+      )
+    end
+    user
+  end
+
+  def self.find_for_twitter(access_token, signed_in_resource=nil)
+    data = access_token.info
+    user = User.where(provider: access_token.provider, uid: access_token.uid).first
+
+    unless user
+      email = access_token.uid.to_s + '@twitter.com'
+      first_name = data["name"].split[0]
+      last_name = data["name"].split[1]
+
+      user = User.create(first_name: first_name,
+                         last_name: last_name,
+                         provider: access_token.provider,
+                         uid: access_token.uid,
+                         email: email,
                          password: Devise.friendly_token[0, 20]
       )
     end
