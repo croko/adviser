@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719081935) do
+ActiveRecord::Schema.define(version: 20130722113347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20130719081935) do
     t.datetime "updated_at"
     t.string   "website_url"
     t.string   "email"
+    t.string   "district"
   end
 
   create_table "admin_users", force: true do |t|
@@ -59,11 +60,28 @@ ActiveRecord::Schema.define(version: 20130719081935) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
 
-  create_table "categories", force: true do |t|
+  create_table "advises", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.string   "last_name"
     t.string   "name"
-    t.boolean  "pediatric",  default: false
+    t.string   "full_name"
+    t.string   "specialty"
+    t.string   "city"
+    t.string   "phone_number"
+    t.string   "description"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.boolean  "pediatric",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "clinics_count", default: 0
+    t.integer  "doctors_count", default: 0
   end
 
   create_table "clinic_category_relations", force: true do |t|
@@ -97,6 +115,7 @@ ActiveRecord::Schema.define(version: 20130719081935) do
     t.string   "awards"
     t.boolean  "visit_home"
     t.decimal  "price",                precision: 8, scale: 2, default: 0.0
+    t.string   "specialty"
   end
 
   create_table "comments", force: true do |t|
@@ -105,6 +124,14 @@ ActiveRecord::Schema.define(version: 20130719081935) do
     t.integer  "rating",           default: 0
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

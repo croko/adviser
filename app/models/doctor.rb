@@ -23,18 +23,18 @@
 #  awards               :string(255)
 #  visit_home           :boolean
 #  price                :decimal(8, 2)    default(0.0)
+#  specialty            :string(255)
 #
 
 class Doctor < Clinic
-  has_many :addresses, as: :addressable, dependent: :destroy
-  has_many :comments, as: :commentable, dependent: :destroy
 
-  accepts_nested_attributes_for :addresses, allow_destroy: true
+  has_many :likes, as: :likeable, source_type: 'Clinic', dependent: :destroy
 
-  validates :name, :last_name, :addresses, presence: true
+  validates :name, :last_name, presence: true
 
   def full_name
     last_name.to_s + ' ' + name.to_s
   end
+
 
 end

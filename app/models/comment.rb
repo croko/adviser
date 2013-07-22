@@ -13,11 +13,11 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :commentable, polymorphic: true, counter_cache: true, touch: true
+  belongs_to :commentable, polymorphic: true, counter_cache: true
   belongs_to :user
 
   validates_presence_of :message
-  validates :user_id, :uniqueness => { :scope => [:commentable_type, :commentable_id] }
+  validates :user_id, :uniqueness => {:scope => [:commentable_type, :commentable_id]}
   #scope :latest_programs, order(:created_at).merge(Program.published).joins('join programs ON programs.id = reviews.reviewable_id AND reviewable_type = "Program"').limit(5)
 
   after_save :update_rating

@@ -107,4 +107,8 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def role?(nick)
+    try(:role).try(:nickname) == nick
+  end
 end

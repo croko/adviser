@@ -1,4 +1,5 @@
 class ClinicsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_clinic, only: [:show, :edit, :update, :destroy]
 
   # GET /clinics
@@ -27,7 +28,7 @@ class ClinicsController < ApplicationController
     @clinic = Clinic.new(clinic_params)
 
     respond_to do |format|
-      if @clinic.save
+      if @clinic.save!
         format.html { redirect_to @clinic, notice: 'Clinic was successfully created.' }
         format.json { render action: 'show', status: :created, location: @clinic }
       else

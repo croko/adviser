@@ -1,12 +1,26 @@
 <div class="page-header">
-  <h1>'title'</h1>
+  <h3><%= Faker::Lorem.paragraph %></h3>
 </div>
 
-<% if user_signed_in? %>
-  <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to 'Sign in with email', new_user_session_path %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-  <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
-  <%= link_to "Sign in with Vkontakte", user_omniauth_authorize_path(:vkontakte) %>
+<% cache @category do %>
+  <div class="row-fluid">
+    <%= render :partial => 'items' %>
+  </div>
 <% end %>
+<div>
+  <p>
+    <%= Faker::Lorem.paragraphs(10) %>
+  </p>
+
+  <p>
+    <%= Faker::Lorem.paragraphs(5) %>
+  </p>
+
+  <p>
+    <%= Faker::Lorem.paragraphs(10) %>
+  </p>
+
+  <p>
+    <%= Faker::Lorem.paragraphs(5) %>
+  </p>
+</div>

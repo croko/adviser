@@ -1,14 +1,5 @@
-class Admin::AdminUsersController < ApplicationController
-  #TODO
-  #workaround for CanCan not ready for Rails 4
-  before_filter do
-    resource = controller_name.singularize.to_sym
-    method = "#{resource}_params"
-    params[resource] &&= send(method) if respond_to?(method, true)
-  end
-  #####
+class Admin::AdminUsersController < Admin::BaseController
   before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   # GET /admin_users
   # GET /admin_users.json
@@ -78,6 +69,6 @@ class Admin::AdminUsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_user_params
-    params[:admin_user]
+    params[:admin_user].permit(:name, :last_name, :email, :role_id)
   end
 end

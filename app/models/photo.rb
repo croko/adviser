@@ -17,10 +17,11 @@
 #
 
 class Photo < ActiveRecord::Base
-  has_attached_file :image, :styles => {:thumb => "260x180>", :medium => "800x800>"}
+  has_attached_file :image, :styles => {:thumb => "200x200>", :medium => "800x800>"}
+                    #:default_url => "/assets/images/dummy.png"
 
   belongs_to :attachable, :polymorphic => true
-  validates :sort_order, :presence => true
+  #validates :sort_order, :presence => true
 
   validates_attachment_content_type :image, :content_type => %w(image/jpg image/jpeg image/gif image/png)
 

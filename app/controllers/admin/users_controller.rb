@@ -1,14 +1,5 @@
 class Admin::UsersController < ApplicationController
 
-#TODO
-#workaround for CanCan not ready for Rails 4
-  before_filter do
-    resource = controller_name.singularize.to_sym
-    method = "#{resource}_params"
-    params[resource] &&= send(method) if respond_to?(method, true)
-  end
-#####
-
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 

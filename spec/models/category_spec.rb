@@ -2,11 +2,13 @@
 #
 # Table name: categories
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  pediatric  :boolean          default(FALSE)
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  pediatric     :boolean          default(FALSE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  clinics_count :integer          default(0)
+#  doctors_count :integer          default(0)
 #
 
 require 'spec_helper'

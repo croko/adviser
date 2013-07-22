@@ -12,4 +12,19 @@
 class ClinicCategoryRelation < ActiveRecord::Base
   belongs_to :category
   belongs_to :clinic
+  belongs_to :doctor, class_name: 'Doctor', foreign_key: :clinic_id
+
+  after_create :increase_counter
+  after_destroy :decrease_counter
+
+  protected
+
+  def increase_counter
+    clinic.type == 'Clinic' ? category.increment!(:clinics_count) : category.increment!(:doctors_count)
+  end
+
+  def decrease_counter
+    clinic.type == 'Clinic' ? category.deccrement!(:clinics_count) : category.decrement!(:doctors_count)
+  end
+
 end

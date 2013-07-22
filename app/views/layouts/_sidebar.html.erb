@@ -1,0 +1,8 @@
+<div class="well sidebar-nav">
+  <h3>специальности</h3>
+  <ul class="nav nav-list">
+    <% Category.sorted.each do |category| %>
+      <li><%= link_to category.name_and_items_count, category_path(category) %></li>
+    <% end %>
+  </ul>
+</div>

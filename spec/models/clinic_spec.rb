@@ -23,6 +23,7 @@
 #  awards               :string(255)
 #  visit_home           :boolean
 #  price                :decimal(8, 2)    default(0.0)
+#  specialty            :string(255)
 #
 
 require 'spec_helper'

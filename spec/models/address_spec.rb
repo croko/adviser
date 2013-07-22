@@ -18,6 +18,7 @@
 #  updated_at          :datetime
 #  website_url         :string(255)
 #  email               :string(255)
+#  district            :string(255)
 #
 
 require 'spec_helper'

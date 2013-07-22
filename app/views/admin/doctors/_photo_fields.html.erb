@@ -1,0 +1,12 @@
+<tr class="fields">
+  <td>
+    <%= image_tag (f.object.url(:thumb)) %>
+  </td>
+  <td>
+    <%= f.input :id, as: :hidden %>
+    <%= f.input :image %>
+  </td>
+  <td style="width:100px;">
+    <%= f.link_to_remove "Remove", :class => 'btn btn-danger' %>
+  </td>
+</tr>

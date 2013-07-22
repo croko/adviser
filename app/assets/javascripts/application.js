@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
+//= require load-image.js
+//= require main.js
+//= require jquery_nested_form
+//= require jquery-ui.min
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker.ru.js
+//= require jquery.infinitescroll.js
+//= require turbolinks

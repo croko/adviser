@@ -1,4 +1,13 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Category -%>
+<div class="page-header">
+  <h3><%= @category.name %></h3>
+</div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div id="items">
+  <div class="page">
+    <%= render :partial => 'application/items' %>
+  </div>
+</div>
+<nav class="pagination" style="display: none;">
+<%= paginate @items, remote: true %>
+</nav>

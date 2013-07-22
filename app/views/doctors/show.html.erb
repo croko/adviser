@@ -1,0 +1,67 @@
+<%- model_class = Doctor -%>
+
+<div class="page-header">
+  <div class="row">
+    <div class="span2">
+      <h4><%= @doctor.full_name %></h4>
+    </div>
+    <div class="span7">
+      <h4><%= @doctor.specialty %></h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <table class="table table-condensed">
+      <tr>
+        <td> <%= image_tag @doctor.photos.try(:first).url(:thumb) %></td>
+      </tr>
+      <tr>
+        <td>
+          <%= rating_box(@doctor.rating) %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= content_tag(:span, ' ' + pluralize(@doctor.likes_count, 'like'), class: 'icon-heart') %> </td>
+      </tr>
+    </table>
+  </div>
+  <div class="span7">
+    <dl class="dl-horizontal pull-left">
+      <dt><strong><%= model_class.human_attribute_name(:high_school_name) %>:</strong></dt>
+      <dd><%= @doctor.high_school_name %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:education) %>:</strong></dt>
+      <dd><%= @doctor.education %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:specialty) %>:</strong></dt>
+      <dd><%= @doctor.specialty %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:high_school_finished) %>:</strong></dt>
+      <dd><%= @doctor.high_school_finished %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
+      <dd><%= @doctor.starting_work %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
+      <dd><%= @doctor.awards %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
+      <dd><%= @doctor.visit_home %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+      <dd><%= @doctor.price %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+      <dd><%= @doctor.description %></dd>
+    </dl>
+  </div>
+</div>
+<div class="row">
+  <h3>Ваш комментарий</h3>
+  <% unless user_signed_in? %>
+    <h4>Для того, чтобы оставлять комментарии, Вам необходимо авторизоваться или зарегистрироваться:</h4>
+  <% end %>
+</div>
+<div class="row">
+  <h3>Комментарии</h3>
+</div>
+
+<% if can? :edit, @doctor %>
+  <div class="form-actions">
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_doctor_path(@doctor), :class => 'btn' %>
+  </div>
+<% end %>
