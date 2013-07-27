@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.turbolinks
+//= require bootstrap-switch.js
 //= require_tree .
 //= require load-image.js
 //= require main.js
@@ -21,5 +21,21 @@
 //= require jquery-ui.min
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker.ru.js
+//= require jquery.raty.js
 //= require jquery.infinitescroll.js
-//= require turbolinks
+// require jquery.turbolinks
+// require turbolinks
+
+$('#comment_rating').raty({
+    scoreName: 'comment[rating]',
+    scoreId: 'comment_rating',
+    path: '/assets',
+    starOn: 'star_activ.png',
+    starHalf: 'half_star_activ.png',
+    starOff: 'star_inactiv.png',
+    hints: ['Жуть', "Плохо", 'Хорошо', 'Очень хорошо', 'Отлично'],
+    target: '#hint',
+    targetText: 'Оценка цена / качество.',
+    targetKeep: true,
+    width: '123px'
+});

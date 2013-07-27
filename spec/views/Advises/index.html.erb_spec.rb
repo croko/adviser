@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "registrations/index" do
   before(:each) do
-    assign(:Advises, [
+    assign(:advises, [
       stub_model(Advise,
         :user_id => 1,
         :category_id => 2,

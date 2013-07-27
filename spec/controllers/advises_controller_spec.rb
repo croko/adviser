@@ -34,7 +34,7 @@ describe AdvisesController do
     it "assigns all registrations as @registrations" do
       registration = Advise.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:Advises).should eq([registration])
+      assigns(:advises).should eq([registration])
     end
   end
 

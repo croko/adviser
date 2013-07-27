@@ -30,7 +30,7 @@ class Clinic < ActiveRecord::Base
   has_many :clinic_category_relations, dependent: :destroy
   has_many :categories, through: :clinic_category_relations
   has_many :addresses, as: :addressable, dependent: :destroy
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy, order: 'created_at DESC'
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :photos, :as => :attachable
 
@@ -57,12 +57,16 @@ class Clinic < ActiveRecord::Base
     user.nil? ? true : likes.where(user_id: user.id).present?
   end
 
-  protected
-
   def update_rating
     ratings = comments.where('rating > 0').pluck(:rating)
     update_attribute :rating, (ratings.inject(&:+).to_f / ratings.size) unless ratings.empty?
   end
+
+  def can_user_comment?(user)
+    !comments.where(user_id: user).present?
+  end
+
+  protected
 
   def update_category_cache
     categories.each { |c| c.touch }

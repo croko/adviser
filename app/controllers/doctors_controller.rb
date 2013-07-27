@@ -5,6 +5,8 @@ class DoctorsController < ApplicationController
   # GET /doctors/1
   # GET /doctors/1.json
   def show
+    @comments = @doctor.comments.page(params[:page]).per(5)
+    @comment = @doctor.comments.build if current_user
   end
 
   # GET /doctors/1/edit

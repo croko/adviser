@@ -1,0 +1,16 @@
+<% cache comment do %>
+  <div class="row-fluid">
+    <div class="span2">
+      <%= (comment.created_at).strftime("%d.%m.%Y") %>
+    </div>
+    <div class="span2">
+      <%= comment.user.try(:first_name) %>
+    </div>
+    <div class="span2">
+      <%= rating_box(comment.rating) %>
+    </div>
+    <div class="span6">
+      <%= comment.message %>
+    </div>
+  </div>
+<% end %>

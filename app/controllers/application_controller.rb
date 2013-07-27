@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  respond_to :html, :js
 
   #TODO
   #workaround for CanCan not ready for Rails 4
@@ -21,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main
-    @items = Clinic.rated #.page(params[:page]).per(12)
+    @items = Clinic.rated.page(params[:page]).per(12)
+    #respond_with @items
   end
 end

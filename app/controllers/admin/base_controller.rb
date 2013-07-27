@@ -8,6 +8,6 @@ class Admin::BaseController < ApplicationController
   end
   #####
   layout 'admin_layout'
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
 end

@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :message
   validates :user_id, :uniqueness => {:scope => [:commentable_type, :commentable_id]}
-  #scope :latest_programs, order(:created_at).merge(Program.published).joins('join programs ON programs.id = reviews.reviewable_id AND reviewable_type = "Program"').limit(5)
+  #scope :latest, order(:created_at).limit(5)
 
   after_save :update_rating
   after_destroy :update_rating

@@ -22,7 +22,8 @@
         </td>
       </tr>
       <tr>
-        <td><%= content_tag(:span, ' ' + pluralize(@doctor.likes_count, 'like'), class: 'icon-heart') %> </td>
+        <td><span id="<%= @doctor.id %>"><%= render partial: 'likes/like_block', locals: {likeable: @doctor} %></span>
+        </td>
       </tr>
     </table>
   </div>
@@ -50,13 +51,32 @@
   </div>
 </div>
 <div class="row">
-  <h3>Ваш комментарий</h3>
-  <% unless user_signed_in? %>
-    <h4>Для того, чтобы оставлять комментарии, Вам необходимо авторизоваться или зарегистрироваться:</h4>
+  <% if user_signed_in? %>
+    <% if @doctor.can_user_comment?(current_user.id) %>
+      <h4>Добавить <%= link_to("комментарий", '#new_comment_window', data: {toggle: "modal"}) %></h4>
+    <% end %>
+  <% else %>
+    <h4>Только зарегистрированные пользователи могут оставлять комментарии.
+      Пожалуйста <%= link_to 'войдите', new_user_session_path %> </h4>
   <% end %>
 </div>
 <div class="row">
   <h3>Комментарии</h3>
+</div>
+<div class="row">
+  <%= render @comments %>
+</div>
+
+<nav class="pagination">
+<%= paginate @comments %>
+</nav>
+
+<div id="new_comment_window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="myModalLabel">Оставьте пожалуйста свой комментарий</h4>
+  </div>
+  <%= render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in?%>
 </div>
 
 <% if can? :edit, @doctor %>

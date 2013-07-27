@@ -10,24 +10,19 @@
     <div class="container nav-collapse">
       <ul class="nav">
         <li><%= link_to "Рекомендовать", new_advise_path %></li>
-        <li><%= link_to "Link2", "/path2" %></li>
-        <li><%= link_to "Link3", "/path3" %></li>
-      </ul>
-      <form class="navbar-search">
-        <input type="text" class="search-query input-xlarge" placeholder="Фамилия, специальность">
-        <input type="text" class="search-query input-xlarge" placeholder="Город, район, улица">
-        <button type="submit" class="btn btn-small icon-search"></button>
-      </form>
-      <ul class="nav pull-right">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to 'Войти', new_user_session_path %>
-          </li>
-        <% end %>
+        <li><%= link_to 'Фильтр', '#', data: {toggle: "collapse", target: "#advanced-search"} %></li>
+        <%= render partial: 'layouts/search' %>
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'Войти', new_user_session_path %>
+            </li>
+          <% end %>
+        </ul>
       </ul>
     </div>
     <!--/.nav-collapse -->

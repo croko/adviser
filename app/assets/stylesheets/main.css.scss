@@ -55,6 +55,10 @@ body {
   margin-top: 10px;
 }
 
+.navbar-search {
+  margin-top: 10px;
+}
+
 /* Carousel base class */
 .carousel {
   margin-bottom: 60px;
@@ -271,10 +275,36 @@ footer {
 }
 
 form {
-    counter-reset: section 0;
+  counter-reset: section 0;
 }
 
 p.num::before {
   counter-increment: section 1;
   content: counter(section) ". ";
+}
+
+#new_comment {
+  #comment_rating, #hint {
+    display: inline-block;
+    margin-top: 5px;
+  }
+  #hint {
+    margin-left: 20px;
+    font-size: 13px;
+    color: #636363;
+  }
+}
+
+a.like {
+  text-decoration: none;
+}
+
+#comment_message {
+  width: 300px;
+  height: 150px;
+}
+
+#advanced-search {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

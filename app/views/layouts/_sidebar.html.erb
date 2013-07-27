@@ -1,8 +1,17 @@
 <div class="well sidebar-nav">
-  <h3>специальности</h3>
+  <%= link_to image_tag('ad250.png'), root_path %>
+  <h3 class="text-center">специальности</h3>
   <ul class="nav nav-list">
     <% Category.sorted.each do |category| %>
       <li><%= link_to category.name_and_items_count, category_path(category) %></li>
     <% end %>
   </ul>
+
+  <h5 class="text-center">реклама</h5>
+  <%= link_to image_tag('adskyscraper.jpg'), root_path %>
+  <p></p>
+  <%= link_to image_tag('adskyscraper.jpg'), root_path %>
+  <p></p>
+  <%= link_to image_tag('adskyscraper.jpg'), root_path %>
+
 </div>

@@ -5,7 +5,7 @@ class ClinicsController < ApplicationController
   # GET /clinics
   # GET /clinics.json
   def index
-    @clinics = Clinic.all
+    @items = Clinic.rated.page(params[:page]).per(12)
   end
 
   # GET /clinics/1
