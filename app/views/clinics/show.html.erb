@@ -24,6 +24,16 @@
         <td><span id="<%= @clinic.id %>"><%= render partial: 'likes/like_block', locals: {likeable: @clinic} %></span>
         </td>
       </tr>
+      <tr>
+        <td>
+          <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+          <div class="yashare-auto-init" data-yashareL10n="ru"
+               data-yashareType="none"
+               data-yashareQuickServices="facebook,vkontakte,twitter,gplus,odnoklassniki"
+               data-yashareDescription='Советуем доктора!'>
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
   <div class="span7">
@@ -67,7 +77,7 @@
 </div>
 
 <nav class="pagination">
-<%= paginate @comments %>
+  <%= paginate @comments %>
 </nav>
 
 <div id="new_comment_window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -75,7 +85,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h4 id="myModalLabel">Оставьте пожалуйста свой комментарий</h4>
   </div>
-  <%= render partial: 'comments/form', locals: {commentable: @clinic} if user_signed_in?%>
+  <%= render partial: 'comments/form', locals: {commentable: @clinic} if user_signed_in? %>
 </div>
 
 <% if can? :edit, @clinic %>

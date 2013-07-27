@@ -1,4 +1,5 @@
 <%- model_class = Doctor -%>
+<%= content_for :title, @doctor.title_info %>
 
 <div class="page-header">
   <div class="row">
@@ -23,6 +24,16 @@
       </tr>
       <tr>
         <td><span id="<%= @doctor.id %>"><%= render partial: 'likes/like_block', locals: {likeable: @doctor} %></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+          <div class="yashare-auto-init" data-yashareL10n="ru"
+               data-yashareType="none"
+               data-yashareQuickServices="facebook,vkontakte,twitter,gplus,odnoklassniki"
+               data-yashareDescription='Советуем доктора!'>
+          </div>
         </td>
       </tr>
     </table>
@@ -68,7 +79,7 @@
 </div>
 
 <nav class="pagination">
-<%= paginate @comments %>
+  <%= paginate @comments %>
 </nav>
 
 <div id="new_comment_window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -76,7 +87,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h4 id="myModalLabel">Оставьте пожалуйста свой комментарий</h4>
   </div>
-  <%= render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in?%>
+  <%= render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in? %>
 </div>
 
 <% if can? :edit, @doctor %>

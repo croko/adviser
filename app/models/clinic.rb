@@ -66,6 +66,10 @@ class Clinic < ActiveRecord::Base
     !comments.where(user_id: user).present?
   end
 
+  def title_info
+     full_name + ', специализация ' + specialty + ', '+ addresses.first.city
+  end
+
   protected
 
   def update_category_cache
