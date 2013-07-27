@@ -7,20 +7,32 @@
     <%= render :partial => 'items' %>
   </div>
 <% end %>
-<div>
-  <p>
-    <%= Faker::Lorem.paragraphs(10) %>
-  </p>
+<div class="row-fluid">
+  <div class="span4">
+    <p>
+      <%= Faker::Lorem.paragraphs(2) %>
+    </p>
+  </div>
+  <div class="span4">
+    <p>
+      <%= Faker::Lorem.paragraphs(2) %>
+    </p>
+  </div>
+  <div class="span4">
+    <p>
+      <%= Faker::Lorem.paragraphs(2) %>
+    </p>
+  </div>
+</div>
 
-  <p>
-    <%= Faker::Lorem.paragraphs(5) %>
-  </p>
-
-  <p>
-    <%= Faker::Lorem.paragraphs(10) %>
-  </p>
-
-  <p>
-    <%= Faker::Lorem.paragraphs(5) %>
-  </p>
+<div class="row-fluid">
+  <div class="span4">
+    <%= link_to image_tag('ad250.png'), root_path %>
+  </div>
+  <div class="span4">
+    <%= link_to image_tag('ad250.png'), root_path %>
+  </div>
+  <div class="span4">
+    <%= link_to image_tag('ad250.png'), root_path %>
+  </div>
 </div>
