@@ -1,6 +1,7 @@
 class AdvisesController < ApplicationController
 
-  load_and_authorize_resource
+  load_and_authorize_resource only: [:new, :create]
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = 'Для того,чтобы оставить рекомендацию, необходимо авторизоваться'
     redirect_to new_user_session_path

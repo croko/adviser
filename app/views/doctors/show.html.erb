@@ -67,8 +67,7 @@
       <h4>Добавить <%= link_to("комментарий", '#new_comment_window', data: {toggle: "modal"}) %></h4>
     <% end %>
   <% else %>
-    <h4>Только зарегистрированные пользователи могут оставлять комментарии.
-      Пожалуйста <%= link_to 'войдите', new_user_session_path %> </h4>
+    <%= render partial: 'layouts/auth_links' %>
   <% end %>
 </div>
 <div class="row">

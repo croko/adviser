@@ -12,19 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require bootstrap-switch.js
-//= require_tree .
-//= require load-image.js
-//= require main.js
 //= require jquery_nested_form
 //= require jquery-ui.min
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker.ru.js
 //= require jquery.raty.js
 //= require jquery.infinitescroll.js
+//= require twitter/bootstrap
+//= require bootstrap-switch.js
+//= require load-image.js
+//= require main.js
 // require jquery.turbolinks
 // require turbolinks
+//= require_tree .
 
 $('#comment_rating').raty({
     scoreName: 'comment[rating]',

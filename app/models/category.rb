@@ -29,6 +29,6 @@ class Category < ActiveRecord::Base
   end
 
   def name_and_items_count
-    name + "  (" + (clinics_count + doctors_count).to_s + ")"
+    (name + "  " + '<span class="badge badge-warning pull-right">' + (clinics_count + doctors_count).to_s + "</span>").html_safe
   end
 end

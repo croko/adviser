@@ -42,14 +42,18 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    user = User.where(provider: access_token.provider, uid: access_token.uid).first
+    if access_token.info.email.present?
+      user = User.where(email: access_token.info.email).first
+    else
+      user = User.where(provider: access_token.provider, uid: access_token.uid).first
+    end
     unless user
-      user = User.create(last_name: access_token.extra.raw_info.last_name,
-                         first_name: access_token.extra.raw_info.first_name,
-                         provider: access_token.provider,
-                         uid: access_token.uid,
-                         email: access_token.info.email,
-                         password: Devise.friendly_token[0, 20]
+      user = User.create!(last_name: access_token.extra.raw_info.last_name,
+                          first_name: access_token.extra.raw_info.first_name,
+                          provider: access_token.provider,
+                          uid: access_token.uid,
+                          email: access_token.info.email,
+                          password: Devise.friendly_token[0, 20]
       )
     end
     user
