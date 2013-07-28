@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: registrations
+# Table name: advises
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer

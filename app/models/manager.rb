@@ -26,6 +26,11 @@
 #  provider               :string(255)
 #  uid                    :string(255)
 #  first_name             :string(255)
+#  social_url             :string(255)
+#  picture_url            :string(255)
+#  gender                 :string(255)
+#  birthday               :string(255)
+#  locale                 :string(255)
 #
 
 class Manager < User

@@ -26,6 +26,11 @@
 #  provider               :string(255)
 #  uid                    :string(255)
 #  first_name             :string(255)
+#  social_url             :string(255)
+#  picture_url            :string(255)
+#  gender                 :string(255)
+#  birthday               :string(255)
+#  locale                 :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -53,7 +58,13 @@ class User < ActiveRecord::Base
                           provider: access_token.provider,
                           uid: access_token.uid,
                           email: access_token.info.email,
-                          password: Devise.friendly_token[0, 20]
+                          password: Devise.friendly_token[0, 20],
+                          social_url: access_token.extra.raw_info.link,
+                          picture_url: access_token.info.image,
+                          gender: access_token.extra.raw_info.gender,
+                          locale: access_token.extra.raw_info.locale
+
+
       )
     end
     user
@@ -69,7 +80,12 @@ class User < ActiveRecord::Base
                          provider: access_token.provider,
                          uid: access_token.uid,
                          email: data["email"],
-                         password: Devise.friendly_token[0, 20]
+                         password: Devise.friendly_token[0, 20],
+                         social_url: access_token.extra.raw_info.link,
+                         picture_url: data.image,
+                         gender: access_token.extra.raw_info.gender,
+                         locale: access_token.extra.raw_info.locale,
+                         birthday: access_token.extra.raw_info.birthday
       )
     end
     user
@@ -86,7 +102,13 @@ class User < ActiveRecord::Base
                          provider: access_token.provider,
                          uid: access_token.uid,
                          email: email,
-                         password: Devise.friendly_token[0, 20]
+                         password: Devise.friendly_token[0, 20],
+                         social_url: data.urls['Vkontakte'],
+                         picture_url: data.image,
+                         gender: access_token.extra.raw_info.sex,
+                         location: data.location,
+                         birthday: access_token.extra.raw_info.bdate
+
       )
     end
     user
@@ -106,7 +128,13 @@ class User < ActiveRecord::Base
                          provider: access_token.provider,
                          uid: access_token.uid,
                          email: email,
-                         password: Devise.friendly_token[0, 20]
+                         password: Devise.friendly_token[0, 20],
+                         social_url: data.urls['Twitter'],
+                         picture_url: data.image,
+                         locale: access_token.extra.raw_info.lang,
+                         location: access_token.extra.raw_info.location,
+                         birthday: access_token.extra.raw_info.bdate
+
       )
     end
     user

@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
 
   def main
     @items = Clinic.rated.page(params[:page]).per(12)
-    #respond_with @items
+    render stream: true
   end
 end
