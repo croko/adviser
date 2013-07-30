@@ -1,29 +1,28 @@
 # == Schema Information
 #
-# Table name: clinics
+# Table name: doctors
 #
 #  id                   :integer          not null, primary key
-#  name                 :string(255)
+#  first_name           :string(255)
+#  last_name            :string(255)
 #  description          :text
 #  status               :string(255)
 #  user_id              :integer
-#  published            :boolean          default(TRUE)
+#  clinic_id            :integer
+#  published            :boolean
 #  comments_count       :integer
 #  rating               :float
 #  likes_count          :integer
-#  created_at           :datetime
-#  updated_at           :datetime
-#  full_name            :string(255)
-#  last_name            :string(255)
-#  type                 :string(255)
 #  education            :string(255)
 #  starting_work        :date
-#  high_school_name     :string(255)
 #  high_school_finished :date
+#  high_school_name     :string(255)
 #  awards               :string(255)
-#  visit_home           :boolean
-#  price                :decimal(8, 2)    default(0.0)
+#  visit_home           :string(255)
+#  price                :decimal(8, 2)
 #  specialty            :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
 #
 
 require 'spec_helper'

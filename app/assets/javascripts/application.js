@@ -22,8 +22,8 @@
 //= require bootstrap-switch.js
 //= require load-image.js
 //= require main.js
-// require jquery.turbolinks
-// require turbolinks
+//* require jquery.turbolinks
+//* require turbolinks
 //= require_tree .
 
 $('#comment_rating').raty({

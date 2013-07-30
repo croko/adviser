@@ -8,7 +8,7 @@ namespace :db do
                   'психиатрия', 'психология', 'психотерапия', 'пульмонология', 'стоматология', 'трихология', 'урология', 'флебология',
                   'эндокринология', 'терапевты', 'хирургия', 'другие услуги']
 
-    [Doctor, Clinic, Category].each(&:destroy_all)
+    [Doctor, Clinic, Category, Photo].each(&:destroy_all)
 
     categories.each do |category|
       Category.create(name: category)
@@ -17,7 +17,7 @@ namespace :db do
     50.times do |i|
       Doctor.create do |doctor|
         doctor.last_name = Faker::Name.last_name
-        doctor.name = Faker::Name.first_name
+        doctor.first_name = Faker::Name.first_name
         doctor.rating = %w(4.1 5 3.4 4.4 3.1 3.5 4.7).sample
         doctor.description = Faker::Lorem.paragraph(3)
         doctor.education = Faker::Lorem.sentence(2)
@@ -52,14 +52,10 @@ namespace :db do
 
     20.times do |i|
       Clinic.create do |clinic|
-        clinic.last_name = Faker::Name.last_name
-        clinic.name = Faker::Name.first_name
+        clinic.full_name = Faker::Company.name
         clinic.rating = %w(4.1 5 3.4 4.4 3.1 3.5 4.7).sample
         clinic.description = Faker::Lorem.paragraph(3)
-        clinic.education = Faker::Lorem.sentence(2)
         clinic.starting_work = Date.today - 10.years
-        clinic.high_school_name = Faker::Lorem.sentence(3)
-        clinic.high_school_finished = Date.today - 10.years
         clinic.awards = Faker::Lorem.sentence(5)
         clinic.visit_home = %w(true false).sample
         clinic.price = %w(20.0 23.0 25.0 30.0 50.0 100.0 200.0).sample

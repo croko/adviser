@@ -9,7 +9,7 @@ Adviser::Application.routes.draw do
   resources :likes, only: [:create]
   end
 
-  resources :clinics, only: [:index, :show, :edit], :concerns => [:commentable, :likeable]
+  resources :clinics, only: [:show, :edit, :update], :concerns => [:commentable, :likeable]
   resources :doctors, only: [:show, :edit, :update], :concerns => [:commentable, :likeable]
   resources :categories, only: [:index, :show]
   resources :photos
@@ -30,6 +30,7 @@ Adviser::Application.routes.draw do
     resources :photos
   end
 
+  match '/results', to: 'application#results', via: [:get, :post]
   root to: 'application#main'
 
 end

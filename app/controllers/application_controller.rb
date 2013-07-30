@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
 
   #TODO
   #workaround for CanCan not ready for Rails 4
-    before_filter do
-      resource = controller_name.singularize.to_sym
-      method = "#{resource}_params"
-      params[resource] &&= send(method) if respond_to?(method, true)
-    end
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
   #####
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
@@ -22,7 +22,44 @@ class ApplicationController < ActionController::Base
   end
 
   def main
-    @items = Clinic.rated.page(params[:page]).per(12)
+    @doctors = Doctor.rated.page(params[:page]).limit(8)
+    @clinics = Clinic.rated.page(params[:page]).limit(8)
+    @items = @clinics + @doctors
+
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(16)
     render stream: true
+  end
+
+  def results
+    if params[:search].present?
+      @query = params[:search][:query]
+      @location = params[:search][:location]
+      if @location.present?
+        _c = Geocoder.coordinates(@location)
+        if (location_query = (Geocoder.coordinates(@location) rescue nil)).present?
+          params[:search][:location] = location_query
+          #geocode_log.debug("search #{@location} - #{location_query}")
+        else
+          params[:search][:location] = [0, 0]
+        end
+      end
+
+      if params['clinic'] == '1'
+        ids = Clinic.search(params[:search]).collect(&:id)
+        @items = Kaminari.paginate_array(Clinic.rated.where(id: ids)).page(params[:page]).per(12)
+      elsif params['doctor'] == '1'
+        ids = Doctor.search(params[:search]).collect(&:id)
+        @items = Kaminari.paginate_array(Doctor.rated.where(id: ids)).page(params[:page]).per(12)
+      else
+        ids_cli = Clinic.search(params[:search]).collect(&:id)
+        @clinics = Clinic.rated.where(id: ids_cli)
+        ids_doc = Doctor.search(params[:search]).collect(&:id)
+        @doctors = Doctor.rated.where(id: ids_doc)
+        @items = Kaminari.paginate_array(@clinics + @doctors).page(params[:page]).per(16)
+      end
+
+    else
+      @items = Clinic.rated.page(params[:page]).per(16)
+    end
   end
 end

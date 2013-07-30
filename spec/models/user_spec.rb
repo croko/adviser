@@ -31,6 +31,7 @@
 #  gender                 :string(255)
 #  birthday               :string(255)
 #  locale                 :string(255)
+#  location               :string(255)
 #
 
 require 'spec_helper'

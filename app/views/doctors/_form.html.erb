@@ -1,11 +1,11 @@
 <%= simple_form_for @doctor, :html => {:class => 'form-horizontal'} do |f| %>
+  <%= f.input :first_name %>
   <%= f.input :last_name %>
-  <%= f.input :name %>
-  <%= f.input :high_school_name %>
-  <%= f.input :education %>
   <%= f.input :specialty %>
-  <%= f.input :high_school_finished, as: :string, input_html: {class: 'datepicker', value: @doctor.high_school_finished} %>
-  <%= f.input :starting_work, as: :string, input_html: {class: 'datepicker', value: @doctor.starting_work} %>
+  <%= f.input :education %>
+  <%= f.input :starting_work, as: :string, input_html: {class: 'datepicker', value: @doctor.high_school_finished} %>
+  <%= f.input :high_school_name %>
+  <%= f.input :high_school_finished, as: :string, input_html: {class: 'datepicker', value: @doctor.starting_work} %>
   <%= f.input :awards %>
   <%= f.input :visit_home %>
   <%= f.input :price %>

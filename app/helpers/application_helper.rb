@@ -1,6 +1,7 @@
 module ApplicationHelper
 
-  def rating_box rating = 0.0
+  def rating_box(rating)
+    rating ||= 0.0
     stars = []
     (1..5).each do |i|
       if i <= rating + 0.335

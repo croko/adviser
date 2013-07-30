@@ -2,11 +2,11 @@
   <h3><%= Faker::Lorem.paragraph %></h3>
 </div>
 
-<% cache @category do %>
+<%# cache @category do %>
   <div class="row-fluid">
     <%= render :partial => 'items' %>
   </div>
-<% end %>
+<%# end %>
 <div class="row-fluid">
   <div class="span4">
     <p>

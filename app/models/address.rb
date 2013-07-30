@@ -27,12 +27,16 @@ class Address < ActiveRecord::Base
 
   validates_presence_of :address_1, :city, :state, :zip_code
 
+  after_validation :geocode_location
+
+  geocoded_by :address_proc
+
   def street_address
-    "#{address_1}, #{address_2}"
+    "#{address_1} #{address_2}"
   end
 
   def city_address
-    "#{city}, #{state}, #{zip_code}"
+    "#{zip_code} #{state} #{city}"
   end
 
   def website_base_url
@@ -42,4 +46,24 @@ class Address < ActiveRecord::Base
     base_uri.to_s
   end
 
+  def lat_lon
+    [latitude.to_f, longitude.to_f]
+  end
+
+  def geocode_location
+     begin
+       self.geocode
+       #geocode_log.debug("#{self.id} - #{self.send(:address_proc)} - lat : #{self.latitude} - lng : #{self.longitude}")
+       addressable.touch # rebuild search index
+     rescue
+       self.latitude = 0
+       self.longitude = 0
+     end
+  end
+
+  protected
+
+  def address_proc
+    [address_1, city, district, state, zip_code].compact.join(', ')
+  end
 end

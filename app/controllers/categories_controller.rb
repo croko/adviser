@@ -11,7 +11,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @items = Clinic.all_items(@category).rated.page(params[:page]).per(12)
+    #@items = Clinic.all_items(@category).rated.page(params[:page]).per(12)
+    @clinics = @category.clinics.rated #.page(params[:page]).per(12)
+    @doctors = @category.doctors.rated #.page(params[:page]).per(12)
+    @items = @clinics + @doctors
+
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
     render stream: true
   end
 

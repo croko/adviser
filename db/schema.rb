@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130728152601) do
+ActiveRecord::Schema.define(version: 20130730062335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,26 +95,20 @@ ActiveRecord::Schema.define(version: 20130728152601) do
   add_index "clinic_category_relations", ["clinic_id"], name: "clinic_clinic_id_index", using: :btree
 
   create_table "clinics", force: true do |t|
-    t.string   "name"
     t.text     "description"
     t.string   "status"
     t.integer  "user_id"
-    t.boolean  "published",                                    default: true
+    t.boolean  "published",                              default: true
     t.integer  "comments_count"
     t.float    "rating"
     t.integer  "likes_count"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
-    t.string   "last_name"
-    t.string   "type"
-    t.string   "education"
     t.date     "starting_work"
-    t.string   "high_school_name"
-    t.date     "high_school_finished"
     t.string   "awards"
     t.boolean  "visit_home"
-    t.decimal  "price",                precision: 8, scale: 2, default: 0.0
+    t.decimal  "price",          precision: 8, scale: 2, default: 0.0
     t.string   "specialty"
   end
 
@@ -128,6 +122,42 @@ ActiveRecord::Schema.define(version: 20130728152601) do
     t.datetime "updated_at"
     t.boolean  "published",        default: true
   end
+
+  create_table "doctor_category_relations", force: true do |t|
+    t.integer  "doctor_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "doctor_category_relations", ["category_id"], name: "index_doctor_category_relations_on_category_id", using: :btree
+  add_index "doctor_category_relations", ["doctor_id"], name: "index_doctor_category_relations_on_doctor_id", using: :btree
+
+  create_table "doctors", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "description"
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "clinic_id"
+    t.boolean  "published"
+    t.integer  "comments_count"
+    t.float    "rating"
+    t.integer  "likes_count"
+    t.string   "education"
+    t.date     "starting_work"
+    t.date     "high_school_finished"
+    t.string   "high_school_name"
+    t.string   "awards"
+    t.string   "visit_home"
+    t.decimal  "price",                precision: 8, scale: 2
+    t.string   "specialty"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "doctors", ["clinic_id"], name: "index_doctors_on_clinic_id", using: :btree
+  add_index "doctors", ["user_id"], name: "index_doctors_on_user_id", using: :btree
 
   create_table "likes", force: true do |t|
     t.integer  "user_id"

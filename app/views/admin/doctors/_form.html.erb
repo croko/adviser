@@ -1,6 +1,6 @@
 <%= simple_nested_form_for [:admin, @doctor], :html => {:class => 'form-horizontal'} do |f| %>
   <%= f.input :last_name %>
-  <%= f.input :name %>
+  <%= f.input :first_name %>
   <%= f.input :description %>
   <%= f.input :specialty %>
   <%= f.input :user_id %>
@@ -15,10 +15,10 @@
   <%= f.input :price %>
   <h4>Категории</h4>
   <table class="table table-striped">
-    <%= f.fields_for :clinic_category_relations, wrapper: false %>
+    <%= f.fields_for :doctor_category_relations, wrapper: false %>
     <tr>
       <td colspan="3">
-        <%= f.link_to_add "Добавить", :clinic_category_relations %>
+        <%= f.link_to_add "Добавить", :doctor_category_relations %>
       </td>
     </tr>
   </table>

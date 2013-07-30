@@ -1,16 +1,12 @@
 class ClinicsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
-
-  # GET /clinics
-  # GET /clinics.json
-  def index
-    @items = Clinic.rated.page(params[:page]).per(12)
-  end
+  before_action :set_clinic, only: [:show, :edit, :update]
 
   # GET /clinics/1
   # GET /clinics/1.json
   def show
+    @comments = @clinic.comments.page(params[:page]).per(5)
+    @comment = @clinic.comments.build if current_user
   end
 
   # GET /clinics/new
@@ -52,24 +48,14 @@ class ClinicsController < ApplicationController
     end
   end
 
-  # DELETE /clinics/1
-  # DELETE /clinics/1.json
-  def destroy
-    @clinic.destroy
-    respond_to do |format|
-      format.html { redirect_to clinics_url }
-      format.json { head :no_content }
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_clinic
+    @clinic = Clinic.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_clinic
-      @clinic = Clinic.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def clinic_params
-      params.require(:clinic).permit(:name, :description, :status, :user_id, :published, :rating, :likes_count)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def clinic_params
+    params.require(:clinic).permit(:full_name, :description)
+  end
 end

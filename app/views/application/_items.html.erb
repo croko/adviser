@@ -5,8 +5,7 @@
     <ul class="thumbnails">
       <% slice.each do |item| %>
         <li class="span3">
-          <%= link_to image_tag(item.photos.try(:first).url(:thumb)), polymorphic_path(item) %>
-          <%#= photo.attachable.online? ? content_tag(:span, 'На складе', class: "label label-success pull-right") : content_tag(:span, 'Продано', class: "label label-info") %>
+          <%= link_to image_tag(item.photos.try(:first).url(:thumb)), polymorphic_path(item) rescue nil %>
           <table class="table table-condensed">
             <tr>
               <td><%= rating_box(item.rating) %></td>
@@ -15,7 +14,7 @@
               <td><span id="<%= item.id %>"><%= render partial: 'likes/like_block', locals: {likeable: item} %></span></td>
             </tr>
             <tr>
-              <td><%= item.full_name %></td>
+              <td><%= link_to item.full_name, polymorphic_path(item) %></td>
             </tr>
             <tr>
               <td><%= item.categories.first.name %></td>

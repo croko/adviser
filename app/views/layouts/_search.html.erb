@@ -1,4 +1,4 @@
-<%= simple_form_for :search, url: clinics_path, html: {method: :get, class: 'navbar-search'} do |f| %>
+<%= simple_form_for :search, url: results_path, html: {method: :get, class: 'navbar-search'} do |f| %>
   <%= f.input_field :query, class: "search-query input-xlarge", placeholder: "Фамилия, специальность" %>
   <%= f.input_field :location, class: "search-query input-xlarge", placeholder: "Город, район, улица" %>
   <%= button_tag '', class: "btn btn-small icon-search" %>

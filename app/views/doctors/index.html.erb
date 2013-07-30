@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h3>Результаты поиска для: </h3>
+</div>
+
+<div id="items">
+  <div class="page">
+    <%= render :partial => 'application/items' %>
+  </div>
+</div>
+<nav class="pagination" style="display: none;">
+<%= paginate @doctors, remote: true %>
+</nav>

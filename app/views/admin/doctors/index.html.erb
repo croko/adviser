@@ -6,19 +6,12 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:full_name) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:published) %></th>
       <th><%= model_class.human_attribute_name(:rating) %></th>
-      <th><%= model_class.human_attribute_name(:full_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
-      <th><%= model_class.human_attribute_name(:education) %></th>
       <th><%= model_class.human_attribute_name(:starting_work) %></th>
-      <th><%= model_class.human_attribute_name(:high_school_name) %></th>
-      <th><%= model_class.human_attribute_name(:high_school_finished) %></th>
-      <th><%= model_class.human_attribute_name(:awards) %></th>
       <th><%= model_class.human_attribute_name(:visit_home) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -29,19 +22,12 @@
     <% @doctors.each do |doctor| %>
       <tr>
         <td><%= link_to doctor.id, doctor_path(doctor) %></td>
-        <td><%= doctor.name %></td>
+        <td><%= doctor.full_name %></td>
         <td><%= doctor.status %></td>
         <td><%= doctor.user_id %></td>
         <td><%= doctor.published %></td>
         <td><%= doctor.rating %></td>
-        <td><%= doctor.full_name %></td>
-        <td><%= doctor.last_name %></td>
-        <td><%= doctor.type %></td>
-        <td><%= doctor.education %></td>
         <td><%= doctor.starting_work %></td>
-        <td><%= doctor.high_school_name %></td>
-        <td><%= doctor.high_school_finished %></td>
-        <td><%= doctor.awards %></td>
         <td><%= doctor.visit_home %></td>
         <td><%= doctor.price %></td>
         <td><%=l doctor.created_at %></td>

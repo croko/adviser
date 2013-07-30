@@ -38,14 +38,6 @@
   </div>
   <div class="span7">
     <dl class="dl-horizontal pull-left">
-      <dt><strong><%= model_class.human_attribute_name(:high_school_name) %>:</strong></dt>
-      <dd><%= @clinic.high_school_name %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:education) %>:</strong></dt>
-      <dd><%= @clinic.education %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:specialty) %>:</strong></dt>
-      <dd><%= @clinic.specialty %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:high_school_finished) %>:</strong></dt>
-      <dd><%= @clinic.high_school_finished %></dd>
       <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
       <dd><%= @clinic.starting_work %></dd>
       <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
@@ -56,6 +48,10 @@
       <dd><%= @clinic.price %></dd>
       <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
       <dd><%= @clinic.description %></dd>
+      <% @clinic.addresses.each do |address| %>
+        <dt><strong>Адрес:</strong></dt>
+        <dd><%= address.city_address %> <%= address.street_address %></dd>
+      <% end %>
     </dl>
   </div>
 </div>
@@ -73,11 +69,11 @@
   <h3>Комментарии</h3>
 </div>
 <div class="row">
-  <%= render @comments %>
+  <%= render @comments unless @comments.nil? %>
 </div>
 
 <nav class="pagination">
-  <%= paginate @comments %>
+  <%= paginate @comments unless @comments.nil? %>
 </nav>
 
 <div id="new_comment_window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
