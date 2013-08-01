@@ -1,6 +1,6 @@
 module ClinicSearch
-  #Tire.configure{ logger 'log/tire_log'}
-  Tire.configure { logger 'log/tire_log', :level => 'debug' }
+  #Tire.configure{ logger 'log/tire.log'}
+  #Tire.configure { logger 'log/tire.log', :level => 'debug' }
 
   def self.included(base)
     base.send :include, Tire::Model::Search

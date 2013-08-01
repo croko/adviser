@@ -61,19 +61,18 @@
       <h4>Добавить <%= link_to("комментарий", '#new_comment_window', data: {toggle: "modal"}) %></h4>
     <% end %>
   <% else %>
-    <h4>Только зарегистрированные пользователи могут оставлять комментарии.
-      Пожалуйста <%= link_to 'войдите', new_user_session_path %> </h4>
+    <%= render :partial => 'layouts/auth_links' %>
   <% end %>
 </div>
 <div class="row">
   <h3>Комментарии</h3>
 </div>
 <div class="row">
-  <%= render @comments unless @comments.nil? %>
+  <%= render @comments %>
 </div>
 
 <nav class="pagination">
-  <%= paginate @comments unless @comments.nil? %>
+  <%= paginate @comments %>
 </nav>
 
 <div id="new_comment_window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

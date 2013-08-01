@@ -6,13 +6,13 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
 
-    can :manage, :all
-    #cannot :manage, :all
-    #can :read, [Doctor, Category, Clinic, Comment]
+    cannot :manage, :all
+    can :read, [Doctor, Category, Clinic, Comment]
 
     if user.persisted?
-      can :create, [Advise, User, Comment]
-      #can :update, [Doctor, Clinic], :user_id => user.id
+      can :create, [Advise, Comment]
+      can :update, [Doctor,Clinic], :user_id => user.id
+      can :update, [User], :id => user.id
     end
 
     if user.role?('admin')
