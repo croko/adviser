@@ -27,12 +27,17 @@ class AdminUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :validatable, :rememberable
+  #:registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :role
 
   validates :email, uniqueness: true
   validates :name, :last_name, :role, presence: true
+
+  def role?(nick)
+    try(:role).try(:nickname) == nick
+  end
 
 end

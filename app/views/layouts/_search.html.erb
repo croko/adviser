@@ -1,6 +1,8 @@
 <%= simple_form_for :search, url: results_path, html: {method: :get, class: 'navbar-search'} do |f| %>
-  <%= f.input_field :query, class: "search-query input-xlarge", placeholder: "Фамилия, специальность" %>
-  <%= f.input_field :location, class: "search-query input-xlarge", placeholder: "Город, район, улица" %>
+  <%= f.input_field :query, class: "search-query input-xlarge", placeholder: "фамилия, название, специальность" %>
+  <%= f.input_field :location, class: "search-query input-xlarge", placeholder: "город, район, улица" %>
+  <%= link_to '', '#', class: "btn btn-small icon-filter", data: {toggle: "collapse", target: "#advanced-search"} %></li>
+
   <%= button_tag '', class: "btn btn-small icon-search" %>
   <div id="advanced-search" class="collapse out row-fluid">
     <div class="span3">

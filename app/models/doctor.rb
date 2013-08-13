@@ -26,8 +26,8 @@
 #
 
 class Doctor < ActiveRecord::Base
-  #Doctor.index_name 'clinics'
   include ClinicSearch
+  GENDER = %w(муж. жен.)
 
   has_many :doctor_category_relations, dependent: :destroy
   has_many :categories, through: :doctor_category_relations
@@ -47,6 +47,7 @@ class Doctor < ActiveRecord::Base
   make_permalink :full_name
 
   scope :rated, -> { order('rating DESC, likes_count DESC') }
+  scope :my_doctors, -> (user) { where(user_id: user) }
   #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
 
   after_save :update_category_cache

@@ -18,15 +18,18 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || new_advise_path || root_path
+    if current_admin_user
+      admin_users_path
+    else
+      request.env['omniauth.origin'] || stored_location_for(resource) || new_advise_path || root_path
+    end
   end
 
   def main
-    @doctors = Doctor.rated.page(params[:page]).limit(8)
-    @clinics = Clinic.rated.page(params[:page]).limit(8)
+    @doctors = Doctor.rated.page(params[:page]).limit(12)
+    @clinics = Clinic.rated.page(params[:page]).limit(12)
     @items = @clinics + @doctors
-
-    @items = Kaminari.paginate_array(@items).page(params[:page]).per(16)
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(24)
     render stream: true
   end
 
@@ -45,15 +48,15 @@ class ApplicationController < ActionController::Base
       end
 
       if params['clinic'] == '1'
-        ids = Clinic.search(params[:search]).collect(&:id)
+        ids = Clinic.elasticsearch(params[:search]).collect(&:id)
         @items = Kaminari.paginate_array(Clinic.rated.where(id: ids)).page(params[:page]).per(12)
       elsif params['doctor'] == '1'
-        ids = Doctor.search(params[:search]).collect(&:id)
+        ids = Doctor.elasticsearch(params[:search]).collect(&:id)
         @items = Kaminari.paginate_array(Doctor.rated.where(id: ids)).page(params[:page]).per(12)
       else
-        ids_cli = Clinic.search(params[:search]).collect(&:id)
+        ids_cli = Clinic.elasticsearch(params[:search]).collect(&:id)
         @clinics = Clinic.rated.where(id: ids_cli)
-        ids_doc = Doctor.search(params[:search]).collect(&:id)
+        ids_doc = Doctor.elasticsearch(params[:search]).collect(&:id)
         @doctors = Doctor.rated.where(id: ids_doc)
         @items = Kaminari.paginate_array(@clinics + @doctors).page(params[:page]).per(16)
       end

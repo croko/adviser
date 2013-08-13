@@ -6,37 +6,21 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @admin_user.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:encrypted_password) %>:</strong></dt>
-  <dd><%= @admin_user.encrypted_password %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reset_password_token) %>:</strong></dt>
-  <dd><%= @admin_user.reset_password_token %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reset_password_sent_at) %>:</strong></dt>
-  <dd><%= @admin_user.reset_password_sent_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:remember_created_at) %>:</strong></dt>
-  <dd><%= @admin_user.remember_created_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:current_sign_in_at) %>:</strong></dt>
-  <dd><%= @admin_user.current_sign_in_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_sign_in_at) %>:</strong></dt>
-  <dd><%= @admin_user.last_sign_in_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:current_sign_in_ip) %>:</strong></dt>
-  <dd><%= @admin_user.current_sign_in_ip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_sign_in_ip) %>:</strong></dt>
-  <dd><%= @admin_user.last_sign_in_ip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:failed_attempts) %>:</strong></dt>
-  <dd><%= @admin_user.failed_attempts %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:unlock_token) %>:</strong></dt>
-  <dd><%= @admin_user.unlock_token %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:locked_at) %>:</strong></dt>
-  <dd><%= @admin_user.locked_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @admin_user.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @admin_user.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:role) %>:</strong></dt>
+  <dd><%= @admin_user.role.name %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              admin_users_path, :class => 'btn'  %>
+              admin_admin_users_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_admin_user_path(@admin_user), :class => 'btn' %>
+              edit_admin_admin_user_path(@admin_user), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              admin_user_path(@admin_user),
+              admin_admin_user_path(@admin_user),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

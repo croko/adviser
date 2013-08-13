@@ -1,4 +1,4 @@
-class RolesController < ApplicationController
+class Admin::RolesController <  Admin::BaseController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles
@@ -28,7 +28,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
+        format.html { redirect_to [:admin, @role], notice: 'Role was successfully created.' }
         format.json { render action: 'show', status: :created, location: @role }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+        format.html { redirect_to [:admin, @role], notice: 'Role was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +56,7 @@ class RolesController < ApplicationController
   def destroy
     @role.destroy
     respond_to do |format|
-      format.html { redirect_to roles_url }
+      format.html { redirect_to admin_roles_url }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class RolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
-      params[:role]
+      params[:role].permit(:name, :nickname)
     end
 end

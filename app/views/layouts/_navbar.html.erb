@@ -9,13 +9,19 @@
 
     <div class="container nav-collapse">
       <ul class="nav">
-        <li><%= link_to "Рекомендовать", new_advise_path %></li>
-        <li><%= link_to 'Фильтр', '#', data: {toggle: "collapse", target: "#advanced-search"} %></li>
+        <li><%= link_to "Меню", '#' %></li>
+        <li><%= link_to 'Меню', '#' %></li>
         <%= render partial: 'layouts/search' %>
         <ul class="nav pull-right">
           <% if user_signed_in? %>
-            <li>
-              <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+            <li class="icon">
+              <%= link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись' %>
+            </li>
+            <li class="icon">
+              <%= link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер' %>
+            </li>
+            <li class="icon">
+              <%= link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти' %>
             </li>
           <% else %>
             <li>

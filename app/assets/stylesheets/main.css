@@ -50,6 +50,10 @@ body {
   padding: 15px 20px;
 }
 
+li.icon  {
+  padding: 5px;
+}
+
 /* Offset the responsive button for proper vertical alignment */
 .navbar .btn-navbar {
   margin-top: 10px;
@@ -115,11 +119,10 @@ body {
 
 /* Center align the text within the three columns below the carousel */
 .marketing .span4 {
-  text-align: center;
+  text-align: center;}
   .align_justify {
     text-align: justify;
   }
-}
 
 .marketing h2 {
   font-weight: normal;

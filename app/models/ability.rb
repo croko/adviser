@@ -13,10 +13,7 @@ class Ability
       can :create, [Advise, Comment]
       can :update, [Doctor,Clinic], :user_id => user.id
       can :update, [User], :id => user.id
-    end
-
-    if user.role?('admin')
-      can :manage, :all
+      can :read, [User], :id => user.id
     end
   end
 end

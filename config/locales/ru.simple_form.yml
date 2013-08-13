@@ -1,0 +1,13 @@
+ru:
+  simple_form:
+    labels:
+      category:
+        name: 'Специальность'
+        pediatric: 'Детская'
+    hints:
+      category:
+        pediatric: ''
+    placeholders:
+      user:
+        username: 'Your username'
+        password: '****'

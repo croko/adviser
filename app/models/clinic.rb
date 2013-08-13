@@ -41,6 +41,7 @@ class Clinic < ActiveRecord::Base
   make_permalink :full_name
 
   scope :rated, -> { order('rating DESC, likes_count DESC') }
+  scope :my_clinics, -> (user) { where(user_id: user) }
   #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
 
   after_save :update_category_cache

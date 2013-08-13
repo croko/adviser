@@ -2,7 +2,7 @@
   <%= f.input :full_name %>
   <%= f.input :description %>
   <%= f.input :specialty %>
-  <%= f.input :user_id %>
+  <%= f.input :user_id, collection: User.all.map{|u| [u.full_name, u.id]} %>
   <%= f.input :published %>
   <%= f.input :rating %>
   <%= f.input :starting_work, as: :string, input_html: {class: 'datepicker', value: @clinic.starting_work} %>

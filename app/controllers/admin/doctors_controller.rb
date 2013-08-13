@@ -4,7 +4,8 @@ class Admin::DoctorsController < Admin::BaseController
   # GET /doctors
   # GET /doctors.json
   def index
-    @doctors = Doctor.all
+    @q = Doctor.search(params[:q])
+    @doctors = @q.result.page(params[:page]).per(25)
   end
 
   # GET /doctors/1

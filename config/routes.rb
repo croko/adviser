@@ -14,8 +14,9 @@ Adviser::Application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :photos
 
+  devise_for :admin_users #, :controllers => { :sessions => "admin/sessions" } # :class_name => "AdminUser"# :only => :sessions
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users, only: :edit
+  resources :users, only: [:edit, :update, :show]
 
   namespace :admin do
     resources :advises
@@ -26,8 +27,8 @@ Adviser::Application.routes.draw do
     resources :roles
     resources :users
     resources :admin_users
-    devise_for :admin_users
     resources :photos
+    resources :comments
   end
 
   match '/results', to: 'application#results', via: [:get, :post]

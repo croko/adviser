@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
   #validates_acceptance_of :terms_of_service, on: :create
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]
 
+  def full_name
+    (last_name.to_s + ' ' + first_name.to_s).strip
+  end
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     if access_token.info.email.present?
       user = User.where(email: access_token.info.email).first
@@ -139,9 +143,5 @@ class User < ActiveRecord::Base
       )
     end
     user
-  end
-
-  def role?(nick)
-    try(:role).try(:nickname) == nick
   end
 end

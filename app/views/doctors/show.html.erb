@@ -51,6 +51,8 @@
       <dd><%= @doctor.visit_home %></dd>
       <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
       <dd><%= @doctor.price %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+      <dd><%= @doctor.gender %></dd>
       <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
       <dd><%= @doctor.description %></dd>
       <% @doctor.addresses.each do |address| %>

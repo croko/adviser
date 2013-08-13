@@ -9,6 +9,7 @@
   <%= f.input :awards %>
   <%= f.input :visit_home %>
   <%= f.input :price %>
+  <%= f.input :gender, collection: Doctor::GENDER %>
   <%= f.input :description %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

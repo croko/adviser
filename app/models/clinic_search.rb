@@ -13,7 +13,7 @@ module ClinicSearch
       base.indexes :coordinates, type: 'geo_point'
     end
 
-    def base.search(params, options={})
+    def base.elasticsearch(params, options={})
       tire.search() do
         query() do
           if params[:query].blank?

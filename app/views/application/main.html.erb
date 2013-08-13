@@ -1,12 +1,11 @@
 <div class="page-header">
-  <h3><%= Faker::Lorem.paragraph %></h3>
-</div>
-
-<%# cache @category do %>
-  <div class="row-fluid">
-    <%= render :partial => 'items' %>
+  <div class="row">
+    <h3><%= Faker::Lorem.paragraph %></h3>
   </div>
-<%# end %>
+  <div class="offset5 span2">
+    <%= button_to 'Рекомендовать специалиста!', new_advise_path, method: :get, class: 'btn btn-warning btn-large' %>
+  </div>
+</div>
 <div class="row-fluid">
   <div class="span4">
     <p>
@@ -24,6 +23,12 @@
     </p>
   </div>
 </div>
+
+<%# cache @category do %>
+<div class="row-fluid">
+  <%= render :partial => 'items' %>
+</div>
+<%# end %>
 
 <div class="row-fluid">
   <div class="span4">

@@ -1,12 +1,12 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController <  Admin::BaseController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @q = User.search(params[:q])
+    @users = @q.result.page(params[:page]).per(25)
   end
 
   # GET /users/1
@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         sign_in @user, :bypass => true if current_user == @user
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
