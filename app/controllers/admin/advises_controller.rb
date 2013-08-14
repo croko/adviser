@@ -2,7 +2,8 @@ class Admin::AdvisesController < Admin::BaseController
   before_action :set_advise, only: [:show, :edit, :update, :destroy]
  
    def index
-     @advises = Advise.all
+     @q = Advise.search(params[:q])
+     @advises = @q.result.page(params[:page]).per(25)
    end
  
    def show

@@ -12,23 +12,23 @@
         <li><%= link_to "Меню", '#' %></li>
         <li><%= link_to 'Меню', '#' %></li>
         <%= render partial: 'layouts/search' %>
-        <ul class="nav pull-right">
-          <% if user_signed_in? %>
-            <li class="icon">
-              <%= link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись' %>
-            </li>
-            <li class="icon">
-              <%= link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер' %>
-            </li>
-            <li class="icon">
-              <%= link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти' %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to 'Войти', new_user_session_path %>
-            </li>
-          <% end %>
-        </ul>
+      </ul>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li class="icon">
+            <%= link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись' %>
+          </li>
+          <li class="icon">
+            <%= link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер' %>
+          </li>
+          <li class="icon">
+            <%= link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'Войти', new_user_session_path %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <!--/.nav-collapse -->

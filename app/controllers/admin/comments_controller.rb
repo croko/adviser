@@ -4,7 +4,8 @@ class Admin::CommentsController <  Admin::BaseController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @q = Comment.search(params[:q])
+    @comments = @q.result.order('created_at DESC').page(params[:page]).per(25)
   end
 
   # GET /comments/1

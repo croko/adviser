@@ -1,0 +1,24 @@
+<% @advises.each do |advise| %>
+  <tr class="item">
+    <td><%= link_to advise.id, admin_advise_path(advise) %></td>
+    <td><%= advise.user.email %></td>
+    <td><%= advise.category.try(:name) %></td>
+    <td><%= advise.last_name %></td>
+    <td><%= advise.name %></td>
+    <td><%= advise.full_name %></td>
+    <td><%= advise.specialty %></td>
+    <td><%= advise.city %></td>
+    <td><%= advise.phone_number %></td>
+    <td><%= advise.status %></td>
+    <td><%=l advise.created_at %></td>
+    <td>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_admin_advise_path(advise), :class => 'btn btn-mini' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  admin_advise_path(advise),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-mini btn-danger' %>
+    </td>
+  </tr>
+<% end %>

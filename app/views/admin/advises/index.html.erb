@@ -1,8 +1,14 @@
 <%- model_class = Advise -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human(count: 2).titleize %></h1>
+  <%= search_form_for [:admin, @q], class: 'form-search' do |f| %>
+     <%= f.text_field :user_email_cont, class: 'search-query', placeholder: 'поиск по eamil' %>
+     <%= f.text_field :full_name_cont, class: 'search-query', placeholder: 'поиск по названию' %>
+     <%= f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии' %>
+    <%= f.button 'Найти', :class => 'btn search-query' %>
+  <% end %>
 </div>
-<table class="table table-striped">
+<table id="aitems" class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -14,41 +20,20 @@
       <th><%= model_class.human_attribute_name(:specialty) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:phone_number) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-  <tbody>
-    <% @advises.each do |advise| %>
-      <tr>
-        <td><%= link_to advise.id, admin_advise_path(advise) %></td>
-        <td><%= advise.user_id %></td>
-        <td><%= advise.category_id %></td>
-        <td><%= advise.last_name %></td>
-        <td><%= advise.name %></td>
-        <td><%= advise.full_name %></td>
-        <td><%= advise.specialty %></td>
-        <td><%= advise.city %></td>
-        <td><%= advise.phone_number %></td>
-        <td><%= advise.description %></td>
-        <td><%= advise.status %></td>
-        <td><%=l advise.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_admin_advise_path(advise), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      admin_advise_path(advise),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+  <tbody class="page">
+    <%= render :partial => 'result' %>
   </tbody>
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_admin_advise_path,
             :class => 'btn btn-primary' %>
+
+<nav class="pagination" style="display: none;">
+<%= paginate @advises, remote: true %>
+</nav>

@@ -1,6 +1,8 @@
-<h5 class="tooltip-demo">Войти через </h5>
 <div class="row-fluid">
-  <div class="span5 offset4">
+  <div class="span4">
+    <h3 class="tooltip-demo">Войти через </h3>
+  </div>
+  <div class="span5 ">
     <ul class="nav nav-pills">
       <li>
         <%= link_to image_tag('icons/google-plus.png', alt: 'Google'), omniauth_authorize_path('user', 'google_oauth2'), :"data-original-title" => 'Google', rel: 'tooltip' %>

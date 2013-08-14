@@ -1,8 +1,9 @@
 <%- model_class = Doctor -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human(count: 2).titleize %></h1>
-  <%= search_form_for [:admin, @q] do |f| %>
-     <%= f.text_field :last_name_cont, placeholder: 'поиск по фамилии' %>
+  <%= search_form_for [:admin, @q], class: 'form-search' do |f| %>
+     <%= f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии' %>
+    <%= f.button 'Найти', :class => 'btn search-query' %>
   <% end %>
 </div>
 <table id="ditems" class="table table-striped">
