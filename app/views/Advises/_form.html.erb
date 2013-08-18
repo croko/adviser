@@ -1,4 +1,4 @@
-<%= simple_form_for @advise, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @advise, :html => {:class => 'form-horizontal'} do |f| %>
   <%= f.input :category_id, collection: Category.sorted %>
   <%= f.input :last_name %>
   <%= f.input :name %>
@@ -6,9 +6,10 @@
   <%= f.input :specialty %>
   <%= f.input :city %>
   <%= f.input :phone_number %>
+  <%= f.input :pediatric %>
   <%= f.input :description %>
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= f.button :submit, 'Рекомендовать', :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 root_url, :class => 'btn' %>
   </div>

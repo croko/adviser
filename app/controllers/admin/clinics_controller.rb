@@ -72,7 +72,7 @@ class Admin::ClinicsController < Admin::BaseController
     def clinic_params
       params.require(:clinic).permit(:id, :full_name, :description, :user_id, :published,
             :starting_work,  :awards,
-            :visit_home, :price, :rating, :specialty,
+            :visit_home, :price, :rating, :specialty, :pediatric,
             clinic_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
             photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
             addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,

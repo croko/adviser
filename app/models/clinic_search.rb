@@ -11,6 +11,7 @@ module ClinicSearch
       base.indexes :specialty, analyzer: 'snowball', boost: 10000000000
       base.indexes :description, analyzer: 'snowball'
       base.indexes :coordinates, type: 'geo_point'
+      base.indexes :pediatric, type: 'boolean'
     end
 
     def base.elasticsearch(params, options={})
@@ -29,13 +30,13 @@ module ClinicSearch
 
         #filter(:and, Clinic.query_builder(params)) unless Clinic.query_builder(params).empty?
         #
-        #if params[:children].present?
-        #  rules = params[:price_range].inject([]) do |res, obj|
-        #    obj = obj.split('/')
-        #    res << {:range => {:price_value => {from: obj.first, to: obj.last}}}
-        #  end
-        #  filter(:or, rules)
-        #end
+        if options[:children] == 'true'
+          filter :term, :pediatric => true
+        end
+
+        if options[:adult] == 'true'
+          filter :term, :pediatric => false
+        end
 
         if params[:location].present?
           filter :geo_distance, coordinates: params[:location], distance: "#{params[:distance] || 15}km"
@@ -56,7 +57,7 @@ module ClinicSearch
 
   def to_indexed_json
     to_json(
-        methods: [:full_name, :specialty, :description, :coordinates]
+        methods: [:full_name, :specialty, :description, :coordinates, :pediatric]
     )
   end
 

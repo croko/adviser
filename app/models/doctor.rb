@@ -23,6 +23,8 @@
 #  specialty            :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  gender               :string(255)
+#  pediatric            :boolean          default(FALSE)
 #
 
 class Doctor < ActiveRecord::Base
@@ -81,6 +83,10 @@ class Doctor < ActiveRecord::Base
 
   def coordinates
     addresses.collect(&:lat_lon).flatten
+  end
+
+  def stage
+    (Date.today - starting_work).to_years
   end
 
   protected

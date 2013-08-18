@@ -47,16 +47,25 @@ class ApplicationController < ActionController::Base
         end
       end
 
+      options = {}
+
+      if params[:children] == '1'
+        options.merge!(:children => 'true')
+      end
+      if params[:adult] == '1'
+        options.merge!(:adult => 'true')
+      end
+
       if params['clinic'] == '1'
-        ids = Clinic.elasticsearch(params[:search]).collect(&:id)
+        ids = Clinic.elasticsearch(params[:search], options).collect(&:id)
         @items = Kaminari.paginate_array(Clinic.rated.where(id: ids)).page(params[:page]).per(12)
       elsif params['doctor'] == '1'
-        ids = Doctor.elasticsearch(params[:search]).collect(&:id)
+        ids = Doctor.elasticsearch(params[:search], options).collect(&:id)
         @items = Kaminari.paginate_array(Doctor.rated.where(id: ids)).page(params[:page]).per(12)
       else
-        ids_cli = Clinic.elasticsearch(params[:search]).collect(&:id)
+        ids_cli = Clinic.elasticsearch(params[:search], options).collect(&:id)
         @clinics = Clinic.rated.where(id: ids_cli)
-        ids_doc = Doctor.elasticsearch(params[:search]).collect(&:id)
+        ids_doc = Doctor.elasticsearch(params[:search], options).collect(&:id)
         @doctors = Doctor.rated.where(id: ids_doc)
         @items = Kaminari.paginate_array(@clinics + @doctors).page(params[:page]).per(16)
       end

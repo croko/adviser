@@ -1,9 +1,94 @@
 ru:
   simple_form:
+    yes: 'Да'
+    no: 'Нет'
+
+    required:
+      text: 'обязательное поле'
+      mark: '*'
     labels:
+      advise:
+        category_id: 'Специальность'
+        last_name: 'Фамилия'
+        name: "Имя"
+        full_name: "Название"
+        specialty: "Специализация"
+        city: "Город"
+        phone_number: "Телефон"
+        description: "Описание"
+        pediatric: "Детский"
+      address:
+        phone_number: "Телефон"
+        mobile_phone_number: "Телефон моб."
+        address_1: "Адрес"
+        address_2: "Адрес доп."
+        city: "Город"
+        state: "Область"
+        zip_code: "Индекс"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        website_url: "Веб сайт"
+        email: "Email"
+        district: "Район"
       category:
         name: 'Специальность'
-        pediatric: 'Детская'
+        pediatric: 'Детский'
+      clinic:
+        description: "Описание"
+        status: "Статус"
+        user_id: "Менеджер"
+        published: "Опубликовано"
+        comments_count: "Комментарии"
+        rating: "Рейтинг"
+        likes_count: "Нравится"
+        created_at: "Создана"
+        updated_at: "Изменена"
+        full_name: "Название"
+        starting_work: "Создана"
+        awards: "Награды, дипломы"
+        visit_home: "Выезд на дом"
+        price: "Цена"
+        specialty: "Специализация"
+        pediatric: "Детская"
+      comment:
+        user_id: "Участник"
+        message: "Комментарий"
+        rating: "Рейтинг"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        published: "Опубликован"
+      doctor:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        city: "Город"
+        address: "Адрес"
+        description: "Описание"
+        status: "Статус"
+        user_id: "Менеджер"
+        clinic_id: "Клиника"
+        published: "Опубликован"
+        comments_count: "Комментарии"
+        rating: "Рейтинг"
+        likes_count: "Нравится"
+        education: "Образование"
+        starting_work: "Начало деятельности"
+        stage: "Стаж"
+        high_school_finished: "Дата окончания ВУЗа"
+        high_school_name: "ВУЗ"
+        awards: "Награды, дипломы"
+        visit_home: "Выезд на дом"
+        price: "Цена"
+        specialty: "Специализация"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        gender: "Пол"
+        pediatric: "Детский"
+      user:
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+        password_confirmation: 'Подтвердите пароль'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
     hints:
       category:
         pediatric: ''

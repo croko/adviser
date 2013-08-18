@@ -23,6 +23,8 @@
 #  specialty            :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  gender               :string(255)
+#  pediatric            :boolean          default(FALSE)
 #
 
 require 'spec_helper'

@@ -29,7 +29,7 @@ namespace :db do
         doctor.price = %w(20.0 23.0 25.0 30.0 50.0 100.0 200.0).sample
 
         address = Address.new(
-            email: "v#{i}@doctor.com",
+            email: "v#{i}@doctor.®m",
             address_1: Faker::Address.street_name,
             city: Faker::Address.city,
             district: Faker::Address.state_abbr,

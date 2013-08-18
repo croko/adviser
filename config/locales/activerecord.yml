@@ -56,24 +56,110 @@ ru:
         format: "%{attribute} %{message}"
 
     state_machines:
-          states:
-            opened: "открыт"
-            closed: "закрыт"
-            created: "создан"
-            reopened: "повторно открыт"
-            draft: "черновик"
-            inwork: "в работе"
-          events:
-            open: "открыть"
-            close: "закрыть"
-            reopen: "открыть"
+      states:
+        opened: "открыт"
+        closed: "закрыт"
+        created: "создан"
+        reopened: "повторно открыт"
+        draft: "черновик"
+        inwork: "в работе"
+      events:
+        open: "открыть"
+        close: "закрыть"
+        reopen: "открыть"
     # Перевод названий моделей. Используется в Model.human_name().
     models:
-        clinic:
-          one: 'Клиника'
-          few: 'Клиники'
-          other: 'Клиники'
-        doctor:
-          one: 'Доктор'
-          few: 'Доктора'
-          other: 'Доктора'
+      advise:
+        one: 'Рекомендация'
+        few: 'Рекомендации'
+        other: 'Рекомендации'
+      clinic:
+        one: 'Клиника'
+        few: 'Клиники'
+        other: 'Клиники'
+      doctor:
+        one: 'Доктор'
+        few: 'Доктора'
+        other: 'Доктора'
+      comment:
+        one: 'Комментарий'
+        few: 'Комментарии'
+        other: 'Комментарии'
+
+    attributes:
+      advise:
+        category_id: 'Специальность'
+        last_name: 'Фамилия'
+        name: "Имя"
+        full_name: "Название"
+        specialty: "Специализация"
+        city: "Город"
+        phone_number: "Телефон"
+        description: "Описание"
+        pediatric: "Детский"
+      address:
+        phone_number: "Телефон"
+        mobile_phone_number: "Телефон моб."
+        address_1: "Адрес"
+        address_2: "Адрес доп."
+        city: "Город"
+        state: "Область"
+        zip_code: "Индекс"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        website_url: "Веб сайт"
+        email: "Email"
+        district: "Район"
+      category:
+        name: 'Специальность'
+        pediatric: 'Детский'
+      clinic:
+        description: "Описание"
+        status: "Статус"
+        user_id: "Менеджер"
+        published: "Опубликовано"
+        comments_count: "Комментарии"
+        rating: "Рейтинг"
+        likes_count: "Нравится"
+        created_at: "Создана"
+        updated_at: "Изменена"
+        full_name: "Название"
+        starting_work: "Создана"
+        awards: "Награды, дипломы"
+        visit_home: "Выезд на дом"
+        price: "Цена"
+        specialty: "Специализация"
+        pediatric: "Детская"
+      comment:
+        user_id: "Участник"
+        message: "Комментарий"
+        rating: "Рейтинг"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        published: "Опубликован"
+      doctor:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        description: "Описание"
+        status: "Статус"
+        user_id: "Менеджер"
+        clinic_id: "Клиника"
+        published: "Опубликован"
+        comments_count: "Комментарии"
+        rating: "Рейтинг"
+        likes_count: "Нравится"
+        education: "Образование"
+        starting_work: "Начало деятельности"
+        stage: "Стаж"
+        high_school_finished: "Дата окончания ВУЗа"
+        high_school_name: "ВУЗ"
+        awards: "Награды, дипломы"
+        visit_home: "Выезд на дом"
+        price: "Цена"
+        specialty: "Специализация"
+        created_at: "Создан"
+        updated_at: "Изменен"
+        gender: "Пол"
+        pediatric: "Детский"
+        city: "Город"
+        address: "Адрес"

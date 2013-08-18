@@ -35,9 +35,6 @@
 #
 
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
@@ -49,6 +46,10 @@ class User < ActiveRecord::Base
 
   def full_name
     (last_name.to_s + ' ' + first_name.to_s).strip
+  end
+
+  def manager?
+
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

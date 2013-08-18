@@ -15,6 +15,7 @@
 #  status       :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
+#  pediatric    :boolean          default(FALSE)
 #
 
 require 'spec_helper'

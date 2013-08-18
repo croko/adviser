@@ -41,8 +41,12 @@ class Address < ActiveRecord::Base
 
   def website_base_url
     uri = URI.parse website_url
-    uri.scheme = 'http' if uri.scheme.nil?
-    base_uri = URI::Generic::new uri.scheme, nil, uri.host, nil, nil, nil, nil, nil, nil
+    if uri.scheme.nil?
+      uri.scheme = 'http'
+      base_uri = URI::Generic::new uri.scheme, nil, website_url, nil, nil, nil, nil, nil, nil
+    else
+      base_uri = URI::Generic::new uri.scheme, nil, uri.host, nil, nil, nil, nil, nil, nil
+    end
     base_uri.to_s
   end
 

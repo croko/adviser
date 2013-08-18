@@ -44,7 +44,7 @@
       <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
       <dd><%= @clinic.awards %></dd>
       <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
-      <dd><%= @clinic.visit_home %></dd>
+      <dd><%= @clinic.visit_home ? 'Да' : 'Нет' %></dd>
       <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
       <dd><%= @clinic.price %></dd>
       <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>

@@ -43,12 +43,12 @@
       <dd><%= @doctor.addresses.first.city %></dd>
       <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
       <dd><%= @doctor.addresses.first.address_1 %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
-      <dd><%= @doctor.starting_work %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:stage) %>:</strong></dt>
+      <dd><%= distance_of_time_in_words(Date.today, @doctor.starting_work) %></dd>
       <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
       <dd><%= @doctor.awards %></dd>
       <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
-      <dd><%= @doctor.visit_home %></dd>
+      <dd><%= @doctor.visit_home ? 'Да' : 'Нет' %></dd>
       <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
       <dd><%= @doctor.price %></dd>
       <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
