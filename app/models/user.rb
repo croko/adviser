@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   has_many :comments
+  has_many :clinics
+  has_many :doctors
 
   validates :email, uniqueness: true
   #validates_acceptance_of :terms_of_service, on: :create
@@ -49,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def manager?
-
+     clinics.size + doctors.size > 0
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

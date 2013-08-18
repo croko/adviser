@@ -18,9 +18,11 @@
           <li class="icon">
             <%= link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись' %>
           </li>
-          <li class="icon">
-            <%= link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер' %>
-          </li>
+          <% if current_user.manager? %>
+            <li class="icon">
+              <%= link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер' %>
+            </li>
+          <% end %>
           <li class="icon">
             <%= link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти' %>
           </li>
