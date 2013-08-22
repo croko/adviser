@@ -15,6 +15,6 @@
 =require bootstrap-switch
 =require bootstrap-image-gallery
 =require datepicker
-=require main
+=require main.css.scss
 =require jquery-ui.min
 */
