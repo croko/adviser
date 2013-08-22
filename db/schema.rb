@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814073703) do
+ActiveRecord::Schema.define(version: 20130822115427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,17 @@ ActiveRecord::Schema.define(version: 20130814073703) do
     t.boolean  "published",        default: true
   end
 
+  create_table "contents", force: true do |t|
+    t.string   "name"
+    t.string   "announce"
+    t.text     "body"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contents", ["page_id"], name: "index_contents_on_page_id", using: :btree
+
   create_table "doctor_category_relations", force: true do |t|
     t.integer  "doctor_id"
     t.integer  "category_id"
@@ -167,6 +178,13 @@ ActiveRecord::Schema.define(version: 20130814073703) do
     t.integer  "user_id"
     t.string   "likeable_type"
     t.integer  "likeable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.string   "name"
+    t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

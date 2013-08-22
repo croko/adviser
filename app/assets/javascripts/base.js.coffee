@@ -23,3 +23,4 @@ jQuery ->
     if (currentText.length > 0)
       $("#length").text("Осталось " + (250 - currentText.length) + " символов")
 
+  $('#editor').wysihtml5({cols: '50', html: true, locale: "ru-RU"})

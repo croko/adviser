@@ -29,6 +29,9 @@ Adviser::Application.routes.draw do
     resources :admin_users
     resources :photos
     resources :comments
+    resources :pages do
+      resources :contents, shallow: :true
+    end
   end
 
   match '/results', to: 'application#results', via: [:get, :post]
