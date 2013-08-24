@@ -94,5 +94,7 @@ ru:
         pediatric: ''
     placeholders:
       user:
-        username: 'Your username'
-        password: '****'
+#        email: 'введите email'
+#        first_name: 'имя'
+#        last_name: 'фамилия'
+        password: 'длина больше 4 знаков'

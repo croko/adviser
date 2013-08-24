@@ -17,8 +17,8 @@
 #
 
 class Photo < ActiveRecord::Base
-  has_attached_file :image, :styles => {:thumb => "200x200>", :medium => "800x800>"}
-                    #:default_url => "/assets/images/dummy.png"
+  has_attached_file :image, :styles => {:thumb => "200x200>", :medium => "800x800>"},
+                    :default_url => "/images/default_male.jpg"
 
   belongs_to :attachable, :polymorphic => true
   #validates :sort_order, :presence => true

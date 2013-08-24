@@ -25,7 +25,7 @@ class Address < ActiveRecord::Base
 
   belongs_to :addressable, polymorphic: true
 
-  validates_presence_of :address_1, :city, :state, :zip_code
+  validates_presence_of :city
 
   after_validation :geocode_location
 

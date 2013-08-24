@@ -39,6 +39,7 @@ class Doctor < ActiveRecord::Base
   has_many :photos, :as => :attachable
 
   belongs_to :manager, :class_name => "Manager", :foreign_key => "user_id"
+  belongs_to :advise
 
   accepts_nested_attributes_for :addresses, allow_destroy: true
   accepts_nested_attributes_for :doctor_category_relations, :reject_if => lambda { |a| a[:category_id].nil? }, allow_destroy: true
@@ -52,6 +53,7 @@ class Doctor < ActiveRecord::Base
   scope :my_doctors, -> (user) { where(user_id: user) }
   #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
 
+  after_create :process_advise
   after_save :update_category_cache
 
   after_touch() { tire.update_index }
@@ -93,5 +95,9 @@ class Doctor < ActiveRecord::Base
 
   def update_category_cache
     categories.each { |c| c.touch }
+  end
+
+  def process_advise
+     advise.update_attribute('processed', true)
   end
 end

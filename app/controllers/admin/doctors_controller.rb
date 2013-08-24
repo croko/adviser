@@ -15,7 +15,24 @@ class Admin::DoctorsController < Admin::BaseController
 
   # GET /doctors/new
   def new
-    @doctor = Doctor.new
+    if params[:advise_id].present?
+      advise = Advise.find(params[:advise_id])
+      @doctor = advise.build_doctor(
+          last_name: advise.last_name,
+          first_name: advise.name,
+          specialty: advise.specialty,
+          description: advise.description,
+          pediatric: advise.pediatric
+      )
+      @doctor.categories << Category.find(advise.category_id)
+      if advise.city.present? || advise.phone_number.present?
+        @doctor.addresses.build(
+            city: advise.city,
+            phone_number: advise.phone_number)
+      end
+    else
+      @doctor = Doctor.new
+    end
   end
 
   # GET /doctors/1/edit
@@ -63,19 +80,19 @@ class Admin::DoctorsController < Admin::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def doctor_params
-      params[:doctor].permit(:id, :first_name, :description, :user_id, :published, :last_name,
-      :education, :starting_work, :high_school_name, :high_school_finished, :awards,
-      :visit_home, :price, :rating, :specialty, :pediatric,
-      doctor_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
-      photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
-      addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
-                             :website_url, :email, :district] )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def doctor_params
+    params[:doctor].permit(:id, :first_name, :description, :user_id, :published, :last_name,
+                           :education, :starting_work, :high_school_name, :high_school_finished, :awards,
+                           :visit_home, :price, :rating, :specialty, :pediatric,
+                           doctor_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
+                           photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
+                           addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
+                                                  :website_url, :email, :district])
+  end
 end

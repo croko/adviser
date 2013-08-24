@@ -19,7 +19,10 @@ Adviser::Application.routes.draw do
   resources :users, only: [:edit, :update, :show]
 
   namespace :admin do
-    resources :advises
+    resources :advises do
+      resources :clinics
+      resources :doctors #, shallow: true
+    end
     resources :categories
     resources :clinics
     resources :doctors

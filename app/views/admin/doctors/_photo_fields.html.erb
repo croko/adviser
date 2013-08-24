@@ -1,6 +1,6 @@
 <tr class="fields">
   <td>
-    <%= image_tag (f.object.url(:thumb)) %>
+    <%= image_tag (f.object.url(:thumb)) unless f.object.url.blank? %>
   </td>
   <td>
     <%= f.input :id, as: :hidden %>

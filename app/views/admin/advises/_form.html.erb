@@ -7,7 +7,7 @@
   <%= f.input :city %>
   <%= f.input :phone_number %>
   <%= f.input :pediatric %>
-  <%= f.input :description %>
+  <%= f.input :description, as: :text %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

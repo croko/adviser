@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822115427) do
+ActiveRecord::Schema.define(version: 20130823174410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,10 +70,11 @@ ActiveRecord::Schema.define(version: 20130822115427) do
     t.string   "city"
     t.string   "phone_number"
     t.string   "description"
-    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "pediatric",    default: false
+    t.boolean  "processed",    default: false
+    t.boolean  "email_sent",   default: false
   end
 
   create_table "categories", force: true do |t|
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 20130822115427) do
     t.decimal  "price",          precision: 8, scale: 2, default: 0.0
     t.string   "specialty"
     t.boolean  "pediatric",                              default: false
+    t.integer  "advise_id"
   end
 
   create_table "comments", force: true do |t|
@@ -169,6 +171,7 @@ ActiveRecord::Schema.define(version: 20130822115427) do
     t.datetime "updated_at"
     t.string   "gender"
     t.boolean  "pediatric",                                    default: false
+    t.integer  "advise_id"
   end
 
   add_index "doctors", ["clinic_id"], name: "index_doctors_on_clinic_id", using: :btree

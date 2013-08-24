@@ -1,6 +1,6 @@
 <% @doctors.each do |doctor| %>
   <tr class="item">
-    <td><%= link_to doctor.id, doctor_path(doctor) %></td>
+    <td><%= link_to doctor.id, admin_doctor_path(doctor) %></td>
     <td><%= doctor.full_name %></td>
     <td><%= doctor.status %></td>
     <td><%= doctor.user_id %></td>

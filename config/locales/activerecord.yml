@@ -55,18 +55,6 @@ ru:
       full_messages:
         format: "%{attribute} %{message}"
 
-    state_machines:
-      states:
-        opened: "открыт"
-        closed: "закрыт"
-        created: "создан"
-        reopened: "повторно открыт"
-        draft: "черновик"
-        inwork: "в работе"
-      events:
-        open: "открыть"
-        close: "закрыть"
-        reopen: "открыть"
     # Перевод названий моделей. Используется в Model.human_name().
     models:
       advise:
@@ -85,6 +73,17 @@ ru:
         one: 'Комментарий'
         few: 'Комментарии'
         other: 'Комментарии'
+      user:
+        one: 'Участник'
+        few: 'Участники'
+        other: 'Участники'
+      admin_user:
+        one: 'Администратор'
+        few: 'Администраторы'
+        other: 'Администраторы'
+      role:
+        one: "Роль"
+        few: "Роли"
 
     attributes:
       advise:
@@ -163,3 +162,9 @@ ru:
         pediatric: "Детский"
         city: "Город"
         address: "Адрес"
+      user:
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+        password_confirmation: 'Подтвердите пароль'
+        first_name: 'Имя'
+        last_name: 'Фамилия'

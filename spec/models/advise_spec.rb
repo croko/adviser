@@ -12,10 +12,11 @@
 #  city         :string(255)
 #  phone_number :string(255)
 #  description  :string(255)
-#  status       :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
 #  pediatric    :boolean          default(FALSE)
+#  processed    :boolean          default(FALSE)
+#  email_sent   :boolean          default(FALSE)
 #
 
 require 'spec_helper'

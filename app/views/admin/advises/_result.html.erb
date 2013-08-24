@@ -2,15 +2,13 @@
   <tr class="item">
     <td><%= link_to advise.id, admin_advise_path(advise) %></td>
     <td><%= advise.user.email %></td>
-    <td><%= advise.category.try(:name) %></td>
     <td><%= advise.last_name %></td>
-    <td><%= advise.name %></td>
     <td><%= advise.full_name %></td>
-    <td><%= advise.specialty %></td>
     <td><%= advise.city %></td>
-    <td><%= advise.phone_number %></td>
-    <td><%= advise.status %></td>
-    <td><%=l advise.created_at %></td>
+    <td><%= advise.processed %></td>
+    <td><%= link_to('док.', new_admin_advise_doctor_path(advise)) %></td>
+    <td><%= link_to('клин.', new_admin_advise_clinic_path(advise)) %></td>
+    <td><%=l advise.created_at, format: :short %></td>
     <td>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                   edit_admin_advise_path(advise), :class => 'btn btn-mini' %>

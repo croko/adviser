@@ -12,18 +12,31 @@
 #  city         :string(255)
 #  phone_number :string(255)
 #  description  :string(255)
-#  status       :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
 #  pediatric    :boolean          default(FALSE)
+#  processed    :boolean          default(FALSE)
+#  email_sent   :boolean          default(FALSE)
 #
 
 class Advise < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  has_one :doctor
+  has_one :clinic
 
-  validates :last_name, presence: true, if: -> { name.blank? && full_name.blank? }
-  validates :name, presence: true, if: -> { last_name.blank? && full_name.blank? }
+  validates :last_name, presence: true, if: -> { full_name.blank? }
+  validates :name, presence: true, if: -> { full_name.blank? }
   validates :full_name, presence: true, if: -> { name.blank? && last_name.blank? }
   validates :category_id, presence: true
+
+  after_create :send_email
+
+  scope :sorted, -> { order('created_at DESC') }
+  scope :unprocessed, -> { where(processed: false) }
+
+  def send_email
+#TODO
+  end
+
 end

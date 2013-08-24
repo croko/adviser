@@ -15,7 +15,23 @@ class Admin::ClinicsController < Admin::BaseController
 
   # GET /clinics/new
   def new
-    @clinic = Clinic.new
+    if params[:advise_id].present?
+      advise = Advise.find(params[:advise_id])
+      @clinic = advise.build_clinic(
+          full_name: advise.full_name,
+          specialty: advise.specialty,
+          description: advise.description,
+          pediatric: advise.pediatric
+      )
+      @clinic.categories << Category.find(advise.category_id)
+      if advise.city.present? || advise.phone_number.present?
+        @clinic.addresses.build(
+            city: advise.city,
+            phone_number: advise.phone_number)
+      end
+    else
+      @clinic = Clinic.new
+    end
   end
 
   # GET /clinics/1/edit
@@ -63,19 +79,19 @@ class Admin::ClinicsController < Admin::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_clinic
-      @clinic = Clinic.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_clinic
+    @clinic = Clinic.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def clinic_params
-      params.require(:clinic).permit(:id, :full_name, :description, :user_id, :published,
-            :starting_work,  :awards,
-            :visit_home, :price, :rating, :specialty, :pediatric,
-            clinic_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
-            photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
-            addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
-                                   :website_url, :email, :district] )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def clinic_params
+    params.require(:clinic).permit(:id, :full_name, :description, :user_id, :published,
+                                   :starting_work, :awards,
+                                   :visit_home, :price, :rating, :specialty, :pediatric,
+                                   clinic_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
+                                   photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
+                                   addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
+                                                          :website_url, :email, :district])
+  end
 end

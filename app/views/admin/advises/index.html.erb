@@ -1,32 +1,34 @@
 <%- model_class = Advise -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human(count: 2).titleize %></h1>
+  <h1><%= t '.title', :default => model_class.model_name.human(count: 2).titleize %></h1>
   <%= search_form_for [:admin, @q], class: 'form-search' do |f| %>
-     <%= f.text_field :user_email_cont, class: 'search-query', placeholder: 'поиск по eamil' %>
-     <%= f.text_field :full_name_cont, class: 'search-query', placeholder: 'поиск по названию' %>
-     <%= f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии' %>
+    <%= f.text_field :user_email_cont, class: 'search-query', placeholder: 'поиск по eamil' %>
+    <%= f.text_field :full_name_cont, class: 'search-query', placeholder: 'поиск по названию' %>
+    <%= f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии' %>
+    <%= label(:processed, ' обработанные ') %>
+    <%= f.check_box :processed_eq, class: 'search-query' %>
     <%= f.button 'Найти', :class => 'btn search-query' %>
   <% end %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_admin_advise_path,
+              :class => 'btn btn-primary' %>
 </div>
 <table id="aitems" class="table table-striped">
   <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:category_id) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:full_name) %></th>
-      <th><%= model_class.human_attribute_name(:specialty) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:phone_number) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
+  <tr>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:user_id) %></th>
+    <th><%= model_class.human_attribute_name(:last_name) %></th>
+    <th><%= model_class.human_attribute_name(:full_name) %></th>
+    <th><%= model_class.human_attribute_name(:city) %></th>
+    <th><%= model_class.human_attribute_name(:processed) %></th>
+    <th colspan="2">Создать</th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
   </thead>
   <tbody class="page">
-    <%= render :partial => 'result' %>
+  <%= render :partial => 'result' %>
   </tbody>
 </table>
 
@@ -35,5 +37,5 @@
             :class => 'btn btn-primary' %>
 
 <nav class="pagination" style="display: none;">
-<%= paginate @advises, remote: true %>
+  <%= paginate @advises, remote: true %>
 </nav>

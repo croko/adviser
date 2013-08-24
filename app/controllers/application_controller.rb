@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main
-    @top = Page.nick('index').contents.nick('top').body
+    @top = Page.nick('index').contents.nick('top').body rescue nil
     @left_column = Page.nick('index').contents.nick('left_column').body rescue nil
     @center_column = Page.nick('index').contents.nick('center_column').body rescue nil
     @right_column = Page.nick('index').contents.nick('right_column').body rescue nil
