@@ -30,13 +30,13 @@ class Advise < ActiveRecord::Base
   validates :full_name, presence: true, if: -> { name.blank? && last_name.blank? }
   validates :category_id, presence: true
 
-  after_create :send_email
+  after_create :sendmail
 
   scope :sorted, -> { order('created_at DESC') }
   scope :unprocessed, -> { where(processed: false) }
 
-  def send_email
-#TODO
+  def sendmail
+    Mailer.new_advise(self).deliver
   end
 
 end

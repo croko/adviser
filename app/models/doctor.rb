@@ -91,6 +91,14 @@ class Doctor < ActiveRecord::Base
     (Date.today - starting_work).to_years
   end
 
+  def photourl
+    if photos.size == 0
+      gender == 'жен.' ? '/images/default_female.jpg' : '/images/default_male.jpg'
+    else
+      photos.try(:first).url(:thumb)
+    end
+  end
+
   protected
 
   def update_category_cache
@@ -98,6 +106,6 @@ class Doctor < ActiveRecord::Base
   end
 
   def process_advise
-     advise.update_attribute('processed', true)
+    advise.update_attribute('processed', true)
   end
 end

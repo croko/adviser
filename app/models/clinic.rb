@@ -69,11 +69,19 @@ class Clinic < ActiveRecord::Base
   end
 
   def title_info
-     full_name + ', специализация ' + specialty + ', '+ addresses.first.city
+    full_name + ', специализация ' + specialty + ', '+ addresses.first.city
   end
 
   def coordinates
     addresses.collect(&:lat_lon).flatten
+  end
+
+  def photourl
+    if photos.size == 0
+      '/images/default_female.jpg'
+    else
+      photos.try(:first).url(:thumb)
+    end
   end
 
   protected
@@ -83,7 +91,7 @@ class Clinic < ActiveRecord::Base
   end
 
   def process_advise
-     advise.update_attribute('processed', true)
+    advise.update_attribute('processed', true)
   end
 
 end

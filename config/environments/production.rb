@@ -11,7 +11,7 @@ Adviser::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -71,6 +71,26 @@ Adviser::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {:host => 'consultor.com.ua'}
+  ActionMailer::Base.default :from => 'no-reply@consultor.com.ua'
+
+  # Mail server
+  config.action_mailer.smtp_settings = {
+      :address => "croko.dp.ua",
+      :port => 25,
+      :domain => "sba.in.ua"
+  }
+
+  Adviser::Application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Consultor] ",
+      :sender_address => %{"Notifier" <no-reply@consultor.com.ua>},
+      :exception_recipients => %w{gk@sba.in.ua}
+    }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

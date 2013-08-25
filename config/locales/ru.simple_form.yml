@@ -89,6 +89,14 @@ ru:
         password_confirmation: 'Подтвердите пароль'
         first_name: 'Имя'
         last_name: 'Фамилия'
+      page:
+        name: 'Название'
+        nickname: 'Служебное имя'
+      content:
+        name: 'Название'
+        announce: 'Заголовок'
+        body: 'Текст'
+
     hints:
       category:
         pediatric: ''
