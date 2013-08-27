@@ -17,6 +17,8 @@ ru:
         phone_number: "Телефон"
         description: "Описание"
         pediatric: "Детский"
+        idoctor: 'Я доктор'
+        iclinic: 'Я представитель клиники'
       address:
         phone_number: "Телефон"
         mobile_phone_number: "Телефон моб."
@@ -44,7 +46,7 @@ ru:
         created_at: "Создана"
         updated_at: "Изменена"
         full_name: "Название"
-        starting_work: "Создана"
+        starting_work: "Дата создания"
         awards: "Награды, дипломы"
         visit_home: "Выезд на дом"
         price: "Цена"
@@ -98,6 +100,9 @@ ru:
         body: 'Текст'
 
     hints:
+      advise:
+        idoctor: 'хочу рекомендовать себя и получить возможность редактрировать информацию'
+        iclinic: 'хочу рекомендовать клинику и получить возможность редактрировать информацию'
       category:
         pediatric: ''
     placeholders:
@@ -106,3 +111,7 @@ ru:
 #        first_name: 'имя'
 #        last_name: 'фамилия'
         password: 'длина больше 4 знаков'
+      advise:
+        last_name: 'обязательное для доктора'
+        name: 'обязательное для доктора'
+        full_name: 'обязательное для клиники'

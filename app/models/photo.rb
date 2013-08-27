@@ -21,6 +21,7 @@ class Photo < ActiveRecord::Base
                     :default_url => "/images/default_male.jpg"
 
   belongs_to :attachable, :polymorphic => true
+  validates_attachment_size :image, :less_than => 5.megabytes
   #validates :sort_order, :presence => true
 
   validates_attachment_content_type :image, :content_type => %w(image/jpg image/jpeg image/gif image/png)

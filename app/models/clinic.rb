@@ -19,6 +19,7 @@
 #  price          :decimal(8, 2)    default(0.0)
 #  specialty      :string(255)
 #  pediatric      :boolean          default(FALSE)
+#  advise_id      :integer
 #
 
 class Clinic < ActiveRecord::Base
@@ -48,6 +49,7 @@ class Clinic < ActiveRecord::Base
 
   after_create :process_advise
   after_save :update_category_cache
+  after_update :process_advise_iclinic
 
   after_touch() { tire.update_index }
 
@@ -66,10 +68,6 @@ class Clinic < ActiveRecord::Base
 
   def can_user_comment?(user)
     !comments.where(user_id: user).present?
-  end
-
-  def title_info
-    full_name + ', специализация ' + specialty + ', '+ addresses.first.city
   end
 
   def coordinates
@@ -91,7 +89,11 @@ class Clinic < ActiveRecord::Base
   end
 
   def process_advise
-    advise.update_attribute('processed', true)
+    advise.update_attribute('processed', true) unless advise.iclinic?
+  end
+
+  def process_advise_iclinic
+    advise.update_attribute('processed', true) if published_changed?
   end
 
 end

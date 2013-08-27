@@ -28,9 +28,9 @@ class Advise < ActiveRecord::Base
   validates :last_name, presence: true, if: -> { full_name.blank? }
   validates :name, presence: true, if: -> { full_name.blank? }
   validates :full_name, presence: true, if: -> { name.blank? && last_name.blank? }
-  validates :category_id, presence: true
+  validates :city, :phone_number, :category_id, presence: true
 
-  after_create :sendmail
+  after_create :sendmail, :process_advise
 
   scope :sorted, -> { order('created_at DESC') }
   scope :unprocessed, -> { where(processed: false) }
@@ -39,4 +39,38 @@ class Advise < ActiveRecord::Base
     Mailer.new_advise(self).deliver
   end
 
+  def process_advise
+    if idoctor?
+      doc = self.build_doctor(
+          last_name: last_name,
+          first_name: name,
+          specialty: specialty,
+          description: description,
+          pediatric: pediatric,
+          user_id: user_id,
+          published: false
+      )
+      doc.categories << Category.find(category_id)
+      doc.addresses.build(
+          city: city,
+          phone_number: phone_number)
+      doc.save
+    end
+
+    if iclinic?
+      cli = self.build_clinic(
+          full_name: full_name,
+          specialty: specialty,
+          description: description,
+          pediatric: pediatric,
+          user_id: user_id,
+          published: false
+      )
+      cli.categories << Category.find(category_id)
+      cli.addresses.build(
+          city: city,
+          phone_number: phone_number)
+      cli.save
+    end
+  end
 end

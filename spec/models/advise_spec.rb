@@ -22,5 +22,14 @@
 require 'spec_helper'
 
 describe Advise do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'shoud create doctor if idoctor checked' do
+    @advise = FactoryGirl.create(:advise_idoctor)
+    expect(@advise.doctor.present?).to be_true
+  end
+
+  it 'shoud create clinic if iclinic checked' do
+    @advise = FactoryGirl.create(:advise_iclinic)
+    expect(@advise.clinic.present?).to be_true
+  end
 end

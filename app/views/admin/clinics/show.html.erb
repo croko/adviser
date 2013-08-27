@@ -7,22 +7,41 @@
     <dl class="dl-horizontal">
       <dt><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></dt>
       <dd><%= @clinic.full_name %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-      <dd><%= @clinic.description %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-      <dd><%= @clinic.status %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-      <dd><%= @clinic.user_id %></dd>
+
+      <% if @clinic.specialty.present? %>
+        <dd><%= @clinic.specialty %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:specialty) %>:</strong></dt>
+      <% end %>
+
+      <% if @clinic.description.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @clinic.description %></dd>
+      <% end %>
+
+      <% if @clinic.user_id.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+        <dd><%= @clinic.user_id %></dd>
+      <% end %>
+
       <dt><strong><%= model_class.human_attribute_name(:published) %>:</strong></dt>
       <dd><%= @clinic.published %></dd>
       <dt><strong><%= model_class.human_attribute_name(:rating) %>:</strong></dt>
       <dd><%= @clinic.rating %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
-      <dd><%= @clinic.starting_work %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
-      <dd><%= @clinic.awards %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
-      <dd><%= @clinic.visit_home %></dd>
+
+      <% if @clinic.starting_work.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
+        <dd><%= @clinic.starting_work %></dd>
+      <% end %>
+
+      <% if @clinic.awards.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
+        <dd><%= @clinic.awards %></dd>
+      <% end %>
+
+      <% if @clinic.visit_home.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
+        <dd><%= @clinic.visit_home %></dd>
+      <% end %>
       <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
       <dd><%= @clinic.price %></dd>
       <% @clinic.addresses.each do |address| %>

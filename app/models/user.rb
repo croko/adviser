@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     if access_token.info.email.present?
       user = User.where(email: access_token.info.email).first
     else
-      user = User.where(provider: access_token.provider, uid: access_token.uid).first
+      user = User.where(provider: access_token.provider, uid: access_token.uid.to_s).first
     end
     unless user
       user = User.create!(last_name: access_token.extra.raw_info.last_name,
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   def self.find_for_vkontakte(access_token, signed_in_resource=nil)
     data = access_token.info
     email = access_token.extra.raw_info['screen_name'].to_s + '@vk.com'
-    user = User.where(provider: access_token.provider, uid: access_token.uid).first
+    user = User.where(provider: access_token.provider, uid: access_token.uid.to_s).first
 
     unless user
       user = User.create(first_name: data["first_name"],
@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_twitter(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(provider: access_token.provider, uid: access_token.uid).first
+    user = User.where(provider: access_token.provider, uid: access_token.uid.to_s).first
 
     unless user
       email = access_token.uid.to_s + '@twitter.com'

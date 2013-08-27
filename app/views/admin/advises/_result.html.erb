@@ -6,8 +6,8 @@
     <td><%= advise.full_name %></td>
     <td><%= advise.city %></td>
     <td><%= advise.processed %></td>
-    <td><%= link_to('док.', new_admin_advise_doctor_path(advise)) %></td>
-    <td><%= link_to('клин.', new_admin_advise_clinic_path(advise)) %></td>
+    <td><%= advise.doctor.present? ? link_to('док.', edit_admin_doctor_path(advise.doctor)) : link_to('док.', new_admin_advise_doctor_path(advise)) %></td>
+    <td><%= advise.clinic.present? ? link_to('клин.', edit_admin_clinic_path(advise.clinic)) : link_to('клин.', new_admin_advise_clinic_path(advise)) %></td>
     <td><%=l advise.created_at, format: :short %></td>
     <td>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),

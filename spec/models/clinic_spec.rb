@@ -19,6 +19,7 @@
 #  price          :decimal(8, 2)    default(0.0)
 #  specialty      :string(255)
 #  pediatric      :boolean          default(FALSE)
+#  advise_id      :integer
 #
 
 require 'spec_helper'

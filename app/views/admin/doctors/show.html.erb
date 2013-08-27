@@ -5,36 +5,58 @@
 <div class="row-fluid">
   <div class="span7">
     <dl class="dl-horizontal">
-      <dt><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></dt>
-      <dd><%= @doctor.full_name %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-      <dd><%= @doctor.description? ? @doctor.description? : '-' %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-      <dd><%= @doctor.specialty %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:specialty) %>:</strong></dt>
-      <dd><%= @doctor.status %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-      <dd><%= @doctor.user_id %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+      <dd><%= @doctor.addresses.first.city %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:stage) %>:</strong></dt>
+      <dd><%= distance_of_time_in_words(Date.today, @doctor.starting_work) rescue '-' %></dd>
+
+      <% if @doctor.specialty.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:specialty) %>:</strong></dt>
+        <dd><%= @doctor.specialty %></dd>
+      <% end %>
+      <% if @doctor.education.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:education) %>:</strong></dt>
+        <dd><%= @doctor.education %></dd>
+      <% end %>
+      <% if @doctor.high_school_name.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:high_school_name) %>:</strong></dt>
+        <dd><%= @doctor.high_school_name %></dd>
+      <% end %>
+      <% if @doctor.awards.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
+        <dd><%= @doctor.awards %></dd>
+      <% end %>
+      <% if @doctor.visit_home.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
+        <dd><%= @doctor.visit_home ? 'Да' : 'Нет' %></dd>
+      <% end %>
+      <% if @doctor.price.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+        <dd><%= @doctor.price %></dd>
+      <% end %>
+      <% if @doctor.gender.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+        <dd><%= @doctor.gender %></dd>
+      <% end %>
+      <% if @doctor.price.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+      <% end %>
+      <% if @doctor.description.present? %>
+        <dd><%= @doctor.description %></dd>
+      <% end %>
+      <% if @doctor.user_id.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+        <dd><%= @doctor.user_id %></dd>
+      <% end %>
       <dt><strong><%= model_class.human_attribute_name(:published) %>:</strong></dt>
       <dd><%= @doctor.published %></dd>
       <dt><strong><%= model_class.human_attribute_name(:rating) %>:</strong></dt>
       <dd><%= @doctor.rating %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:education) %>:</strong></dt>
-      <dd><%= @doctor.education %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
-      <dd><%= @doctor.starting_work %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:high_school_name) %>:</strong></dt>
-      <dd><%= @doctor.high_school_name %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:high_school_finished) %>:</strong></dt>
-      <dd><%= @doctor.high_school_finished %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
-      <dd><%= @doctor.awards %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
-      <dd><%= @doctor.visit_home %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-      <dd><%= @doctor.price %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
-      <dd><%= @doctor.gender %></dd>
+      <% if @doctor.gender.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+        <dd><%= @doctor.gender %></dd>
+      <% end %>
       <% @doctor.addresses.each do |address| %>
         <dt><strong>Адрес:</strong></dt>
         <dd><%= address.city_address %> <%= address.street_address %></dd>

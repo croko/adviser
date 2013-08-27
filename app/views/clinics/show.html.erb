@@ -39,16 +39,29 @@
   </div>
   <div class="span7">
     <dl class="dl-horizontal pull-left">
-      <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
-      <dd><%= @clinic.starting_work %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
-      <dd><%= @clinic.awards %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
-      <dd><%= @clinic.visit_home ? 'Да' : 'Нет' %></dd>
+      <% if @clinic.starting_work.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:starting_work) %>:</strong></dt>
+        <dd><%= @clinic.starting_work %></dd>
+      <% end %>
+
+      <% if @clinic.awards.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:awards) %>:</strong></dt>
+        <dd><%= @clinic.awards %></dd>
+      <% end %>
+
+      <% if @clinic.visit_home.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:visit_home) %>:</strong></dt>
+        <dd><%= @clinic.visit_home ? 'Да' : 'Нет' %></dd>
+      <% end %>
+
       <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
       <dd><%= @clinic.price %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-      <dd><%= @clinic.description %></dd>
+
+      <% if @clinic.description.present? %>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @clinic.description %></dd>
+      <% end %>
+
       <% @clinic.addresses.each do |address| %>
         <dt><strong>Адрес:</strong></dt>
         <dd><%= address.city_address %> <%= address.street_address %></dd>

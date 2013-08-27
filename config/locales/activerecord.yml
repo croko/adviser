@@ -123,7 +123,7 @@ ru:
         created_at: "Создана"
         updated_at: "Изменена"
         full_name: "Название"
-        starting_work: "Создана"
+        starting_work: "Дата создания"
         awards: "Награды, дипломы"
         visit_home: "Выезд на дом"
         price: "Цена"

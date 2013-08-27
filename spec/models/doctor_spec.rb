@@ -9,7 +9,7 @@
 #  status               :string(255)
 #  user_id              :integer
 #  clinic_id            :integer
-#  published            :boolean
+#  published            :boolean          default(TRUE)
 #  comments_count       :integer
 #  rating               :float
 #  likes_count          :integer
@@ -25,6 +25,7 @@
 #  updated_at           :datetime
 #  gender               :string(255)
 #  pediatric            :boolean          default(FALSE)
+#  advise_id            :integer
 #
 
 require 'spec_helper'

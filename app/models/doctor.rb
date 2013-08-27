@@ -9,7 +9,7 @@
 #  status               :string(255)
 #  user_id              :integer
 #  clinic_id            :integer
-#  published            :boolean
+#  published            :boolean          default(TRUE)
 #  comments_count       :integer
 #  rating               :float
 #  likes_count          :integer
@@ -25,6 +25,7 @@
 #  updated_at           :datetime
 #  gender               :string(255)
 #  pediatric            :boolean          default(FALSE)
+#  advise_id            :integer
 #
 
 class Doctor < ActiveRecord::Base
@@ -55,6 +56,7 @@ class Doctor < ActiveRecord::Base
 
   after_create :process_advise
   after_save :update_category_cache
+  after_update :process_advise_idoctor
 
   after_touch() { tire.update_index }
 
@@ -77,10 +79,6 @@ class Doctor < ActiveRecord::Base
 
   def can_user_comment?(user)
     !comments.where(user_id: user).present?
-  end
-
-  def title_info
-    full_name + ', специализация ' + specialty + ', '+ addresses.first.city
   end
 
   def coordinates
@@ -106,6 +104,10 @@ class Doctor < ActiveRecord::Base
   end
 
   def process_advise
-    advise.update_attribute('processed', true)
+    advise.update_attribute('processed', true) unless advise.idoctor?
+  end
+
+  def process_advise_idoctor
+    advise.update_attribute('processed', true) if published_changed?
   end
 end

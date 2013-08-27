@@ -24,11 +24,9 @@ class Admin::ClinicsController < Admin::BaseController
           pediatric: advise.pediatric
       )
       @clinic.categories << Category.find(advise.category_id)
-      if advise.city.present? || advise.phone_number.present?
-        @clinic.addresses.build(
-            city: advise.city,
-            phone_number: advise.phone_number)
-      end
+      @clinic.addresses.build(
+          city: advise.city,
+          phone_number: advise.phone_number)
     else
       @clinic = Clinic.new
     end

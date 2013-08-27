@@ -5,7 +5,7 @@
     <ul class="thumbnails">
       <% slice.each do |item| %>
         <li class="span3">
-          <%= link_to image_tag(item.photos.try(:first).url(:thumb)), polymorphic_path(item) rescue nil %>
+          <%= link_to image_tag(item.photourl), polymorphic_path(item) rescue nil %>
           <table class="table table-condensed">
             <tr>
               <td><%= rating_box(item.rating) %></td>

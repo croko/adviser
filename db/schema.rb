@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823174410) do
+ActiveRecord::Schema.define(version: 20130827120159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20130823174410) do
     t.boolean  "pediatric",    default: false
     t.boolean  "processed",    default: false
     t.boolean  "email_sent",   default: false
+    t.boolean  "idoctor",      default: false
+    t.boolean  "iclinic",      default: false
   end
 
   create_table "categories", force: true do |t|
@@ -155,7 +157,7 @@ ActiveRecord::Schema.define(version: 20130823174410) do
     t.string   "status"
     t.integer  "user_id"
     t.integer  "clinic_id"
-    t.boolean  "published"
+    t.boolean  "published",                                    default: true
     t.integer  "comments_count"
     t.float    "rating"
     t.integer  "likes_count"
