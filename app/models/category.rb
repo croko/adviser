@@ -17,6 +17,7 @@ class Category < ActiveRecord::Base
   has_many :doctor_category_relations, dependent: :destroy
   has_many :doctors, through: :doctor_category_relations
   has_many :clinics, through: :clinic_category_relations
+  has_many :ads
 
   validates :name, presence: true
   validates :name, uniqueness: true

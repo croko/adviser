@@ -12,6 +12,7 @@
 class Page < ActiveRecord::Base
 
   has_many :contents
+  has_many :ads
 
   validates :name, :nickname, presence: true
 

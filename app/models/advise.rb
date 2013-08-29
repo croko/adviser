@@ -17,6 +17,8 @@
 #  pediatric    :boolean          default(FALSE)
 #  processed    :boolean          default(FALSE)
 #  email_sent   :boolean          default(FALSE)
+#  idoctor      :boolean          default(FALSE)
+#  iclinic      :boolean          default(FALSE)
 #
 
 class Advise < ActiveRecord::Base

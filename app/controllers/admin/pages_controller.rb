@@ -11,6 +11,7 @@ class Admin::PagesController < Admin::BaseController
   # GET /pages/1.json
   def show
     @contents=@page.contents
+    @ads=@page.ads
   end
 
   # GET /pages/new

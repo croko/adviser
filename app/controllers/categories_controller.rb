@@ -11,7 +11,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    #@items = Clinic.all_items(@category).rated.page(params[:page]).per(12)
+    @ad_square_right = @category.ads.active.nick('square_right').sample
+    @ad_skyscrapers = @category.ads.active.nick('skyscraper').sample(2)
+
+    @ad_square_right = @ad_square_right.nil? ? Ad.active.nick('square_right').sample : @ad_square_right
+    @ad_skyscrapers = @ad_skyscrapers.empty? ? Ad.active.nick('skyscraper').sample(2) : @category.ads.active.nick('skyscraper').sample(2)
+
     @clinics = @category.clinics.rated #.page(params[:page]).per(12)
     @doctors = @category.doctors.rated #.page(params[:page]).per(12)
     @items = @clinics + @doctors

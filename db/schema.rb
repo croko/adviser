@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827120159) do
+ActiveRecord::Schema.define(version: 20130828124944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,31 @@ ActiveRecord::Schema.define(version: 20130827120159) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "ads", force: true do |t|
+    t.integer  "page_id"
+    t.string   "name"
+    t.integer  "category_id"
+    t.integer  "doctor_id"
+    t.integer  "clinic_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.boolean  "published",          default: false
+    t.integer  "sort_order",         default: 0
+    t.datetime "date_start"
+    t.datetime "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "baseurl"
+  end
+
+  add_index "ads", ["category_id"], name: "index_ads_on_category_id", using: :btree
+  add_index "ads", ["clinic_id"], name: "index_ads_on_clinic_id", using: :btree
+  add_index "ads", ["date_end"], name: "ads_date_end_index", using: :btree
+  add_index "ads", ["date_start"], name: "ads_date_start_index", using: :btree
+  add_index "ads", ["doctor_id"], name: "index_ads_on_doctor_id", using: :btree
+  add_index "ads", ["page_id"], name: "index_ads_on_page_id", using: :btree
 
   create_table "advises", force: true do |t|
     t.integer  "user_id"

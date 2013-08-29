@@ -21,7 +21,7 @@ Adviser::Application.routes.draw do
   namespace :admin do
     resources :advises do
       resources :clinics
-      resources :doctors #, shallow: true
+      resources :doctors
     end
     resources :categories
     resources :clinics
@@ -34,6 +34,7 @@ Adviser::Application.routes.draw do
     resources :comments
     resources :pages do
       resources :contents, shallow: :true
+      resources :ads, shallow: :true
     end
   end
 

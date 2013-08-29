@@ -7,9 +7,9 @@
   </div>
 </div>
 <div class="row-fluid">
-      <%= simple_format @left_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
-      <%= simple_format @center_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
-      <%= simple_format @right_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
+  <%= simple_format @left_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
+  <%= simple_format @center_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
+  <%= simple_format @right_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div" %>
 </div>
 <p></p>
 <%# cache @category do %>
@@ -19,13 +19,11 @@
 <%# end %>
 
 <div class="row-fluid">
-  <div class="span4">
-    <%= link_to image_tag('ad250.png'), root_path %>
-  </div>
-  <div class="span4">
-    <%= link_to image_tag('ad250.png'), root_path %>
-  </div>
-  <div class="span4">
-    <%= link_to image_tag('ad250.png'), root_path %>
-  </div>
+  <% @ad_squares.each_slice(3) do |slice| %>
+    <% slice.each do |ad| %>
+      <div class="span4">
+        <%= link_to image_tag(ad.url), ad.baseurl %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

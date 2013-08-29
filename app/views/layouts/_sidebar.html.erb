@@ -1,17 +1,20 @@
 <div class="well sidebar-nav">
-  <%= link_to image_tag('ad250.png'), root_path %>
+  <%= link_to image_tag(@ad_square_right.url), @ad_square_right.baseurl if @ad_square_right.present? %>
   <p></p>
-  <% if (params[:action] == 'main') %>
+  <% if params[:action] == 'main' %>
     <h3 class="text-center">специальности</h3>
-  <ul class="nav nav-list">
-    <% Category.sorted.each do |category| %>
-      <li><%= link_to category.name_and_items_count, category_path(category) %></li>
-    <% end %>
-  </ul>
+    <ul class="nav nav-list">
+      <% Category.sorted.each do |category| %>
+        <li><%= link_to category.name_and_items_count, category_path(category) %></li>
+      <% end %>
+    </ul>
     <h5 class="text-center">реклама</h5>
   <% end %>
-  <%= link_to image_tag('adskyscraper.jpg'), root_path %>
-  <p></p>
-  <%= link_to image_tag('adskyscraper.jpg'), root_path %>
+  <% if @ad_skyscrapers.present? %>
+    <% @ad_skyscrapers.each do |ad| %>
+      <%= link_to image_tag(ad.url), ad.baseurl %>
+      <p></p>
+    <% end %>
+  <% end %>
 
 </div>

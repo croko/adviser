@@ -26,10 +26,14 @@ class ApplicationController < ActionController::Base
   end
 
   def main
-    @top = Page.nick('index').contents.nick('top').body rescue nil
-    @left_column = Page.nick('index').contents.nick('left_column').body rescue nil
-    @center_column = Page.nick('index').contents.nick('center_column').body rescue nil
-    @right_column = Page.nick('index').contents.nick('right_column').body rescue nil
+    page_nick = Page.nick('index')
+    @top = page_nick.contents.nick('top').body rescue nil
+    @left_column = page_nick.contents.nick('left_column').body rescue nil
+    @center_column = page_nick.contents.nick('center_column').body rescue nil
+    @right_column = page_nick.contents.nick('right_column').body rescue nil
+    @ad_squares = page_nick.ads.active.nick('square').sample(3)
+    @ad_square_right = page_nick.ads.active.nick('square_right').sample
+    @ad_skyscrapers = page_nick.ads.active.nick('skyscraper').sample(2)
 
     @doctors = Doctor.rated.page(params[:page]).limit(12)
     @clinics = Clinic.rated.page(params[:page]).limit(12)
