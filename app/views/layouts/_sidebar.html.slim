@@ -1,0 +1,13 @@
+.well.sidebar-nav
+  = link_to image_tag(@ad_square_right.url), @ad_square_right.baseurl if @ad_square_right.present?
+  p
+  - if params[:action] == 'main'
+    h3.text-center специальности
+    ul.nav.nav-list
+      - Category.sorted.each do |category|
+        li= link_to category.name_and_items_count, category_path(category)
+    h5.text-center реклама
+  - if @ad_skyscrapers.present?
+    - @ad_skyscrapers.each do |ad|
+      = link_to image_tag(ad.url), ad.baseurl
+      p

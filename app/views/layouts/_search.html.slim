@@ -1,0 +1,22 @@
+= simple_form_for :search, url: results_path, html: {method: :get, class: 'navbar-search'} do |f|
+  = f.input_field :query, class: "search-query input-xlarge", placeholder: "фамилия, название, специальность"
+  = f.input_field :location, class: "search-query input-xlarge", placeholder: "город, район, улица"
+  = link_to '', '#', class: "btn btn-small icon-filter", data: {toggle: "collapse", target: "#advanced-search"}, :"data-original-title" => 'Расширенный поиск', rel: 'tooltip', :"data-placement" => 'bottom'
+  = button_tag '', class: "btn btn-small icon-search", :"data-original-title" => 'Искать!', rel: 'tooltip', :"data-placement" => 'bottom'
+  #advanced-search.collapse.out.row-fluid
+    .span3
+      div детские
+      .switch.switch-small data-off-label="нет" data-on-label="да" 
+        = check_box_tag 'children'
+    .span3
+      div взрослые
+      .switch.switch-small data-off-label="нет" data-on-label="да" 
+        = check_box_tag 'adult'
+    .span3
+      div клиника
+      .switch.switch-small data-off-label="нет" data-on-label="да" 
+        = check_box_tag 'clinic'
+    .span3
+      div доктор
+      .switch.switch-small data-off-label="нет" data-on-label="да" 
+        = check_box_tag 'doctor'

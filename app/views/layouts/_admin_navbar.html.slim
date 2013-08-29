@@ -1,0 +1,21 @@
+.navbar-inner
+  .container
+    a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" 
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    .container.nav-collapse
+      ul.nav
+        li= link_to "Доктора", admin_doctors_path
+        li= link_to "Клиники", admin_clinics_path
+        li= link_to "Юзеры", admin_users_path
+        li= link_to "Заявки", admin_advises_path
+        li= link_to "Комментарии", admin_comments_path
+        li= link_to "Специальности", admin_categories_path
+        li= link_to "Страницы", admin_pages_path
+        li= link_to "Роли", admin_roles_path
+        li= link_to "Адмиы", admin_admin_users_path
+      ul.nav.pull-right
+        li
+          = link_to 'Выйти', destroy_admin_user_session_path, :method => :delete
+    /! /.nav-collapse

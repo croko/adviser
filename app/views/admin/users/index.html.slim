@@ -1,0 +1,25 @@
+- model_class = User
+.page-header
+  h1= t '.title', :default => model_class.model_name.human(count: 2).titleize
+  = search_form_for [:admin, @q], class: 'form-search' do |f|
+    = f.text_field :email_cont, class: 'search-query', placeholder: 'поиск по email'
+    = f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии'
+    = f.button 'Найти', :class => 'btn search-query'
+  = link_to t('.new', :default => t("helpers.links.new")), \
+    new_admin_user_path,                                   \
+    class => 'btn btn-primary'                            |:
+table#uitems.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:email)
+      th= model_class.human_attribute_name(:first_name)
+      th= model_class.human_attribute_name(:last_name)
+      th= t '.actions', :default => t("helpers.actions")
+  tbody
+    = render :partial => 'result'
+= link_to t('.new', :default => t("helpers.links.new")), \
+  new_admin_user_path,                                   \
+  class => 'btn btn-primary'                            |:
+nav.pagination style=("display: none;") 
+  = paginate @users, remote: true

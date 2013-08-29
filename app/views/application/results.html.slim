@@ -1,0 +1,9 @@
+.page-header
+  h3 Результаты поиска для:
+  = @query
+  = @location
+#items
+  .page
+    = render :partial => 'application/items'
+nav.pagination style=("display: none;") 
+  = paginate @items, remote: true

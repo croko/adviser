@@ -1,0 +1,17 @@
+.page-header
+  .row
+    h3= simple_format @top, {}, wrapper_tag: 'div'
+  .offset5.span2
+    = button_to 'Рекомендовать специалиста!', new_advise_path, method: :get, class: 'btn btn-warning btn-large'
+.row-fluid
+  = simple_format @left_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+  = simple_format @center_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+  = simple_format @right_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+p
+.row-fluid
+  = render partial: 'items'
+.row-fluid
+  - @ad_squares.each_slice(3) do |slice|
+    - slice.each do |ad|
+      .span4
+        = link_to image_tag(ad.url), ad.baseurl

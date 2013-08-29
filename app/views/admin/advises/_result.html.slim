@@ -1,0 +1,20 @@
+- @advises.each do |advise|
+  tr.item
+    td= link_to advise.id, admin_advise_path(advise)
+    td= advise.user.email
+    td= advise.last_name
+    td= advise.full_name
+    td= advise.city
+    td= advise.processed
+    td= advise.doctor.present? ? link_to('док.', edit_admin_doctor_path(advise.doctor)) : link_to('док.', new_admin_advise_doctor_path(advise))
+    td= advise.clinic.present? ? link_to('клин.', edit_admin_clinic_path(advise.clinic)) : link_to('клин.', new_admin_advise_clinic_path(advise))
+    td= l advise.created_at, format: :short
+    td
+      = link_to t('.edit', :default => t("helpers.links.edit")), \
+        edit_admin_advise_path(advise), :class => 'btn btn-mini' \
+      /
+      = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               \
+        admin_advise_path(advise),                                                                                   \
+        method => :delete,                                                                                          |:
+        data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, |:
+        class => 'btn btn-mini btn-danger'                                                                          |:

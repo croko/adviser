@@ -1,0 +1,32 @@
+- model_class = Advise
+.page-header
+  h1= t '.title', :default => model_class.model_name.human(count: 2).titleize
+  = search_form_for [:admin, @q], class: 'form-search' do |f|
+    = f.text_field :user_email_cont, class: 'search-query', placeholder: 'поиск по eamil'
+    = f.text_field :full_name_cont, class: 'search-query', placeholder: 'поиск по названию'
+    = f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии'
+    = label(:processed, ' обработанные ')
+    = f.check_box :processed_eq, class: 'search-query'
+    = f.button 'Найти', :class => 'btn search-query'
+  = link_to t('.new', :default => t("helpers.links.new")), \
+    new_admin_advise_path,                                 \
+    class => 'btn btn-primary'                            |:
+table#aitems.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:user_id)
+      th= model_class.human_attribute_name(:last_name)
+      th= model_class.human_attribute_name(:full_name)
+      th= model_class.human_attribute_name(:city)
+      th= model_class.human_attribute_name(:processed)
+      th colspan="2"  Создать
+      th= model_class.human_attribute_name(:created_at)
+      th= t '.actions', :default => t("helpers.actions")
+  tbody.page
+    = render :partial => 'result'
+= link_to t('.new', :default => t("helpers.links.new")), \
+  new_admin_advise_path,                                 \
+  class => 'btn btn-primary'                            |:
+nav.pagination style=("display: none;") 
+  = paginate @advises, remote: true

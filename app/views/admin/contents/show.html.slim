@@ -1,0 +1,37 @@
+- model_class = Content
+.page-header
+  h1= t '.title', :default => model_class.model_name.human.titleize
+dl.dl-horizontal
+  dt
+    strong
+      = model_class.human_attribute_name(:page_id)
+      | \:
+  dd= @content.page.name
+  dt
+    strong
+      = model_class.human_attribute_name(:name)
+      | \:
+  dd= @content.name
+  - if @content.announce.present?
+    dt
+      strong
+        = model_class.human_attribute_name(:announce)
+        | \:
+    dd= @content.announce
+  dt
+    strong
+      = model_class.human_attribute_name(:body)
+      | \:
+  dd= simple_format @content.body, {}, wrapper_tag: 'div'
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), \
+    admin_pages_path, :class => 'btn'                        \
+  /
+  = link_to t('.edit', :default => t("helpers.links.edit")), \
+    edit_admin_content_path(@content), :class => 'btn'       \
+  /
+  = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               \
+    admin_content_path(@content),                                                                                \
+    method => 'delete',                                                                                         |:
+    data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, |:
+    class => 'btn btn-danger'                                                                                   |:

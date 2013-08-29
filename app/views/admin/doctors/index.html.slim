@@ -1,0 +1,27 @@
+- model_class = Doctor
+.page-header
+  h1= t '.title', :default => model_class.model_name.human(count: 2).titleize
+  = search_form_for [:admin, @q], class: 'form-search' do |f|
+    = f.text_field :last_name_cont, class: 'search-query', placeholder: 'поиск по фамилии'
+    = f.button 'Найти', :class => 'btn search-query'
+  = link_to t('.new', :default => t("helpers.links.new")), \
+    new_admin_doctor_path,                                 \
+    class => 'btn btn-primary'                            |:
+table#ditems.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:full_name)
+      th= model_class.human_attribute_name(:status)
+      th= model_class.human_attribute_name(:user_id)
+      th= model_class.human_attribute_name(:published)
+      th= model_class.human_attribute_name(:rating)
+      th= model_class.human_attribute_name(:created_at)
+      th= t '.actions', :default => t("helpers.actions")
+  tbody.page
+    = render :partial => 'result'
+= link_to t('.new', :default => t("helpers.links.new")), \
+  new_admin_doctor_path,                                 \
+  class => 'btn btn-primary'                            |:
+nav.pagination style=("display: none;") 
+  = paginate @doctors, remote: true

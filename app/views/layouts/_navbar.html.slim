@@ -1,0 +1,25 @@
+.navbar-inner
+  .container
+    a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" 
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    = link_to 'Консультант', root_path, class: 'brand'
+    .container.nav-collapse
+      ul.nav
+        li= link_to "Меню", '#'
+        li= link_to 'Меню', '#'
+        = render partial: 'layouts/search'
+      ul.nav.pull-right
+        - if user_signed_in?
+          li.icon
+            = link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись'
+          - if current_user.manager?
+            li.icon
+              = link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер'
+          li.icon
+            = link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти'
+        - else
+          li
+            = link_to 'Войти', new_user_session_path
+    /! /.nav-collapse

@@ -1,0 +1,110 @@
+- model_class = Doctor
+.page-header
+  h1= t '.title', :default => model_class.model_name.human.titleize
+.row-fluid
+  .span7
+    dl.dl-horizontal
+      dt
+        strong
+          = model_class.human_attribute_name(:city)
+          | \:
+      dd= @doctor.addresses.first.city
+      dt
+        strong
+          = model_class.human_attribute_name(:stage)
+          | \:
+      dd= distance_of_time_in_words(Date.today, @doctor.starting_work) rescue '-'
+      - if @doctor.specialty.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:specialty)
+            | \:
+        dd= @doctor.specialty
+      - if @doctor.education.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:education)
+            | \:
+        dd= @doctor.education
+      - if @doctor.high_school_name.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:high_school_name)
+            | \:
+        dd= @doctor.high_school_name
+      - if @doctor.awards.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:awards)
+            | \:
+        dd= @doctor.awards
+      - if @doctor.visit_home.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:visit_home)
+            | \:
+        dd= @doctor.visit_home ? 'Да' : 'Нет'
+      - if @doctor.price.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:price)
+            | \:
+        dd= @doctor.price
+      - if @doctor.gender.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:gender)
+            | \:
+        dd= @doctor.gender
+      - if @doctor.price.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:description)
+            | \:
+      - if @doctor.description.present?
+        dd= @doctor.description
+      - if @doctor.user_id.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:user_id)
+            | \:
+        dd= @doctor.user_id
+      dt
+        strong
+          = model_class.human_attribute_name(:published)
+          | \:
+      dd= @doctor.published
+      dt
+        strong
+          = model_class.human_attribute_name(:rating)
+          | \:
+      dd= @doctor.rating
+      - if @doctor.gender.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:gender)
+            | \:
+        dd= @doctor.gender
+      - @doctor.addresses.each do |address|
+        dt
+          strong Адрес:
+        dd
+          = address.city_address
+          = address.street_address
+  .span2.pull-right
+    = image_tag @doctor.photourl
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), \
+    admin_doctors_path, :class => 'btn'                      \
+  /
+  = link_to t('.edit', :default => t("helpers.links.edit")), \
+    edit_admin_doctor_path(@doctor), :class => 'btn'         \
+  /
+  = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
+    admin_doctor_path(@doctor),                                                                                \
+    method => 'delete',                                                                                       |:
+    data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, |:
+    class => 'btn btn-danger'                                                                                 |:
+  /
+  = link_to 'Вернуться к заявкам',      \
+    admin_advises_path, :class => 'btn' \

@@ -1,0 +1,19 @@
+- model_class = Ad
+.page-header
+  h1= t '.title', :default => [:'helpers.titles.new', 'New % model '], :model => model_class.model_name.human.titleize
+= simple_form_for [:admin, :page, @ad], :html => { :class => 'form-horizontal' } do |f|
+  = f.association :page
+  = f.input :name
+  = f.input :baseurl
+  = f.association :category
+  = f.association :doctor
+  = f.association :clinic
+  = f.input :image
+  = f.input :published
+  = f.input :sort_order
+  = f.input :date_start, as: :string, input_html: {class: 'datepicker', value: @ad.date_start}
+  = f.input :date_end, as: :string, input_html: {class: 'datepicker', value: @ad.date_end}
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), \
+      admin_pages_path, :class => 'btn'                            \

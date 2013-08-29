@@ -1,0 +1,46 @@
+- model_class = Ad
+.page-header
+  h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+table.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:page_id)
+      th= model_class.human_attribute_name(:name)
+      th= model_class.human_attribute_name(:baseurl)
+      th= model_class.human_attribute_name(:category_id)
+      th= model_class.human_attribute_name(:doctor_id)
+      th= model_class.human_attribute_name(:clinic_id)
+      th= model_class.human_attribute_name(:image_file_name)
+      th= model_class.human_attribute_name(:published)
+      th= model_class.human_attribute_name(:sort_order)
+      th= model_class.human_attribute_name(:date_start)
+      th= model_class.human_attribute_name(:date_end)
+      th= t '.actions', :default => t("helpers.actions")
+  tbody
+    - @ads.each do |ad|
+      tr
+        td= link_to ad.id, admin_ad_path(ad)
+        td= ad.page.name
+        td= ad.name
+        td= ad.baseurl
+        td= ad.category.try(:name)
+        td= ad.doctor.try(:last_name)
+        td= ad.clinic.try(:full_name)
+        td= ad.image_file_name
+        td= ad.published
+        td= ad.sort_order
+        td= ad.date_start
+        td= ad.date_end
+        td
+          = link_to t('.edit', :default => t("helpers.links.edit")), \
+            edit_admin_ad_path(ad), :class => 'btn btn-mini'         \
+          /
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               \
+            admin_ad_path(ad),                                                                                           \
+            method => :delete,                                                                                          |:
+            data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, |:
+            class => 'btn btn-mini btn-danger'                                                                          |:
+= link_to t('.new', :default => t("helpers.links.new")), \
+  new_ad_path,                                           \
+  class => 'btn btn-primary'                            |:

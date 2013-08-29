@@ -1,6 +1,0 @@
-<% permalink = polymorphic_path([likeable, Like]) %>
-<% if likeable.liked_by_user?(current_user) %>
- <%= content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart') %>
-<% else %>
-  <%= link_to content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart like'), permalink, method: :post, remote: true, class: 'like'  %>
-<% end %>
