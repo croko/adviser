@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_banners, only: [:show, :edit]
   load_and_authorize_resource
 
   def show
-    @doctors = Doctor.my_doctors(current_user)
-    @clinics = Clinic.my_clinics(current_user)
+    @doctors = current_user.doctors
+    @clinics = current_user.clinics
   end
 
   # GET /users/1/edit
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to root_path, notice: t('users.messages.updated') }
       else
         format.html { render action: 'edit' }
       end

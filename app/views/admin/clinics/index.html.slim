@@ -6,7 +6,7 @@
     = f.button 'Найти', :class => 'btn search-query'
   = link_to t('.new', :default => t("helpers.links.new")), \
     new_admin_clinic_path,                                 \
-    class => 'btn btn-primary'                            |:
+    class: 'btn btn-primary'
 table#citems.table.table-striped
   thead
     tr
@@ -20,9 +20,9 @@ table#citems.table.table-striped
       th= model_class.human_attribute_name(:price)
       th= t '.actions', :default => t("helpers.actions")
   tbody.page
-    = render :partial => 'result'
+    == render :partial => 'result'
 = link_to t('.new', :default => t("helpers.links.new")), \
   new_admin_clinic_path,                                 \
-  class => 'btn btn-primary'                            |:
+  class: 'btn btn-primary'
 nav.pagination style=("display: none;") 
   = paginate @clinics, remote: true

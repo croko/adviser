@@ -5,72 +5,60 @@ dl.dl-horizontal
   dt
     strong
       = model_class.human_attribute_name(:user_id)
-      | \:
   dd= @advise.user.email
   - if @advise.category_id.present?
     dt
       strong
         = model_class.human_attribute_name(:category_id)
-        | \:
     dd= @advise.category.name
   - if @advise.last_name.present?
     dt
       strong
         = model_class.human_attribute_name(:last_name)
-        | \:
     dd= @advise.last_name
   - if @advise.name.present?
     dt
       strong
         = model_class.human_attribute_name(:name)
-        | \:
     dd= @advise.name
   - if @advise.full_name.present?
     dt
       strong
         = model_class.human_attribute_name(:full_name)
-        | \:
     dd= @advise.full_name
   - if @advise.specialty.present?
     dt
       strong
         = model_class.human_attribute_name(:specialty)
-        | \:
     dd= @advise.specialty
   - if @advise.city.present?
     dt
       strong
         = model_class.human_attribute_name(:city)
-        | \:
     dd= @advise.city
   - if @advise.phone_number.present?
     dt
       strong
         = model_class.human_attribute_name(:phone_number)
-        | \:
     dd= @advise.phone_number
   - if @advise.description.present?
     dt
       strong
         = model_class.human_attribute_name(:description)
-        | \:
     dd= @advise.description
   dt
     strong
       = model_class.human_attribute_name(:processed)
-      | \:
   dd= @advise.processed
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), \
-    admin_advises_path, :class => 'btn'                      \
-  /
+    admin_advises_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), \
-    edit_admin_advise_path(@advise), :class => 'btn'         \
-  /
+    edit_admin_advise_path(@advise), :class => 'btn'
   = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
     admin_advise_path(@advise),                                                                                \
-    method => 'delete',                                                                                       |:
-    data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, |:
-    class => 'btn btn-danger'                                                                                 |:
+    method: 'delete',
+    data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+    class: 'btn btn-danger'
   = link_to('Создать доктора', new_admin_advise_doctor_path(@advise), :class => 'btn')
   = link_to('Создать клинику', new_admin_advise_clinic_path(@advise), :class => 'btn')

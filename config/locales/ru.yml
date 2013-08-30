@@ -24,3 +24,13 @@ ru:
         create: 'Добавить комментарий'
       user:
         update: 'Сохранить изменения'
+
+  clinics:
+    messages:
+      updated: 'Данные о клинике успешно сохранены'
+  doctors:
+    messages:
+      updated: 'Данные о докторе успешно сохранены'
+  users:
+    messages:
+      updated: 'Данные успешно сохранены'

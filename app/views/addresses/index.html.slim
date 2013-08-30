@@ -28,6 +28,6 @@ table
         td= address.addressable_type
         td= link_to 'Show', address
         td= link_to 'Edit', edit_address_path(address)
-        td= link_to 'Destroy', address, method: :delete, data:   confirm: 'Are you sure?'  
-br/
+        td= link_to 'Destroy', address, method: :delete, data: {confirm: 'Are you sure?' }
+br
 = link_to 'New Address', new_address_path

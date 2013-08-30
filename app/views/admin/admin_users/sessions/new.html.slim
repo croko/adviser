@@ -6,4 +6,4 @@ h2 Sign in
     = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
   .form-actions
     = f.button :submit, "Sign in"
-= render "admin_users/shared/links"
+== render "admin_users/shared/links"

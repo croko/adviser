@@ -7,58 +7,48 @@
       dt
         strong
           = model_class.human_attribute_name(:full_name)
-          | \:
       dd= @clinic.full_name
       - if @clinic.specialty.present?
         dd= @clinic.specialty
         dt
           strong
             = model_class.human_attribute_name(:specialty)
-            | \:
       - if @clinic.description.present?
         dt
           strong
             = model_class.human_attribute_name(:description)
-            | \:
         dd= @clinic.description
       - if @clinic.user_id.present?
         dt
           strong
             = model_class.human_attribute_name(:user_id)
-            | \:
         dd= @clinic.user_id
       dt
         strong
           = model_class.human_attribute_name(:published)
-          | \:
       dd= @clinic.published
       dt
         strong
           = model_class.human_attribute_name(:rating)
-          | \:
       dd= @clinic.rating
       - if @clinic.starting_work.present?
         dt
           strong
             = model_class.human_attribute_name(:starting_work)
-            | \:
         dd= @clinic.starting_work
       - if @clinic.awards.present?
         dt
           strong
             = model_class.human_attribute_name(:awards)
-            | \:
         dd= @clinic.awards
       - if @clinic.visit_home.present?
         dt
           strong
             = model_class.human_attribute_name(:visit_home)
-            | \:
         dd= @clinic.visit_home
       dt
         strong
           = model_class.human_attribute_name(:price)
-          | \:
       dd= @clinic.price
       - @clinic.addresses.each do |address|
         dt
@@ -70,16 +60,16 @@
     = image_tag @clinic.photourl
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), \
-    admin_clinics_path, :class => 'btn'                      \
-  /
+    admin_clinics_path, :class => 'btn'
+
   = link_to t('.edit', :default => t("helpers.links.edit")), \
-    edit_admin_clinic_path(@clinic), :class => 'btn'         \
-  /
+    edit_admin_clinic_path(@clinic), :class => 'btn'
+
   = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
     admin_clinic_path(@clinic),                                                                                \
-    method => 'delete',                                                                                       |:
-    data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, |:
-    class => 'btn btn-danger'                                                                                 |:
-  /
+    method: 'delete',
+    data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+    class: 'btn btn-danger'
+
   = link_to 'Вернуться к заявкам',      \
-    admin_advises_path, :class => 'btn' \
+    admin_advises_path, :class => 'btn'

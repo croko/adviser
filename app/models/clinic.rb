@@ -31,6 +31,7 @@ class Clinic < ActiveRecord::Base
   has_many :comments, -> { order "created_at DESC" }, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :photos, :as => :attachable
+  has_many :ads
 
   belongs_to :manager, :class_name => "Manager", :foreign_key => "user_id"
   belongs_to :advise

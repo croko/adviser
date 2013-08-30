@@ -1,6 +1,7 @@
 class ClinicsController < ApplicationController
   load_and_authorize_resource
   before_action :set_clinic, only: [:show, :edit, :update]
+  before_action :set_banners, only: [:show]
 
   # GET /clinics/1
   # GET /clinics/1.json
@@ -18,28 +19,10 @@ class ClinicsController < ApplicationController
   def edit
   end
 
-  # POST /clinics
-  # POST /clinics.json
-  def create
-    @clinic = Clinic.new(clinic_params)
-
-    respond_to do |format|
-      if @clinic.save!
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @clinic }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @clinic.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /clinics/1
-  # PATCH/PUT /clinics/1.json
   def update
     respond_to do |format|
       if @clinic.update(clinic_params)
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully updated.' }
+        format.html { redirect_to @clinic, notice: t('clinics.messages.updated') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -52,6 +35,14 @@ class ClinicsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_clinic
     @clinic = Clinic.find(params[:id])
+  end
+
+  def set_banners
+    @ad_square_right = @clinic.ads.active.nick('square_right').sample
+    @ad_skyscrapers = @clinic.ads.active.nick('skyscraper').sample(2)
+
+    @ad_square_right = @ad_square_right.nil? ? Ad.active.nick('square_right').sample : @ad_square_right
+    @ad_skyscrapers = @ad_skyscrapers.empty? ? Ad.active.nick('skyscraper').sample(2) : @ad_skyscrapers
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -20,6 +20,6 @@ table#comitems.table.table-striped
     = render :partial => 'result'
 = link_to t('.new', :default => t("helpers.links.new")), \
   new_admin_comment_path,                                \
-  class => 'btn btn-primary'                            |:
+  class: 'btn btn-primary'
 nav.pagination style=("display: none;") 
   = paginate @comments, remote: true

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   respond_to :html, :js
+  before_action :set_banners
 
   #TODO
   #workaround for CanCan not ready for Rails 4
@@ -83,4 +84,12 @@ class ApplicationController < ActionController::Base
       @items = Clinic.rated.page(params[:page]).per(16)
     end
   end
+
+  private
+
+  def set_banners
+    @ad_square_right = Ad.active.nick('square_right').sample
+    @ad_skyscrapers = Ad.active.nick('skyscraper').sample(2)
+  end
+
 end

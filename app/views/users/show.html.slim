@@ -14,14 +14,14 @@ table.table.table-striped
         td= link_to clinic.id, clinic_path(clinic)
         td= clinic.full_name
         td
-          = link_to t('.edit', :default => t("helpers.links.edit")), \
-            edit_clinic_path(clinic), :class => 'btn btn-mini'       \
-          /
-          = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
-            clinic_path(clinic),                                                                                       \
-            method => :delete,                                                                                        |:
-            data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, |:
-            class => 'btn btn-mini btn-danger'                                                                        |:
+          = link_to t('.edit', :default => t("helpers.links.edit")),
+            edit_clinic_path(clinic), :class => 'btn btn-mini'
+
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),
+            clinic_path(clinic),
+            method: :delete,
+            data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+            class: 'btn btn-mini btn-danger'
 table.table.table-striped
   thead
     tr
@@ -34,14 +34,12 @@ table.table.table-striped
         td= link_to doctor.id, doctor_path(doctor)
         td= doctor.full_name
         td
-          = link_to t('.edit', :default => t("helpers.links.edit")), \
-            edit_doctor_path(doctor), :class => 'btn btn-mini'       \
-          /
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_doctor_path(doctor), :class => 'btn btn-mini'
+
           = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
             doctor_path(doctor),                                                                                       \
-            method => :delete,                                                                                        |:
-            data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, |:
-            class => 'btn btn-mini btn-danger'                                                                        |:
+            method: :delete, data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+            class: 'btn btn-mini btn-danger'
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), \
-    root_path, :class => 'btn'                               \
+    root_path, :class => 'btn'

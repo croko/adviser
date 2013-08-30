@@ -6,7 +6,7 @@
     = f.button 'Найти', :class => 'btn search-query'
   = link_to t('.new', :default => t("helpers.links.new")), \
     new_admin_doctor_path,                                 \
-    class => 'btn btn-primary'                            |:
+    class: 'btn btn-primary'
 table#ditems.table.table-striped
   thead
     tr
@@ -22,6 +22,6 @@ table#ditems.table.table-striped
     = render :partial => 'result'
 = link_to t('.new', :default => t("helpers.links.new")), \
   new_admin_doctor_path,                                 \
-  class => 'btn btn-primary'                            |:
+  class: 'btn btn-primary'
 nav.pagination style=("display: none;") 
   = paginate @doctors, remote: true

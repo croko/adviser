@@ -17,7 +17,8 @@
           = rating_box(@doctor.rating)
       tr
         td
-          span id=(@doctor.id}= render partial: 'likes/like_block'), locals: {likeable: @doctor 
+          span id=@doctor.id
+            == render partial: 'likes/like_block', locals: {likeable: @doctor}
       tr
         td
           script charset="utf-8" src="//yandex.st/share/share.js" type="text/javascript" 
@@ -27,54 +28,54 @@
       dt
         strong
           = model_class.human_attribute_name(:city)
-          | \:
+          | :
       dd= @doctor.addresses.first.city
       dt
         strong
           = model_class.human_attribute_name(:stage)
-          | \:
+          | :
       dd= distance_of_time_in_words(Date.today, @doctor.starting_work) rescue '-'
       - if @doctor.education.present?
         dt
           strong
             = model_class.human_attribute_name(:education)
-            | \:
+            | :
         dd= @doctor.education
       - if @doctor.high_school_name.present?
         dt
           strong
             = model_class.human_attribute_name(:high_school_name)
-            | \:
+            | :
         dd= @doctor.high_school_name
       - if @doctor.awards.present?
         dt
           strong
             = model_class.human_attribute_name(:awards)
-            | \:
+            | :
         dd= @doctor.awards
       - if @doctor.visit_home.present?
         dt
           strong
             = model_class.human_attribute_name(:visit_home)
-            | \:
+            | :
         dd= @doctor.visit_home ? 'Да' : 'Нет'
       - if @doctor.price.present?
         dt
           strong
             = model_class.human_attribute_name(:price)
-            | \:
+            | :
         dd= @doctor.price
       - if @doctor.gender.present?
         dt
           strong
             = model_class.human_attribute_name(:gender)
-            | \:
+            | :
         dd= @doctor.gender
       - if @doctor.price.present?
         dt
           strong
             = model_class.human_attribute_name(:description)
-            | \:
+            | :
       - if @doctor.description.present?
         dd= @doctor.description
       - @doctor.addresses.each do |address|
@@ -90,19 +91,20 @@
         | Добавить #{link_to("комментарий", '#new_comment_window', data: {toggle: "modal"})}
   - else
     h5 Только зарегистрированные пользователи могут оставлять комментарии.
-    = render :partial => 'layouts/auth_links'
+    == render :partial => 'layouts/auth_links'
 .row
-  h3 Комментарии
+  - if @doctor.comments_count.to_i > 0
+    h3 Комментарии
 .row
-  = render @comments
+  == render @comments
 nav.pagination
   = paginate @comments
 #new_comment_window.modal.hide.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
     h4#myModalLabel Оставьте пожалуйста свой комментарий
-  = render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in?
+  == render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in?
 - if can? :edit, @doctor
   .form-actions
     = link_to t('.edit', :default => t("helpers.links.edit")), \
-      edit_doctor_path(@doctor), :class => 'btn'               \
+      edit_doctor_path(@doctor), :class => 'btn'

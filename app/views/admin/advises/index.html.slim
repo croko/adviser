@@ -10,7 +10,7 @@
     = f.button 'Найти', :class => 'btn search-query'
   = link_to t('.new', :default => t("helpers.links.new")), \
     new_admin_advise_path,                                 \
-    class => 'btn btn-primary'                            |:
+    class: 'btn btn-primary'
 table#aitems.table.table-striped
   thead
     tr
@@ -24,9 +24,9 @@ table#aitems.table.table-striped
       th= model_class.human_attribute_name(:created_at)
       th= t '.actions', :default => t("helpers.actions")
   tbody.page
-    = render :partial => 'result'
+    == render :partial => 'result'
 = link_to t('.new', :default => t("helpers.links.new")), \
   new_admin_advise_path,                                 \
-  class => 'btn btn-primary'                            |:
+  class: 'btn btn-primary'
 nav.pagination style=("display: none;") 
   = paginate @advises, remote: true

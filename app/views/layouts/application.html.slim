@@ -26,18 +26,14 @@ html lang="ru"
       .container
         .navbar-wrapper
           .navbar.navbar-fixed-top
-            = render partial: 'layouts/navbar'
+            == render partial: 'layouts/navbar'
         .row
           .span9
             = bootstrap_flash
             = yield
           .span3
-            = render partial: 'layouts/sidebar'
+            == render partial: 'layouts/sidebar'
       #push
     footer
-      = render partial: 'layouts/footer'
-    /!
-      | Javascripts
-      | \==================================================
-    /! Placed at the end of the document so the pages load faster
+      == render partial: 'layouts/footer'
     = javascript_include_tag "application", "data-turbolinks-track" => true
