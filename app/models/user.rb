@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def manager?
-     clinics.size + doctors.size > 0
+    clinics.size + doctors.size > 0
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

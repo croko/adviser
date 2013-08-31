@@ -34,7 +34,6 @@ class CategoriesController < ApplicationController
     @ad_skyscrapers = @ad_skyscrapers.empty? ? Ad.active.nick('skyscraper').sample(2) : @ad_skyscrapers
   end
 
-  set_banners
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
     params[:category]

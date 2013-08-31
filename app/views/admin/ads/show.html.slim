@@ -54,10 +54,10 @@ dl.dl-horizontal
   dd= @ad.date_end
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), \
-    admin_pages_path, :class => 'btn'                        \
+    admin_pages_path, :class => 'btn'
 
-  = link_to t('.edit', :default => t("helpers.links.edit")), \
-    edit_admin_ad_path(@ad), :class => 'btn'                 \
+  = link_to t('.edit', :default => t("helpers.links.edit")),
+    edit_admin_ad_path(@ad), :class => 'btn'
 
   = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               \
     admin_ad_path(@ad),                                                                                          \
