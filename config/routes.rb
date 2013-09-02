@@ -38,6 +38,9 @@ Adviser::Application.routes.draw do
     end
   end
 
+  match '/about', to: 'application#about', via: [:get]
+  match '/contacts', to: 'application#contacts', via: [:get]
+  match '/advertisement', to: 'application#advertisement', via: [:get]
   match '/results', to: 'application#results', via: [:get, :post]
   root to: 'application#main'
 

@@ -85,6 +85,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def about
+    page_nick = Page.nick('about')
+    @top = page_nick.contents.nick('top').body rescue nil
+    @body = page_nick.contents.nick('body').body rescue nil
+  end
+
+  def advertisement
+    page_nick = Page.nick('advertisement')
+    @top = page_nick.contents.nick('top').body rescue nil
+    @body = page_nick.contents.nick('body').body rescue nil
+  end
+
+  def contacts
+    page_nick = Page.nick('contacts')
+    @top = page_nick.contents.nick('top').body rescue nil
+    @body = page_nick.contents.nick('body').body rescue nil
+  end
+
   private
 
   def set_banners

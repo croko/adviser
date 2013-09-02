@@ -9,7 +9,7 @@
   = f.input :awards
   = f.input :visit_home
   = f.input :price
-  = f.input :gender, collection: Doctor::GENDER
+  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons
   = f.input :pediatric
   = f.input :description
   .form-actions

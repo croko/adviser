@@ -3,7 +3,7 @@
   = f.input :first_name
   = f.input :published
   = f.input :pediatric
-  = f.input :gender, collection: Doctor::GENDER
+  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons
   = f.input :description, as: :text
   = f.input :specialty
   = f.input :user_id, collection: User.all.map{|u| [u.full_name, u.id]}

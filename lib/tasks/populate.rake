@@ -2,8 +2,6 @@ namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
 
-    [Doctor, Clinic, Category, Photo].each(&:destroy_all)
-
     # Run db:seed task
     Rake::Task['db:seed'].invoke
 
