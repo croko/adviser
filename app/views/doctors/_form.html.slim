@@ -1,4 +1,4 @@
-= simple_form_for @doctor, :html => {:class => 'form-horizontal'} do |f|
+= simple_nested_form_for @doctor, :html => {:class => 'form-horizontal'} do |f|
   = f.input :first_name
   = f.input :last_name
   = f.input :specialty
@@ -9,9 +9,28 @@
   = f.input :awards
   = f.input :visit_home
   = f.input :price
-  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons
+  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons, item_wrapper_class: 'inline'
   = f.input :pediatric
   = f.input :description
+  h4 Категории
+  table.table.table-striped
+    = f.fields_for :doctor_category_relations, wrapper: false
+    tr
+      td colspan="3"
+        = f.link_to_add "Добавить категорию", :doctor_category_relations
+  h4 Адреса
+  table.table.table-striped
+    = f.fields_for :addresses, wrapper: false
+    tr
+      td colspan="3"
+        = f.link_to_add "Добавить адрес", :addresses
+  h4 Фотографии
+  table.table.table-striped
+    = f.fields_for :photos, wrapper: false
+    - if @doctor.photos.size == 0
+      tr
+        td colspan="3"
+          = f.link_to_add "Добавить фото", :photos
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), \

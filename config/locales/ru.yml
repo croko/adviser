@@ -10,6 +10,10 @@ ru:
   true: 'Да'
   false: 'Нет'
 
+  unauthorized:
+      manage:
+        all: "Доступ отклонен"
+
   views:
     pagination:
       previous: "&laquo; назад"
@@ -23,6 +27,10 @@ ru:
       comment:
         create: 'Добавить комментарий'
       user:
+        update: 'Сохранить изменения'
+      clinic:
+        update: 'Сохранить изменения'
+      doctor:
         update: 'Сохранить изменения'
 
   clinics:

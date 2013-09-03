@@ -1,7 +1,7 @@
 class ClinicsController < ApplicationController
   load_and_authorize_resource
   before_action :set_clinic, only: [:show, :edit, :update]
-  before_action :set_banners, only: [:show]
+  before_action :set_banners, only: [:show, :edit]
 
   # GET /clinics/1
   # GET /clinics/1.json
@@ -47,6 +47,11 @@ class ClinicsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def clinic_params
-    params.require(:clinic).permit(:full_name, :description)
+    params.require(:clinic).permit(:full_name, :description, :user_id, :starting_work, :awards,
+                                   :visit_home, :price, :specialty, :pediatric,
+                                   clinic_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
+                                   photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
+                                   addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
+                                                          :website_url, :email, :district])
   end
 end

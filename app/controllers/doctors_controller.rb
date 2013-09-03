@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   load_and_authorize_resource
   before_action :set_doctor, only: [:show, :edit, :update]
-  before_action :set_banners, only: [:show]
+  before_action :set_banners, only: [:show, :edit]
 
   # GET /doctors/1
   # GET /doctors/1.json
@@ -44,6 +44,12 @@ class DoctorsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def doctor_params
-    params[:doctor].permit(:first_name, :last_name, :description)
+    params[:doctor].permit(:first_name, :description, :last_name,
+                           :education, :starting_work, :high_school_name, :high_school_finished, :awards,
+                           :visit_home, :price, :rating, :specialty, :pediatric, :gender,
+                           doctor_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
+                           photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
+                           addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
+                                                  :website_url, :email, :district])
   end
 end

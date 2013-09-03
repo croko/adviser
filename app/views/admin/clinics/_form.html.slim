@@ -27,7 +27,7 @@
   table.table.table-striped
     = f.fields_for :photos, wrapper: false
     tr
-      td colspan="3" 
+      td colspan="3"
         = f.link_to_add "Добавить фото", :photos
   .form-actions
     = f.button :submit, :class => 'btn-primary'

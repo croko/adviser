@@ -8,7 +8,7 @@ tr.fields
     = f.input :address_2
     = f.input :phone_number
     = f.input :mobile_phone_number
-    = f.input :website_url
+    = f.input :website_url, placeholder: t('simple_form.placeholders.address.website_url')
     = f.input :email
   td style="width:100px;" 
     = f.link_to_remove t("helpers.links.remove"), :class => 'btn btn-danger'

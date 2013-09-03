@@ -1,0 +1,8 @@
+tr.fields
+  td
+    = image_tag (f.object.url(:thumb)) unless f.object.url.blank?
+  td
+    = f.input :id, as: :hidden
+    = f.input :image
+  td style="width:100px;" 
+    = f.link_to_remove t("helpers.links.remove"), :class => 'btn btn-danger'

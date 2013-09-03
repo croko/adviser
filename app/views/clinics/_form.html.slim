@@ -1,4 +1,4 @@
-= simple_form_for @clinic, :html => {:class => 'form-horizontal'} do |f|
+= simple_nested_form_for @clinic, :html => {:class => 'form-horizontal'} do |f|
   = f.input :full_name
   = f.input :specialty
   = f.input :starting_work, as: :string, input_html: {class: 'datepicker', value: @clinic.starting_work}
@@ -6,6 +6,25 @@
   = f.input :price
   = f.input :pediatric
   = f.input :description
+  h4 Категории
+  table.table.table-striped
+    = f.fields_for :clinic_category_relations, wrapper: false
+    tr
+      td colspan="3"
+        = f.link_to_add "Добавить категорию", :clinic_category_relations
+  h4 Адреса
+  table.table.table-striped
+    = f.fields_for :addresses, wrapper: false
+    tr
+      td colspan="3"
+        = f.link_to_add "Добавить адрес", :addresses
+  h4 Фотографии
+  table.table.table-striped
+    = f.fields_for :photos, wrapper: false
+    - if @clinic.photos.size == 0
+      tr
+        td colspan="3"
+          = f.link_to_add "Добавить фото", :photos
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), \

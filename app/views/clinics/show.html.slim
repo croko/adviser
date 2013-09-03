@@ -60,6 +60,48 @@
         dd
           = address.city_address
           = address.street_address
+        - if address.state.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:state)
+              |:
+          dd
+            = address.state
+        - if address.district.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:district)
+              |:
+          dd
+            = address.district
+        - if address.phone_number.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:phone_number)
+              |:
+          dd
+            = address.phone_number
+        - if address.mobile_phone_number.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:mobile_phone_number)
+              |:
+          dd
+            = address.mobile_phone_number
+        - if address.website_url.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:website_url)
+              |:
+          dd
+            = link_to @clinic.full_name, address.website_url
+        - if address.email.present?
+          dt
+            strong
+              = address.class.human_attribute_name(:email)
+              |:
+          dd
+            = mail_to(address.email)
 .row
   - if user_signed_in?
     - if @clinic.can_user_comment?(current_user.id)

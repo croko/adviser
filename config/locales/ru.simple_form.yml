@@ -52,6 +52,8 @@ ru:
         price: "Цена"
         specialty: "Специализация"
         pediatric: "Детская"
+      clinic_category_relations:
+        category_id: 'Категория'
       comment:
         user_id: "Участник"
         message: "Комментарий"
@@ -98,7 +100,6 @@ ru:
         name: 'Название'
         announce: 'Заголовок'
         body: 'Текст'
-
     hints:
       advise:
         idoctor: 'хочу рекомендовать себя и получить возможность редактрировать информацию'
@@ -115,3 +116,5 @@ ru:
         last_name: 'обязательное для доктора'
         name: 'обязательное для доктора'
         full_name: 'обязательное для клиники'
+      address:
+        website_url: 'http://example.com'

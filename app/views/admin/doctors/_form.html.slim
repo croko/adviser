@@ -3,7 +3,7 @@
   = f.input :first_name
   = f.input :published
   = f.input :pediatric
-  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons
+  = f.input :gender, collection: Doctor::GENDER, item_wrapper_class: 'inline', as: :radio_buttons
   = f.input :description, as: :text
   = f.input :specialty
   = f.input :user_id, collection: User.all.map{|u| [u.full_name, u.id]}
@@ -32,7 +32,7 @@
   table.table.table-striped
     = f.fields_for :photos, wrapper: false
     tr
-      td colspan="3" 
+      td colspan="3"
         = f.link_to_add "Добавить фото", :photos
   .form-actions
     = f.button :submit, :class => 'btn-primary'

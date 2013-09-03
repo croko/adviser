@@ -33,7 +33,7 @@ class Clinic < ActiveRecord::Base
   has_many :photos, :as => :attachable
   has_many :ads
 
-  belongs_to :manager, :class_name => "Manager", :foreign_key => "user_id"
+  belongs_to :manager, :class_name => "User", :foreign_key => "user_id"
   belongs_to :advise
 
   accepts_nested_attributes_for :addresses, allow_destroy: true
