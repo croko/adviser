@@ -6,102 +6,103 @@
       h4= @clinic.full_name
     .span7
       h4= @clinic.specialty
-.row
-  .span2
-    table.table.table-condensed
-      tr
-        td
-          = image_tag @clinic.photourl
-      tr
-        td
-          = rating_box(@clinic.rating)
-      tr
-        td
-          span id=@clinic.id
-            ==render partial: ('likes/like_block'), locals: {likeable: @clinic}
-      tr
-        td
-          script charset="utf-8" src="//yandex.st/share/share.js" type="text/javascript" 
-          .yashare-auto-init data-yasharedescription=("Советуем клинику!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none" 
-  .span7
-    dl.dl-horizontal.pull-left
-      - if @clinic.starting_work.present?
+- cache @clinic do
+  .row
+    .span2
+      table.table.table-condensed
+        tr
+          td
+            = image_tag @clinic.photourl
+        tr
+          td
+            = rating_box(@clinic.rating)
+        tr
+          td
+            span id=@clinic.id
+              ==render partial: ('likes/like_block'), locals: {likeable: @clinic}
+        tr
+          td
+            script charset="utf-8" src="//yandex.st/share/share.js" type="text/javascript"
+            .yashare-auto-init data-yasharedescription=("Советуем клинику!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none"
+    .span7
+      dl.dl-horizontal.pull-left
+        - if @clinic.starting_work.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:starting_work)
+              |:
+          dd= @clinic.starting_work
+        - if @clinic.awards.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:awards)
+              |:
+          dd= @clinic.awards
+        - if @clinic.visit_home.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:visit_home)
+              |:
+          dd= @clinic.visit_home ? 'Да' : 'Нет'
         dt
           strong
-            = model_class.human_attribute_name(:starting_work)
+            = model_class.human_attribute_name(:price)
             |:
-        dd= @clinic.starting_work
-      - if @clinic.awards.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:awards)
-            |:
-        dd= @clinic.awards
-      - if @clinic.visit_home.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:visit_home)
-            |:
-        dd= @clinic.visit_home ? 'Да' : 'Нет'
-      dt
-        strong
-          = model_class.human_attribute_name(:price)
-          |:
-      dd= @clinic.price
-      - if @clinic.description.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:description)
-            |:
-        dd= @clinic.description
-      - @clinic.addresses.each do |address|
-        dt
-          strong Адрес:
-        dd
-          = address.city_address
-          = address.street_address
-        - if address.state.present?
+        dd= @clinic.price
+        - if @clinic.description.present?
           dt
             strong
-              = address.class.human_attribute_name(:state)
+              = model_class.human_attribute_name(:description)
               |:
-          dd
-            = address.state
-        - if address.district.present?
+          dd= @clinic.description
+        - @clinic.addresses.each do |address|
           dt
-            strong
-              = address.class.human_attribute_name(:district)
-              |:
+            strong Адрес:
           dd
-            = address.district
-        - if address.phone_number.present?
-          dt
-            strong
-              = address.class.human_attribute_name(:phone_number)
-              |:
-          dd
-            = address.phone_number
-        - if address.mobile_phone_number.present?
-          dt
-            strong
-              = address.class.human_attribute_name(:mobile_phone_number)
-              |:
-          dd
-            = address.mobile_phone_number
-        - if address.website_url.present?
-          dt
-            strong
-              = address.class.human_attribute_name(:website_url)
-              |:
-          dd
-            = link_to @clinic.full_name, address.website_url
-        - if address.email.present?
-          dt
-            strong
-              = address.class.human_attribute_name(:email)
-              |:
-          dd
-            = mail_to(address.email)
+            = address.city_address
+            = address.street_address
+          - if address.state.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:state)
+                |:
+            dd
+              = address.state
+          - if address.district.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:district)
+                |:
+            dd
+              = address.district
+          - if address.phone_number.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:phone_number)
+                |:
+            dd
+              = address.phone_number
+          - if address.mobile_phone_number.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:mobile_phone_number)
+                |:
+            dd
+              = address.mobile_phone_number
+          - if address.website_url.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:website_url)
+                |:
+            dd
+              = link_to @clinic.full_name, address.website_url
+          - if address.email.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:email)
+                |:
+            dd
+              = mail_to(address.email)
 .row
   - if user_signed_in?
     - if @clinic.can_user_comment?(current_user.id)
@@ -117,7 +118,7 @@
   == render @comments
 nav.pagination
   = paginate @comments
-#new_comment_window.modal.hide.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+#new_comment_window.modal.hide.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
     h4#myModalLabel Оставьте пожалуйста свой комментарий

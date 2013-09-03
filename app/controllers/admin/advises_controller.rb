@@ -2,7 +2,7 @@ class Admin::AdvisesController < Admin::BaseController
   before_action :set_advise, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:processed_eq] == '1'
+    if params[:q].present? && params[:q][:processed_eq] == '1'
       @q = Advise.search(params[:q])
     else
       @q = Advise.unprocessed.search(params[:q])

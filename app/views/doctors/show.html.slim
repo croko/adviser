@@ -6,126 +6,127 @@
       h4= @doctor.full_name
     .span7
       h4= @doctor.specialty
-.row
-  .span2
-    table.table.table-condensed
-      tr
-        td
-          = image_tag @doctor.photourl
-      tr
-        td
-          = rating_box(@doctor.rating)
-      tr
-        td
-          span id=@doctor.id
-            == render partial: 'likes/like_block', locals: {likeable: @doctor}
-      tr
-        td
-          script charset="utf-8" src="//yandex.st/share/share.js" type="text/javascript" 
-          .yashare-auto-init data-yasharedescription=("Советуем доктора!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none" 
-  .span7
-    dl.dl-horizontal.pull-left
-      dt
-        strong
-          = model_class.human_attribute_name(:city)
-          | :
-      dd= @doctor.addresses.first.city
-      dt
-        strong
-          = model_class.human_attribute_name(:stage)
-          | :
-      dd= distance_of_time_in_words(Date.today, @doctor.starting_work) rescue '-'
-      - if @doctor.education.present?
+- cache @doctor do
+  .row
+    .span2
+      table.table.table-condensed
+        tr
+          td
+            = image_tag @doctor.photourl
+        tr
+          td
+            = rating_box(@doctor.rating)
+        tr
+          td
+            span id=@doctor.id
+              == render partial: 'likes/like_block', locals: {likeable: @doctor}
+        tr
+          td
+            script charset="utf-8" src="//yandex.st/share/share.js" type="text/javascript"
+            .yashare-auto-init data-yasharedescription=("Советуем доктора!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none"
+    .span7
+      dl.dl-horizontal.pull-left
         dt
           strong
-            = model_class.human_attribute_name(:education)
+            = model_class.human_attribute_name(:city)
             | :
-        dd= @doctor.education
-      - if @doctor.high_school_name.present?
+        dd= @doctor.addresses.first.city
         dt
           strong
-            = model_class.human_attribute_name(:high_school_name)
+            = model_class.human_attribute_name(:stage)
             | :
-        dd= @doctor.high_school_name
-      - if @doctor.awards.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:awards)
-            | :
-        dd= @doctor.awards
-      - if @doctor.visit_home.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:visit_home)
-            | :
-        dd= @doctor.visit_home ? 'Да' : 'Нет'
-      - if @doctor.price.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:price)
-            | :
-        dd= @doctor.price
-      - if @doctor.gender.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:gender)
-            | :
-        dd= @doctor.gender
-      - if @doctor.price.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:description)
-            | :
-      - if @doctor.description.present?
-        dd= @doctor.description
-      - @doctor.addresses.each do |address|
-        dt
-          strong Адрес:
-        dd
-          = address.city_address
-          = address.street_address
-        - if address.state.present?
+        dd= distance_of_time_in_words(Date.today, @doctor.starting_work) rescue '-'
+        - if @doctor.education.present?
           dt
             strong
-              = address.class.human_attribute_name(:state)
-              |:
-          dd
-            = address.state
-        - if address.district.present?
+              = model_class.human_attribute_name(:education)
+              | :
+          dd= @doctor.education
+        - if @doctor.high_school_name.present?
           dt
             strong
-              = address.class.human_attribute_name(:district)
-              |:
-          dd
-            = address.district
-        - if address.phone_number.present?
+              = model_class.human_attribute_name(:high_school_name)
+              | :
+          dd= @doctor.high_school_name
+        - if @doctor.awards.present?
           dt
             strong
-              = address.class.human_attribute_name(:phone_number)
-              |:
-          dd
-            = address.phone_number
-        - if address.mobile_phone_number.present?
+              = model_class.human_attribute_name(:awards)
+              | :
+          dd= @doctor.awards
+        - if @doctor.visit_home.present?
           dt
             strong
-              = address.class.human_attribute_name(:mobile_phone_number)
-              |:
-          dd
-            = address.mobile_phone_number
-        - if address.website_url.present?
+              = model_class.human_attribute_name(:visit_home)
+              | :
+          dd= @doctor.visit_home ? 'Да' : 'Нет'
+        - if @doctor.price.present?
           dt
             strong
-              = address.class.human_attribute_name(:website_url)
-              |:
-          dd
-            = link_to @doctor.full_name, address.website_url
-        - if address.email.present?
+              = model_class.human_attribute_name(:price)
+              | :
+          dd= @doctor.price
+        - if @doctor.gender.present?
           dt
             strong
-              = address.class.human_attribute_name(:email)
-              |:
+              = model_class.human_attribute_name(:gender)
+              | :
+          dd= @doctor.gender
+        - if @doctor.price.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:description)
+              | :
+        - if @doctor.description.present?
+          dd= @doctor.description
+        - @doctor.addresses.each do |address|
+          dt
+            strong Адрес:
           dd
-            = mail_to(address.email)
+            = address.city_address
+            = address.street_address
+          - if address.state.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:state)
+                |:
+            dd
+              = address.state
+          - if address.district.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:district)
+                |:
+            dd
+              = address.district
+          - if address.phone_number.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:phone_number)
+                |:
+            dd
+              = address.phone_number
+          - if address.mobile_phone_number.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:mobile_phone_number)
+                |:
+            dd
+              = address.mobile_phone_number
+          - if address.website_url.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:website_url)
+                |:
+            dd
+              = link_to @doctor.full_name, address.website_url
+          - if address.email.present?
+            dt
+              strong
+                = address.class.human_attribute_name(:email)
+                |:
+            dd
+              = mail_to(address.email)
 .row
   - if user_signed_in?
     - if @doctor.can_user_comment?(current_user.id)

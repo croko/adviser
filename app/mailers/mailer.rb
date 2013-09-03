@@ -4,8 +4,10 @@ class Mailer < ActionMailer::Base
   def new_advise(advise)
     @advise = advise
     email = 'inna@sba.in.ua'
-    mail(:to => email, :subject => "New advise") do |format|
+    cc = 'gk@sba.in.ua, ftvkun.ad@gmail.com'
+    result = mail(to: email, bcc: cc, subject: "New advise #{@advise.created_at}") do |format|
       format.html
     end
+    @advise.update_attribute('email_sent', true) if result.errors.empty?
   end
 end
