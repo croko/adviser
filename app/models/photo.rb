@@ -20,7 +20,7 @@ class Photo < ActiveRecord::Base
   has_attached_file :image, styles: {:thumb => "200x200>", :medium => "800x800>"},
                     default_url: "/images/default_male.jpg"
 
-  belongs_to :attachable, polymorphic: true
+  belongs_to :attachable, polymorphic: true, counter_cache: true
   validates_attachment_size :image, less_than: 5.megabytes
   #validates :sort_order, :presence => true
 

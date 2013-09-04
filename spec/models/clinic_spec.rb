@@ -15,11 +15,12 @@
 #  full_name      :string(255)
 #  starting_work  :date
 #  awards         :string(255)
-#  visit_home     :boolean
 #  price          :decimal(8, 2)    default(0.0)
 #  specialty      :string(255)
 #  pediatric      :boolean          default(FALSE)
 #  advise_id      :integer
+#  visit_home     :boolean          default(FALSE)
+#  photos_count   :integer
 #
 
 require 'spec_helper'

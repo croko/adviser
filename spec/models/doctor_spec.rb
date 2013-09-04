@@ -18,7 +18,6 @@
 #  high_school_finished :date
 #  high_school_name     :string(255)
 #  awards               :string(255)
-#  visit_home           :string(255)
 #  price                :decimal(8, 2)
 #  specialty            :string(255)
 #  created_at           :datetime
@@ -26,6 +25,8 @@
 #  gender               :string(255)
 #  pediatric            :boolean          default(FALSE)
 #  advise_id            :integer
+#  visit_home           :boolean          default(FALSE)
+#  photos_count         :integer
 #
 
 require 'spec_helper'

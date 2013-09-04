@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903045138) do
+ActiveRecord::Schema.define(version: 20130904070023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20130903045138) do
     t.boolean  "pediatric",                              default: false
     t.integer  "advise_id"
     t.boolean  "visit_home",                             default: false
+    t.integer  "photos_count",                           default: 0
   end
 
   create_table "comments", force: true do |t|
@@ -199,6 +200,7 @@ ActiveRecord::Schema.define(version: 20130903045138) do
     t.boolean  "pediatric",                                    default: false
     t.integer  "advise_id"
     t.boolean  "visit_home",                                   default: false
+    t.integer  "photos_count",                                 default: 0
   end
 
   add_index "doctors", ["clinic_id"], name: "index_doctors_on_clinic_id", using: :btree

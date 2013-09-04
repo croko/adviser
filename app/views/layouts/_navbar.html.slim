@@ -6,10 +6,6 @@
       span.icon-bar
     = link_to 'Консультант', root_path, class: 'brand'
     .container.nav-collapse
-      ul.nav
-        li= link_to "Меню", '#'
-        li= link_to 'Меню', '#'
-        = render partial: 'layouts/search'
       ul.nav.pull-right
         - if user_signed_in?
           li.icon
@@ -22,4 +18,7 @@
         - else
           li
             = link_to 'Войти', new_user_session_path
-    /! /.nav-collapse
+      ul.nav.pull-right
+        li
+        li
+        = render partial: 'layouts/search'

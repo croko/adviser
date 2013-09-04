@@ -17,6 +17,7 @@
 #  date_end           :datetime
 #  created_at         :datetime
 #  updated_at         :datetime
+#  baseurl            :string(255)
 #
 
 class Ad < ActiveRecord::Base
