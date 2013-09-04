@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   #validates_acceptance_of :terms_of_service, on: :create
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]
 
+  after_create :sendmail
+
   def full_name
     (last_name.to_s + ' ' + first_name.to_s).strip
   end
@@ -147,4 +149,9 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def sendmail
+    Mailer.new_user(self).deliver
+  end
+
 end
