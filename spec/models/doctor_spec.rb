@@ -10,9 +10,9 @@
 #  user_id              :integer
 #  clinic_id            :integer
 #  published            :boolean          default(TRUE)
-#  comments_count       :integer
-#  rating               :float
-#  likes_count          :integer
+#  comments_count       :integer          default(0)
+#  rating               :float            default(0.0)
+#  likes_count          :integer          default(0)
 #  education            :string(255)
 #  starting_work        :date
 #  high_school_finished :date
@@ -26,7 +26,7 @@
 #  pediatric            :boolean          default(FALSE)
 #  advise_id            :integer
 #  visit_home           :boolean          default(FALSE)
-#  photos_count         :integer
+#  photos_count         :integer          default(0)
 #
 
 require 'spec_helper'

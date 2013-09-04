@@ -7,9 +7,9 @@
 #  status         :string(255)
 #  user_id        :integer
 #  published      :boolean          default(TRUE)
-#  comments_count :integer
-#  rating         :float
-#  likes_count    :integer
+#  comments_count :integer          default(0)
+#  rating         :float            default(0.0)
+#  likes_count    :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  full_name      :string(255)
@@ -20,7 +20,7 @@
 #  pediatric      :boolean          default(FALSE)
 #  advise_id      :integer
 #  visit_home     :boolean          default(FALSE)
-#  photos_count   :integer
+#  photos_count   :integer          default(0)
 #
 
 class Clinic < ActiveRecord::Base

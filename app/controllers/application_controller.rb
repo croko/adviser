@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
     @items = @clinics + @doctors
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(24)
-    @cache_key = (@doctors.pluck('id') + @clinics.pluck('id')).collect {|id| id}.join('')
+    #@cache_key = (@doctors.pluck('id') + @clinics.pluck('id')).collect {|id| id}.join('')
 
     render stream: true
   end

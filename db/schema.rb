@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904070023) do
+ActiveRecord::Schema.define(version: 20130904075952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,9 +128,9 @@ ActiveRecord::Schema.define(version: 20130904070023) do
     t.string   "status"
     t.integer  "user_id"
     t.boolean  "published",                              default: true
-    t.integer  "comments_count"
-    t.float    "rating"
-    t.integer  "likes_count"
+    t.integer  "comments_count",                         default: 0
+    t.float    "rating",                                 default: 0.0
+    t.integer  "likes_count",                            default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
@@ -184,9 +184,9 @@ ActiveRecord::Schema.define(version: 20130904070023) do
     t.integer  "user_id"
     t.integer  "clinic_id"
     t.boolean  "published",                                    default: true
-    t.integer  "comments_count"
-    t.float    "rating"
-    t.integer  "likes_count"
+    t.integer  "comments_count",                               default: 0
+    t.float    "rating",                                       default: 0.0
+    t.integer  "likes_count",                                  default: 0
     t.string   "education"
     t.date     "starting_work"
     t.date     "high_school_finished"
