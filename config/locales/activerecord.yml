@@ -126,7 +126,7 @@ ru:
         starting_work: "Дата создания"
         awards: "Награды, дипломы"
         visit_home: "Выезд на дом"
-        price: "Цена"
+        price: "Стоимость приема"
         specialty: "Специализация"
         pediatric: "Детская"
       comment:
@@ -154,7 +154,7 @@ ru:
         high_school_name: "ВУЗ"
         awards: "Награды, дипломы"
         visit_home: "Выезд на дом"
-        price: "Цена"
+        price: "Стоимость приема"
         specialty: "Специализация"
         created_at: "Создан"
         updated_at: "Изменен"

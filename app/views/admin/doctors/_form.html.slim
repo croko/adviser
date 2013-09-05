@@ -3,6 +3,7 @@
   = f.input :first_name
   = f.input :published
   = f.input :pediatric
+  = f.input :clinic_id, collection: Clinic.all.map{|u| [u.full_name, u.id]}
   = f.input :gender, collection: Doctor::GENDER, item_wrapper_class: 'inline', as: :radio_buttons
   = f.input :description, as: :text
   = f.input :specialty
@@ -16,13 +17,13 @@
   = f.input :visit_home
   = f.input :price
   = f.input :advise_id, as: :hidden
-  h4 Категории
+  h4 Категории (обязательное поле)
   table.table.table-striped
     = f.fields_for :doctor_category_relations, wrapper: false
     tr
       td colspan="3" 
         = f.link_to_add "Добавить категорию", :doctor_category_relations
-  h4 Адреса
+  h4 Адреса  (обязательное поле)
   table.table.table-striped
     = f.fields_for :addresses, wrapper: false
     tr

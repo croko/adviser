@@ -49,9 +49,9 @@ class Clinic < ActiveRecord::Base
   scope :my_clinics, -> (user) { where(user_id: user) }
   #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
 
-  after_create :process_advise
+  after_create :process_advise, if: :advise_id
   after_save :update_category_cache
-  after_update :process_advise_iclinic
+  after_update :process_advise_iclinic, if: :advise_id
 
   after_touch() { tire.update_index }
 

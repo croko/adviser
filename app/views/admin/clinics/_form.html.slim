@@ -11,13 +11,13 @@
   = f.input :pediatric
   = f.input :price
   = f.input :advise_id, as: :hidden
-  h4 Категории
+  h4 Категории (обязательное поле)
   table.table.table-striped
     = f.fields_for :clinic_category_relations, wrapper: false
     tr
       td colspan="3" 
         = f.link_to_add "Добавить категорию", :clinic_category_relations
-  h4 Адреса
+  h4 Адреса (обязательное поле)
   table.table.table-striped
     = f.fields_for :addresses, wrapper: false
     tr

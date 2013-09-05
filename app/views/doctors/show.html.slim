@@ -2,10 +2,8 @@
 = content_for(:title, @doctor.full_name)
 .page-header
   .row
-    .span2
+    .span9
       h4= @doctor.full_name
-    .span7
-      h4= @doctor.specialty
 - cache @doctor do
   .row
     .span2
@@ -26,6 +24,12 @@
             .yashare-auto-init data-yasharedescription=("Советуем доктора!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none"
     .span7
       dl.dl-horizontal.pull-left
+        - if @doctor.specialty.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:specialty)
+              |:
+          dd= @clinic.specialty
         dt
           strong
             = model_class.human_attribute_name(:city)

@@ -43,6 +43,7 @@ class Doctor < ActiveRecord::Base
 
   belongs_to :manager, :class_name => "User", :foreign_key => "user_id"
   belongs_to :advise
+  belongs_to :clinic
 
   accepts_nested_attributes_for :addresses, allow_destroy: true
   accepts_nested_attributes_for :doctor_category_relations, :reject_if => lambda { |a| a[:category_id].nil? }, allow_destroy: true
@@ -56,9 +57,9 @@ class Doctor < ActiveRecord::Base
   scope :my_doctors, -> (user) { where(user_id: user) }
   #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
 
-  after_create :process_advise
+  after_create :process_advise, if: :advise_id
   after_save :update_category_cache
-  after_update :process_advise_idoctor
+  after_update :process_advise_idoctor, if: :advise_id
 
   after_touch() { tire.update_index }
 

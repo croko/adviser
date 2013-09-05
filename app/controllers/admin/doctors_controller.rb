@@ -87,10 +87,11 @@ class Admin::DoctorsController < Admin::BaseController
   def doctor_params
     params[:doctor].permit(:id, :first_name, :description, :user_id, :published, :last_name,
                            :education, :starting_work, :high_school_name, :high_school_finished, :awards,
-                           :visit_home, :price, :rating, :specialty, :pediatric, :gender, :advise_id,
+                           :visit_home, :price, :rating, :specialty, :pediatric, :gender, :advise_id, :clinic_id,
                            doctor_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
                            photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
                            addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
-                                                  :website_url, :email, :district, :phone_number, :mobile_phone_number])
+                                                  :website_url, :email, :district, :phone_number,
+                                                  :mobile_phone_number, :_destroy])
   end
 end

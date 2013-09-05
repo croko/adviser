@@ -2,10 +2,8 @@
 = content_for(:title, @clinic.full_name)
 .page-header
   .row
-    .span2
+    .span9
       h4= @clinic.full_name
-    .span7
-      h4= @clinic.specialty
 - cache @clinic do
   .row
     .span2
@@ -26,6 +24,12 @@
             .yashare-auto-init data-yasharedescription=("Советуем клинику!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none"
     .span7
       dl.dl-horizontal.pull-left
+        - if @clinic.specialty.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:specialty)
+              |:
+          dd= @clinic.specialty
         - if @clinic.starting_work.present?
           dt
             strong
@@ -44,11 +48,12 @@
               = model_class.human_attribute_name(:visit_home)
               |:
           dd= @clinic.visit_home ? 'Да' : 'Нет'
-        dt
-          strong
-            = model_class.human_attribute_name(:price)
-            |:
-        dd= @clinic.price
+        - if @clinic.price > 0
+          dt
+            strong
+              = model_class.human_attribute_name(:price)
+              |:
+          dd= @clinic.price
         - if @clinic.description.present?
           dt
             strong
@@ -59,7 +64,7 @@
           dt
             strong Адрес:
           dd
-            = address.city_address
+            =' address.city_address
             = address.street_address
           - if address.state.present?
             dt
