@@ -142,7 +142,7 @@ ru:
         description: "Описание"
         status: "Статус"
         user_id: "Менеджер"
-        clinic_id: "Клиника"
+        clinic_id: "Место работы"
         published: "Опубликован"
         comments_count: "Комментарии"
         rating: "Рейтинг"

@@ -29,7 +29,13 @@
             strong
               = model_class.human_attribute_name(:specialty)
               |:
-          dd= @clinic.specialty
+          dd= @doctor.specialty
+        - if @doctor.clinic_id.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:clinic_id)
+              |:
+          dd= @doctor.clinic.full_name
         dt
           strong
             = model_class.human_attribute_name(:city)
@@ -64,7 +70,7 @@
               = model_class.human_attribute_name(:visit_home)
               | :
           dd= @doctor.visit_home ? 'Да' : 'Нет'
-        - if @doctor.price.present?
+        - if @doctor.price.to_f > 0
           dt
             strong
               = model_class.human_attribute_name(:price)
@@ -76,18 +82,11 @@
               = model_class.human_attribute_name(:gender)
               | :
           dd= @doctor.gender
-        - if @doctor.price.present?
-          dt
-            strong
-              = model_class.human_attribute_name(:description)
-              | :
-        - if @doctor.description.present?
-          dd= @doctor.description
         - @doctor.addresses.each do |address|
           dt
             strong Адрес:
           dd
-            = address.city_address
+            =' address.city_address
             = address.street_address
           - if address.state.present?
             dt
@@ -131,6 +130,13 @@
                 |:
             dd
               = mail_to(address.email)
+          - if @doctor.description.present?
+            dt
+              strong
+                = model_class.human_attribute_name(:description)
+                |:
+            dd= @doctor.description
+
 .row
   - if user_signed_in?
     - if @doctor.can_user_comment?(current_user.id)

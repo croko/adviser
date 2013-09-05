@@ -31,7 +31,7 @@ class DoctorsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_doctor
-    @doctor = Doctor.find(params[:id])
+    @doctor = Doctor.published.find(params[:id])
   end
 
   def set_banners

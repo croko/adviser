@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
     @ad_square_right = page_nick.ads.active.nick('square_right').sample
     @ad_skyscrapers = page_nick.ads.active.nick('skyscraper').sample(2)
 
-    @doctors = Doctor.rated.page(params[:page]).limit(12)
-    @clinics = Clinic.rated.page(params[:page]).limit(12)
+    @doctors = Doctor.published.rated.page(params[:page]).limit(12)
+    @clinics = Clinic.published.rated.page(params[:page]).limit(12)
 
     @items = @clinics + @doctors
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(24)

@@ -47,8 +47,8 @@ class Clinic < ActiveRecord::Base
 
   scope :rated, -> { order('rating DESC, likes_count DESC') }
   scope :my_clinics, -> (user) { where(user_id: user) }
-  #scope :all_items, -> (gr) { includes(:clinic_category_relations).where('clinic_category_relations.category_id = ?', gr).references(:clinic_category_relations) }
-
+  scope :published, -> {where(published: true)}
+#TODO filter published for search
   after_create :process_advise, if: :advise_id
   after_save :update_category_cache
   after_update :process_advise_iclinic, if: :advise_id

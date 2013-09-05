@@ -48,18 +48,12 @@
               = model_class.human_attribute_name(:visit_home)
               |:
           dd= @clinic.visit_home ? 'Да' : 'Нет'
-        - if @clinic.price > 0
+        - if @clinic.price.to_f > 0
           dt
             strong
               = model_class.human_attribute_name(:price)
               |:
           dd= @clinic.price
-        - if @clinic.description.present?
-          dt
-            strong
-              = model_class.human_attribute_name(:description)
-              |:
-          dd= @clinic.description
         - @clinic.addresses.each do |address|
           dt
             strong Адрес:
@@ -108,6 +102,13 @@
                 |:
             dd
               = mail_to(address.email)
+          - if @clinic.description.present?
+            dt
+              strong
+                = model_class.human_attribute_name(:description)
+                |:
+            dd= @clinic.description
+
 .row
   - if user_signed_in?
     - if @clinic.can_user_comment?(current_user.id)

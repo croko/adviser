@@ -17,6 +17,12 @@
           strong
             = model_class.human_attribute_name(:specialty)
         dd= @doctor.specialty
+      - if @doctor.clinic_id.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:clinic_id)
+            |:
+        dd= @doctor.clinic.full_name
       - if @doctor.education.present?
         dt
           strong
@@ -42,11 +48,6 @@
           strong
             = model_class.human_attribute_name(:price)
         dd= @doctor.price
-      - if @doctor.gender.present?
-        dt
-          strong
-            = model_class.human_attribute_name(:gender)
-        dd= @doctor.gender
       - if @doctor.price.present?
         dt
           strong
@@ -75,7 +76,7 @@
         dt
           strong Адрес:
         dd
-          = address.city_address
+          =' address.city_address
           = address.street_address
         - if address.state.present?
           dt
