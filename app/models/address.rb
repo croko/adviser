@@ -36,7 +36,17 @@ class Address < ActiveRecord::Base
   end
 
   def city_address
-    "#{zip_code} #{state} #{city}"
+    addr = ''
+    if zip_code.present?
+      addr = zip_code + ', '
+    end
+    if state.present?
+      addr = addr + state + ' обл., '
+    end
+    if city.present?
+      addr += city
+    end
+    addr
   end
 
   def website_base_url
@@ -55,14 +65,14 @@ class Address < ActiveRecord::Base
   end
 
   def geocode_location
-     begin
-       self.geocode
-       #geocode_log.debug("#{self.id} - #{self.send(:address_proc)} - lat : #{self.latitude} - lng : #{self.longitude}")
-       addressable.touch # rebuild search index
-     rescue
-       self.latitude = 0
-       self.longitude = 0
-     end
+    begin
+      self.geocode
+      #geocode_log.debug("#{self.id} - #{self.send(:address_proc)} - lat : #{self.latitude} - lng : #{self.longitude}")
+      addressable.touch # rebuild search index
+    rescue
+      self.latitude = 0
+      self.longitude = 0
+    end
   end
 
   protected
