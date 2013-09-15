@@ -23,6 +23,12 @@
             = model_class.human_attribute_name(:clinic_id)
             |:
         dd= @doctor.clinic.full_name
+      - if @doctor.employer.present?
+        dt
+          strong
+            = model_class.human_attribute_name(:employer)
+            |:
+        dd= @doctor.employer
       - if @doctor.education.present?
         dt
           strong

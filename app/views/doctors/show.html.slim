@@ -36,6 +36,12 @@
               = model_class.human_attribute_name(:clinic_id)
               |:
           dd= @doctor.clinic.full_name
+        - if @doctor.employer.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:employer)
+              |:
+          dd= @doctor.employer
         dt
           strong
             = model_class.human_attribute_name(:city)
@@ -88,13 +94,6 @@
           dd
             =' address.city_address
             = address.street_address
-          - if address.state.present?
-            dt
-              strong
-                = address.class.human_attribute_name(:state)
-                |:
-            dd
-              = address.state
           - if address.district.present?
             dt
               strong

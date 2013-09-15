@@ -60,13 +60,6 @@
           dd
             =' address.city_address
             = address.street_address
-          - if address.state.present?
-            dt
-              strong
-                = address.class.human_attribute_name(:state)
-                |:
-            dd
-              = address.state
           - if address.district.present?
             dt
               strong

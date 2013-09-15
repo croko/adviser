@@ -87,6 +87,7 @@ ru:
         updated_at: "Изменен"
         gender: "Пол"
         pediatric: "Детский"
+        employer: "Место работы"
       user:
         password: 'Пароль'
         remember_me: 'Запомнить меня'

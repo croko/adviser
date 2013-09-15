@@ -10,6 +10,7 @@ module ClinicSearch
       base.indexes :full_name, analyzer: 'snowball', boost: 10000000000
       base.indexes :specialty, analyzer: 'snowball', boost: 10000000000
       base.indexes :description, analyzer: 'snowball'
+      base.indexes :employer, analyzer: 'snowball'
       base.indexes :coordinates, type: 'geo_point'
       base.indexes :pediatric, type: 'boolean'
     end
@@ -24,6 +25,7 @@ module ClinicSearch
               should { string "full_name: #{params[:query]}" }
               should { string "specialty: #{params[:query]}" }
               should { string "description: #{params[:query]}" }
+              should { string "employer: #{params[:query]}" }
             end
           end
         end
@@ -57,7 +59,7 @@ module ClinicSearch
 
   def to_indexed_json
     to_json(
-        methods: [:full_name, :specialty, :description, :coordinates, :pediatric]
+        methods: [:full_name, :specialty, :description, :employer, :coordinates, :pediatric]
     )
   end
 
