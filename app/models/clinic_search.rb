@@ -6,13 +6,29 @@ module ClinicSearch
     base.send :include, Tire::Model::Search
     base.send :include, Tire::Model::Callbacks
 
-    base.mapping do
-      base.indexes :full_name, analyzer: 'snowball', boost: 10000000000
-      base.indexes :specialty, analyzer: 'snowball', boost: 10000000000
-      base.indexes :description, analyzer: 'snowball'
-      base.indexes :employer, analyzer: 'snowball'
-      base.indexes :coordinates, type: 'geo_point'
-      base.indexes :pediatric, type: 'boolean'
+    base.settings analysis: {
+        filter: {
+            partial_ngram: {
+                type: "NGram",
+                min_gram: 5,
+                max_gram: 8}
+        },
+        analyzer: {
+            partial_analyzer: {
+                tokenizer: "lowercase",
+                filter: ["partial_ngram"],
+                type: "custom"}
+        }
+    } do
+      base.mapping do
+        base.indexes :full_name, analyzer: 'partial_analyzer', boost: 10000000000
+        base.indexes :specialty, analyzer: 'partial_analyzer', boost: 10000000000
+        base.indexes :description, analyzer: 'partial_analyzer'
+        base.indexes :employer, analyzer: 'partial_analyzer'
+        base.indexes :coordinates, type: 'geo_point'
+        base.indexes :pediatric, type: 'boolean'
+        base.indexes :published, type: 'boolean'
+      end
     end
 
     def base.elasticsearch(params, options={})
@@ -30,8 +46,8 @@ module ClinicSearch
           end
         end
 
-        #filter(:and, Clinic.query_builder(params)) unless Clinic.query_builder(params).empty?
-        #
+        filter :term, :published => true
+
         if options[:children] == 'true'
           filter :term, :pediatric => true
         end
@@ -48,13 +64,6 @@ module ClinicSearch
         sort { by :rating }
       end
     end
-
-    #def base.query_builder(params)
-    #  query = []
-    #  query << {:terms => {day_of_week: params[:day]}} if params[:day].present?
-    #  query << {:terms => {schedule: params[:week_days]}} if params[:week_days].present?
-    #  query
-    #end
   end
 
   def to_indexed_json
