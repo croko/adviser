@@ -222,7 +222,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   SOCIALS_CONFIG = YAML::load(File.open("#{Rails.root.to_s}/config/omniauth.yml"))[Rails.env]
-  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? || Rails.env.test?
+  #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? || Rails.env.test?
 
   config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {:scope => 'publish_stream,offline_access,email'}
   config.omniauth :twitter, SOCIALS_CONFIG['twitter']['key'], SOCIALS_CONFIG['twitter']['secret']

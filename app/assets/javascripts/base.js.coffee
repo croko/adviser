@@ -17,11 +17,11 @@ jQuery ->
         dataType: 'script'
 
   # Limit comment characters
-  $("#comment_message").attr('maxlength', '250')
+  $("#comment_message").attr('maxlength', '1000')
   $('#comment_message').on 'keypress', ->
     currentText = $(this).val()
     if (currentText.length > 0)
-      $("#length").text("Осталось " + (250 - currentText.length) + " символов")
+      $("#length").text("Осталось " + (1000 - currentText.length) + " символов")
 
   $('#editor').wysihtml5({cols: '50', html: true, locale: "ru-RU"})
   $('.alert').delay(5000).fadeOut('slow')

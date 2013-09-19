@@ -21,6 +21,7 @@ module ClinicSearch
         }
     } do
       base.mapping do
+        base.indexes :last_name, analyzer: 'snowball', boost: 10000000000
         base.indexes :full_name, analyzer: 'partial_analyzer', boost: 10000000000
         base.indexes :specialty, analyzer: 'partial_analyzer', boost: 10000000000
         base.indexes :description, analyzer: 'partial_analyzer'
@@ -38,6 +39,7 @@ module ClinicSearch
             all
           else
             boolean do
+              should { string "last_name: #{params[:query]}" }
               should { string "full_name: #{params[:query]}" }
               should { string "specialty: #{params[:query]}" }
               should { string "description: #{params[:query]}" }
@@ -68,7 +70,7 @@ module ClinicSearch
 
   def to_indexed_json
     to_json(
-        methods: [:full_name, :specialty, :description, :employer, :coordinates, :pediatric]
+        methods: [:last_name, :full_name, :specialty, :description, :employer, :coordinates, :pediatric]
     )
   end
 

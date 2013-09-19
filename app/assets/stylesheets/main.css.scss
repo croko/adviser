@@ -285,15 +285,22 @@ p.num::before {
   content: counter(section) ". ";
 }
 
+#new_comment_window {
+  width: 600px;
+}
 #new_comment {
   #comment_rating, #hint {
     display: inline-block;
     margin-top: 5px;
+    margin-left: 15px;
   }
   #hint {
-    margin-left: 20px;
+    margin-left: 40px;
     font-size: 13px;
     color: #636363;
+  }
+  .control-label, #length {
+    margin-left: 15px;
   }
 }
 
@@ -302,8 +309,9 @@ a.like {
 }
 
 #comment_message {
-  width: 300px;
+  width: 550px;
   height: 150px;
+  margin-left: 15px;
 }
 
 #advanced-search {
