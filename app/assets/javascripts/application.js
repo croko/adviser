@@ -26,6 +26,7 @@
 //= require wysihtml5-0.3.0.min.js
 //= require bootstrap-wysihtml5-0.0.2.js
 //= require bootstrap-wysihtml5.ru-RU.js
+// search bar doesn't work
 // require jquery.turbolinks
 // require turbolinks
-//*= require_tree .
+// require_tree .
