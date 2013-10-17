@@ -98,6 +98,7 @@ class ApplicationController < ActionController::Base
     page_nick = Page.nick('advertisement')
     @top = page_nick.contents.nick('top').body rescue nil
     @body = page_nick.contents.nick('body').body rescue nil
+    render layout: 'ad_layout'
   end
 
   def contacts
