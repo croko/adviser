@@ -40,4 +40,8 @@ class AdminUser < ActiveRecord::Base
     try(:role).try(:nickname) == nick
   end
 
+  protected
+  def password_required?
+    !persisted? || !password.blank? || !password_confirmation.blank?
+  end
 end

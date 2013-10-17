@@ -154,4 +154,8 @@ class User < ActiveRecord::Base
     Mailer.new_user(self).deliver
   end
 
+  protected
+  def password_required?
+    !persisted? || !password.blank? || !password_confirmation.blank?
+  end
 end

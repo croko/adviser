@@ -20,10 +20,10 @@ dl.dl-horizontal
   dd= @admin_user.role.name
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), \
-    admin_admin_users_path, :class => 'btn'                  \
+    admin_admin_users_path, :class => 'btn'
 
   = link_to t('.edit', :default => t("helpers.links.edit")), \
-    edit_admin_admin_user_path(@admin_user), :class => 'btn' \
+    edit_admin_admin_user_path(@admin_user), :class => 'btn'
 
   = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               \
     admin_admin_user_path(@admin_user), method: 'delete',

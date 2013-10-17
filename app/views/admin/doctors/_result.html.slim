@@ -3,7 +3,7 @@
     td= link_to doctor.id, admin_doctor_path(doctor)
     td= doctor.full_name
     td= doctor.status
-    td= doctor.user_id
+    td= doctor.manager.last_name
     td= doctor.published
     td= doctor.rating
     td= l doctor.created_at
