@@ -20,10 +20,8 @@ class DoctorsController < ApplicationController
     respond_to do |format|
       if @doctor.update(doctor_params)
         format.html { redirect_to @doctor, notice: t('clinics.messages.updated') }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @doctor.errors, status: :unprocessable_entity }
       end
     end
   end

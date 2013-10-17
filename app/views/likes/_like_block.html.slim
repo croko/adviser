@@ -1,5 +1,8 @@
 - permalink = polymorphic_path([likeable, Like])
 - if likeable.liked_by_user?(current_user)
-  = content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart')
+  -if user_signed_in?
+    = content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart', title: 'Вы уже голосовали')
+  -else
+    = link_to content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart'), new_user_session_path, :"data-original-title" => 'Необходимо зарегистрироваться', rel: 'tooltip'
 - else
   = link_to content_tag(:span, ' ' + pluralize(likeable.likes.count, 'like'), class: 'icon-heart like'), permalink, method: :post, remote: true, class: 'like'

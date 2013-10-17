@@ -23,10 +23,8 @@ class ClinicsController < ApplicationController
     respond_to do |format|
       if @clinic.update(clinic_params)
         format.html { redirect_to @clinic, notice: t('clinics.messages.updated') }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @clinic.errors, status: :unprocessable_entity }
       end
     end
   end
