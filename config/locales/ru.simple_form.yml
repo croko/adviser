@@ -19,6 +19,7 @@ ru:
         pediatric: "Детский"
         idoctor: 'Я доктор'
         iclinic: 'Я представитель клиники'
+        choice: 'Рекомендовать'
       address:
         phone_number: "Телефон"
         mobile_phone_number: "Телефон моб."
@@ -116,8 +117,8 @@ ru:
 #        last_name: 'фамилия'
         password: 'длина больше 4 знаков'
       advise:
-        last_name: 'обязательное для доктора'
-        name: 'обязательное для доктора'
-        full_name: 'обязательное для клиники'
+#        last_name: 'обязательное для доктора'
+#        name: 'обязательное для доктора'
+#        full_name: 'обязательное для клиники'
       address:
         website_url: 'http://example.com'

@@ -50,7 +50,7 @@ body {
   padding: 15px 20px;
 }
 
-li.icon  {
+li.icon {
   padding: 5px;
 }
 
@@ -119,10 +119,12 @@ li.icon  {
 
 /* Center align the text within the three columns below the carousel */
 .marketing .span4 {
-  text-align: center;}
-  .align_justify {
-    text-align: justify;
-  }
+  text-align: center;
+}
+
+.align_justify {
+  text-align: justify;
+}
 
 .marketing h2 {
   font-weight: normal;
@@ -288,6 +290,7 @@ p.num::before {
 #new_comment_window {
   width: 600px;
 }
+
 #new_comment {
   #comment_rating, #hint {
     display: inline-block;
@@ -317,7 +320,4 @@ a.like {
 #advanced-search {
   margin-top: 2px;
   margin-bottom: 10px;
-}
-a:hover{
-    text-decoration: none;
 }

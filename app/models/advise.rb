@@ -32,6 +32,7 @@ class Advise < ActiveRecord::Base
   validates :full_name, presence: true, if: -> { name.blank? && last_name.blank? }
   validates :city, :phone_number, :category_id, presence: true
 
+  attr_accessor :choice
   after_create :sendmail, :process_advise
 
   scope :sorted, -> { order('created_at DESC') }

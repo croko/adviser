@@ -28,6 +28,6 @@ class AdvisesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def advise_params
     params.require(:advise).permit(:category_id, :last_name, :name, :full_name, :specialty, :city, :phone_number,
-                                   :description, :idoctor, :iclinic, :pediatric)
+                                   :description, :idoctor, :iclinic, :pediatric, :choice)
   end
 end
