@@ -4,15 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   respond_to :html, :js
   before_action :set_banners
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  #TODO
-  #workaround for CanCan not ready for Rails 4
+#TODO
+#workaround for CanCan not ready for Rails 4
   before_filter do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
   end
-  #####
+#####
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
     redirect_to new_user_session_url
@@ -112,6 +113,12 @@ class ApplicationController < ActionController::Base
   def set_banners
     @ad_square_right = Ad.active.nick('square_right').sample
     @ad_skyscrapers = Ad.active.nick('skyscraper').sample(2)
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :first_name
   end
 
 end

@@ -32,10 +32,8 @@ class Admin::UsersController <  Admin::BaseController
       if @user.save
         sign_in @user, :bypass => true if current_user == @user
         format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,10 +44,8 @@ class Admin::UsersController <  Admin::BaseController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

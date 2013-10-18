@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   has_many :clinics
   has_many :doctors
 
+  validates :first_name, presence: true
   validates :email, uniqueness: true
   #validates_acceptance_of :terms_of_service, on: :create
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]

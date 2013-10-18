@@ -9,12 +9,12 @@
       ul.nav.pull-right
         - if user_signed_in?
           li.icon
-            = link_to '', edit_user_path(current_user), class: 'icon icon-pencil', title: 'Редактировать учетную запись'
+            = link_to '', edit_user_path(current_user), class: 'icon icon-pencil', :"data-original-title" => 'Редактировать свою учетную запись', rel: 'tooltip', :"data-placement" => 'bottom'
           - if current_user.manager?
             li.icon
-              = link_to '', user_path(current_user), class: "icon-user", title: 'Менеджер'
+              = link_to '', user_path(current_user), class: "icon-user", :"data-original-title" => 'Офис менеджера', rel: 'tooltip', :"data-placement" => 'bottom'
           li.icon
-            = link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", title: 'Выйти'
+            = link_to '', destroy_user_session_path, :method => :delete, class: "icon-off", :"data-original-title" => 'Выйти', rel: 'tooltip', :"data-placement" => 'bottom'
         - else
           li
             = link_to 'Войти', new_user_session_path
