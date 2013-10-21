@@ -37,6 +37,8 @@ class Advise < ActiveRecord::Base
 
   scope :sorted, -> { order('created_at DESC') }
   scope :unprocessed, -> { where(processed: false) }
+  scope :stat, -> (day) { where("date_trunc('day', created_at) = ?", day)}
+  scope :stat_interval, -> (start_date, end_date) { where("created_at between ? and ?", start_date, end_date) }
 
   def sendmail
     Mailer.new_advise(self).deliver

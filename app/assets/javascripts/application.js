@@ -26,6 +26,9 @@
 //= require wysihtml5-0.3.0.min.js
 //= require bootstrap-wysihtml5-0.0.2.js
 //= require bootstrap-wysihtml5.ru-RU.js
+//= require amcharts
+//= require serial
+
 // search bar doesn't work
 // require jquery.turbolinks
 // require turbolinks

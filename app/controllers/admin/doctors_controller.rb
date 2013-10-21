@@ -5,7 +5,7 @@ class Admin::DoctorsController < Admin::BaseController
   # GET /doctors.json
   def index
     @q = Doctor.search(params[:q])
-    @doctors = @q.result.page(params[:page]).per(25)
+    @doctors = @q.result.sorted.page(params[:page]).per(25)
   end
 
   # GET /doctors/1

@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
   #validates_acceptance_of :terms_of_service, on: :create
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte, :twitter]
 
+  scope :sorted, -> { order('last_name, first_name') }
+  scope :stat, -> (day) { where("date_trunc('day', created_at) = ?", day)}
+  scope :stat_interval, -> (start_date, end_date) { where("created_at between ? and ?", start_date, end_date) }
+
   after_create :sendmail
 
   def full_name

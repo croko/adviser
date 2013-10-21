@@ -6,7 +6,7 @@ class Admin::UsersController <  Admin::BaseController
   # GET /users.json
   def index
     @q = User.search(params[:q])
-    @users = @q.result.page(params[:page]).per(25)
+    @users = @q.result.sorted.page(params[:page]).per(25)
   end
 
   # GET /users/1

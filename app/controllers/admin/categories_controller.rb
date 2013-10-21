@@ -4,7 +4,7 @@ class Admin::CategoriesController < Admin::BaseController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.sorted.all
   end
 
   # GET /categories/1

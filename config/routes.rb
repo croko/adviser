@@ -19,6 +19,9 @@ Adviser::Application.routes.draw do
   resources :users, only: [:edit, :update, :show]
 
   namespace :admin do
+    match '' => 'dashboard#index', via: [:get, :post]
+    match 'dashboard/analytic_interval' => 'dashboard#analytic_interval', via: [:get]
+
     resources :advises do
       resources :clinics
       resources :doctors

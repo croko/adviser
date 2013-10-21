@@ -48,6 +48,10 @@ class Clinic < ActiveRecord::Base
   scope :rated, -> { order('rating DESC, likes_count DESC') }
   scope :my_clinics, -> (user) { where(user_id: user) }
   scope :published, -> {where(published: true)}
+  scope :sorted, -> { order('full_name') }
+  scope :stat, -> (day) { where("date_trunc('day', created_at) = ?", day)}
+  scope :stat_interval, -> (start_date, end_date) { where("created_at between ? and ?", start_date, end_date) }
+
 #TODO filter published for search
   after_create :process_advise, if: :advise_id
   after_save :update_category_cache

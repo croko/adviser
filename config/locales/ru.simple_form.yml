@@ -97,6 +97,9 @@ ru:
         password_confirmation: 'Подтвердите пароль'
         first_name: 'Имя'
         last_name: 'Фамилия'
+      admin_user:
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
       page:
         name: 'Название'
         nickname: 'Служебное имя'

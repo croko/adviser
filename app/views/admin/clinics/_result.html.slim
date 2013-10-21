@@ -3,7 +3,7 @@
     td= link_to clinic.id, admin_clinic_path(clinic)
     td= clinic.full_name
     td= clinic.status
-    td= clinic.manager.last_name
+    td= clinic.manager.try(:last_name)
     td= clinic.published
     td= clinic.rating
     td= clinic.starting_work
