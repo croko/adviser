@@ -4,7 +4,7 @@
     td= clinic.full_name
     td= clinic.status
     td= clinic.manager.try(:last_name)
-    td= clinic.published
+    td= t (clinic.published?.to_s)
     td= clinic.rating
     td= clinic.starting_work
     td= clinic.price

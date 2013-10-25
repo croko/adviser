@@ -4,7 +4,7 @@
     td= doctor.full_name
     td= doctor.status
     td= doctor.manager.try(:last_name)
-    td= doctor.published
+    td= t (doctor.published?.to_s)
     td= doctor.rating
     td= l doctor.created_at
     td

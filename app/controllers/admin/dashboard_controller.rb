@@ -4,7 +4,7 @@ class Admin::DashboardController < Admin::BaseController
   def index
     authorize! :read, :dashboard
     start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.today - 7.days
-    end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.today
+    end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.today.end_of_day
     @data = []
 
     (start_date...end_date).each do |day|
@@ -24,7 +24,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def analytic_interval
     authorize! :read, :dashboard
-    end_date = Date.today
+    end_date = Date.today.end_of_day
     start_date = Date.today - params[:days].to_i.days
 
     @interval_registrations = User.stat_interval(start_date, end_date).size

@@ -139,6 +139,7 @@ ru:
       doctor:
         first_name: "Имя"
         last_name: "Фамилия"
+        full_name: "ФИО"
         description: "Описание"
         status: "Статус"
         user_id: "Менеджер"
