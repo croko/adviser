@@ -55,18 +55,7 @@
               |:
           dd= @clinic.price
         - @clinic.addresses.each do |address|
-          dt
-            strong Адрес:
-          dd
-            =' address.city_address
-            = address.street_address
-          - if address.district.present?
-            dt
-              strong
-                = address.class.human_attribute_name(:district)
-                |:
-            dd
-              = address.district
+
           - if address.phone_number.present?
             dt
               strong
@@ -95,12 +84,24 @@
                 |:
             dd
               = mail_to(address.email)
-          - if @clinic.description.present?
+          dt
+            strong Адрес:
+          dd
+            =' address.city_address
+            = address.street_address
+          - if address.district.present?
             dt
               strong
-                = model_class.human_attribute_name(:description)
+                = address.class.human_attribute_name(:district)
                 |:
-            dd= @clinic.description
+            dd
+              = address.district
+        - if @clinic.description.present?
+          dt
+            strong
+              = model_class.human_attribute_name(:description)
+              |:
+          dd= @clinic.description
 
 .row
   - if user_signed_in?

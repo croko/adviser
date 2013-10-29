@@ -110,9 +110,8 @@
 
   = link_to t('.destroy', :default => t("helpers.links.destroy")),                                             \
     admin_clinic_path(@clinic),                                                                                \
-    method: 'delete',
-    data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-    class: 'btn btn-danger'
+    method: 'delete',                                                                                          \
+    data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, class: 'btn btn-danger'
 
   = link_to 'Вернуться к заявкам',      \
     admin_advises_path, :class => 'btn'
