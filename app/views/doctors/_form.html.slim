@@ -1,6 +1,6 @@
 = simple_nested_form_for @doctor, :html => {:class => 'form-horizontal'} do |f|
-  = f.input :first_name
-  = f.input :last_name
+  = f.input :first_name, input_html: {class: 'span5'}
+  = f.input :last_name, input_html: {class: 'span5'}
   = f.input :specialty, input_html: {class: 'span5'}
   = f.input :employer, input_html: {class: 'span5'}
   = f.input :education, input_html: {class: 'span5'}
@@ -12,7 +12,7 @@
   = f.input :price
   = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons, item_wrapper_class: 'inline'
   = f.input :pediatric
-  = f.input :description, input_html: {class: 'span5'}
+  = f.input :description, input_html: {rows: 7, class: 'span6'}
   h4 Категории
   table.table.table-striped
     = f.fields_for :doctor_category_relations, wrapper: false

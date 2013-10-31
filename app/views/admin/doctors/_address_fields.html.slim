@@ -1,14 +1,14 @@
 tr.fields
   td
     = f.input :zip_code
-    = f.input :city
-    = f.input :state
-    = f.input :district
-    = f.input :address_1
-    = f.input :address_2
-    = f.input :phone_number
-    = f.input :mobile_phone_number
-    = f.input :website_url, placeholder: t('simple_form.placeholders.address.website_url')
-    = f.input :email
+    = f.input :city, input_html: {class: 'span5'}
+    = f.input :state, input_html: {class: 'span5'}
+    = f.input :district, input_html: {class: 'span5'}
+    = f.input :address_1, input_html: {class: 'span5'}
+    = f.input :address_2, input_html: {class: 'span5'}
+    = f.input :phone_number, input_html: {class: 'span5'}
+    = f.input :mobile_phone_number, input_html: {class: 'span5'}
+    = f.input :website_url, placeholder: t('simple_form.placeholders.address.website_url'), input_html: {class: 'span5'}
+    = f.input :email, input_html: {class: 'span5'}
   td style="width:100px;" 
     = f.link_to_remove t("helpers.links.remove"), :class => 'btn btn-danger'

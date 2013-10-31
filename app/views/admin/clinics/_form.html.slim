@@ -1,7 +1,7 @@
 = simple_nested_form_for [:admin, @clinic], :html => {:class => 'form-horizontal'} do |f|
-  = f.input :full_name
+  = f.input :full_name, input_html: {class: 'span5'}
   = f.input :published
-  = f.input :description, as: :text, input_html: {class: 'span5'}
+  = f.input :description, as: :text, input_html: {rows: 7, class: 'span6'}
   = f.input :specialty, input_html: {class: 'span5'}
   = f.input :user_id, collection: User.all.map{|u| [u.full_name, u.id]}
   = f.input :rating
