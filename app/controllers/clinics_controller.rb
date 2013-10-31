@@ -8,6 +8,7 @@ class ClinicsController < ApplicationController
   def show
     @comments = @clinic.comments.page(params[:page]).per(5)
     @comment = @clinic.comments.build if current_user
+    @items = @clinic.doctors.published
   end
 
   # GET /clinics/new

@@ -102,6 +102,10 @@
               = model_class.human_attribute_name(:description)
               |:
           dd= @clinic.description
+.row
+  -if @items.size > 0
+    h3 Наши специалисты
+    = render :partial => 'application/items'
 
 .row
   - if user_signed_in?

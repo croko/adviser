@@ -35,7 +35,7 @@
             strong
               = model_class.human_attribute_name(:clinic_id)
               |:
-          dd= @doctor.clinic.full_name
+          dd= link_to @doctor.clinic.full_name, @doctor.clinic
         - if @doctor.employer.present?
           dt
             strong
