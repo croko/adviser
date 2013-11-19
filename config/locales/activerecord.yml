@@ -129,6 +129,7 @@ ru:
         price: "Стоимость приема"
         specialty: "Специализация"
         pediatric: "Детская"
+        end_promo: 'Выделен до'
       comment:
         user_id: "Участник"
         message: "Комментарий"
@@ -164,6 +165,7 @@ ru:
         pediatric: "Детский"
         city: "Город"
         address: "Адрес"
+        end_promo: 'Выделен до'
       user:
         password: 'Пароль'
         remember_me: 'Запомнить меня'

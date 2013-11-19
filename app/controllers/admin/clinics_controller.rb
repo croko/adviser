@@ -85,7 +85,7 @@ class Admin::ClinicsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def clinic_params
     params.require(:clinic).permit(:id, :full_name, :description, :user_id, :published,
-                                   :starting_work, :awards, :advise_id,
+                                   :starting_work, :awards, :advise_id, :end_promo,
                                    :visit_home, :price, :rating, :specialty, :pediatric,
                                    clinic_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
                                    photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],

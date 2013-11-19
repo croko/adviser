@@ -18,6 +18,7 @@
   = f.input :visit_home
   = f.input :price
   = f.input :advise_id, as: :hidden
+  = f.input :end_promo, as: :string, input_html: {class: 'datepicker', value: @doctor.end_promo}
   h4 Категории (обязательное поле)
   table.table.table-striped
     = f.fields_for :doctor_category_relations, wrapper: false

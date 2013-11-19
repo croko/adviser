@@ -53,6 +53,7 @@ ru:
         price: "Стоимость приема"
         specialty: "Специализация"
         pediatric: "Детская"
+        end_promo: 'Дата окончания выделения цветом'
       clinic_category_relations:
         category_id: 'Категория'
       comment:
@@ -90,6 +91,7 @@ ru:
         gender: "Пол"
         pediatric: "Детский"
         employer: "Место работы"
+        end_promo: 'Дата окончания выделения цветом'
       doctor_category_relations:
         category_id: 'Категория'
       user:

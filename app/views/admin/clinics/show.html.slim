@@ -98,6 +98,12 @@
               |:
           dd
             = mail_to(address.email)
+          dt
+            strong
+              = model_class.human_attribute_name(:end_promo)
+              |:
+          dd
+            = @clinic.end_promo
 
   .span2.pull-right
     = image_tag @clinic.photourl

@@ -11,6 +11,7 @@
   = f.input :pediatric
   = f.input :price
   = f.input :advise_id, as: :hidden
+  = f.input :end_promo, as: :string, input_html: {class: 'datepicker', value: @clinic.end_promo}
   h4 Категории (обязательное поле)
   table.table.table-striped
     = f.fields_for :clinic_category_relations, wrapper: false

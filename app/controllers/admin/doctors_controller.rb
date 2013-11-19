@@ -86,7 +86,7 @@ class Admin::DoctorsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def doctor_params
     params[:doctor].permit(:id, :first_name, :description, :user_id, :published, :last_name, :employer,
-                           :education, :starting_work, :high_school_name, :high_school_finished, :awards,
+                           :education, :starting_work, :high_school_name, :high_school_finished, :awards, :end_promo,
                            :visit_home, :price, :rating, :specialty, :pediatric, :gender, :advise_id, :clinic_id,
                            doctor_category_relations_attributes: [:id, :category_id, :clinic_id, :_destroy],
                            photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],

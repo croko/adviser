@@ -321,3 +321,10 @@ a.like {
   margin-top: 2px;
   margin-bottom: 10px;
 }
+
+ul.thumbnails {
+  li.promo {
+    box-shadow: 0 0 15px #f89406;
+    border: 1px solid #f89406;
+  }
+}

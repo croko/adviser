@@ -105,6 +105,10 @@ class Doctor < ActiveRecord::Base
     end
   end
 
+  def promo_class
+    end_promo.present? && end_promo >= Date.today ? 'promo' : ''
+  end
+
   protected
 
   def update_category_cache

@@ -4,7 +4,7 @@
     .item.row-fluid
       ul.thumbnails
         - slice.each do |item|
-          li.span3
+          li.span3 class=item.promo_class
             = link_to image_tag(item.photourl), polymorphic_path(item) rescue nil
             table.table.table-condensed
               tr
