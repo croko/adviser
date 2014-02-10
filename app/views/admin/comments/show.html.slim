@@ -4,12 +4,16 @@
 dl.dl-horizontal
   dt
     strong
-      = model_class.human_attribute_name(:full_name)
-  dd= @comment.user.full_name
+      = model_class.human_attribute_name(:user_id)
+  dd= @comment.user.present? ? @comment.user.try(:full_name) : @comment.name
   dt
     strong
       = model_class.human_attribute_name(:commentable)
   dd= @comment.commentable.full_name
+  dt
+    strong
+      = model_class.human_attribute_name(:rating)
+  dd= rating_box(@comment.rating)
   dt
     strong
       = model_class.human_attribute_name(:message)

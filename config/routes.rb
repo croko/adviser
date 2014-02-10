@@ -34,7 +34,10 @@ Adviser::Application.routes.draw do
     resources :users
     resources :admin_users
     resources :photos
-    resources :comments
+    resources :comments do
+      get :autocomplete_doctor_last_name, on: :collection
+      get :autocomplete_clinic_full_name, on: :collection
+    end
     resources :pages do
       resources :contents, shallow: :true
       resources :ads, shallow: :true

@@ -1,9 +1,9 @@
 - @comments.each do |comment|
   tr
     td= link_to comment.id, admin_comment_path(comment)
-    td= comment.user.full_name
+    td= comment.user.try(:full_name)
     td= truncate(comment.message, length: 50, separator: ' ')
-    td= comment.commentable.full_name
+    td= comment.commentable.try(:full_name)
     td= comment.rating
     td= comment.published
     td

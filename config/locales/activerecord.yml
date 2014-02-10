@@ -137,6 +137,10 @@ ru:
         created_at: "Создан"
         updated_at: "Изменен"
         published: "Опубликован"
+        name: 'Имя комментатора'
+        doctor_last_name: 'Доктор'
+        clinic_full_name: 'Клиника'
+        commentable: 'Доктор(Клиника)'
       doctor:
         first_name: "Имя"
         last_name: "Фамилия"

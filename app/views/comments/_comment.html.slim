@@ -3,7 +3,7 @@
     .span2
       = (comment.created_at).strftime("%d.%m.%Y")
     .span2
-      = comment.user.try(:first_name)
+      = comment.name
     .span2
       = rating_box(comment.rating)
   .row-fluid

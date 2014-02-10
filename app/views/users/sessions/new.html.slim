@@ -6,6 +6,7 @@ h2 Вход
     = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
   div
     | Регистрируясь, Вы принимете #{link_to 'условия', '#rules', "data-toggle" => "modal"}  пользования сайтом
+    h5 на сайте будет видно только Ваше имя
   .form-actions
     = f.button :submit, "Войти", class: 'btn btn-primary'
 = render "users/shared/links"

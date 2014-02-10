@@ -125,7 +125,7 @@ nav.pagination
 #new_comment_window.modal.hide.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
-    h4#myModalLabel Оставьте пожалуйста свой комментарий
+    h4#myModalLabel Оставьте пожалуйста свой комментарий, на сайте будет видно только Ваше имя
   == render partial: 'comments/form', locals: {commentable: @clinic} if user_signed_in?
 - if can? :edit, @clinic
   .form-actions

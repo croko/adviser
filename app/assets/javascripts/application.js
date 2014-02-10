@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jquery-ui.min
+//= require autocomplete-rails.js
 //= require jquery.raty.js
 //= require jquery.infinitescroll.js
 //= require bootstrap.min.js

@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
       @query = params[:search][:query]
       @location = params[:search][:location]
       if @location.present?
+#TODO убрать??
         _c = Geocoder.coordinates(@location)
         if (location_query = (Geocoder.coordinates(@location) rescue nil)).present?
           params[:search][:location] = location_query

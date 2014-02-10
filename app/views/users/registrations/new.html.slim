@@ -5,6 +5,9 @@ h2 Регистрация
     = f.input :email, :required => true
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
+  div
+    | Регистрируясь, Вы принимете #{link_to 'условия', '#rules', "data-toggle" => "modal"}  пользования сайтом
+    h5 на сайте будет видно только Ваше имя
   .form-actions
     = f.button :submit, "Зарегистрироваться", class: 'btn btn-primary'
 = render "users/shared/links"

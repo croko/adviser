@@ -62,6 +62,9 @@ class Admin::CommentsController <  Admin::BaseController
     end
   end
 
+ autocomplete :doctor, :last_name, full: true, display_value: :full_name, extra_data: [:first_name]
+ autocomplete :clinic, :full_name, full: true
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
@@ -70,6 +73,6 @@ class Admin::CommentsController <  Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params[:comment].permit(:message, :published)
+      params[:comment].permit(:message, :published, :name, :doctor_id, :clinic_id, :rating)
     end
 end

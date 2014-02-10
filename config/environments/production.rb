@@ -80,7 +80,7 @@ Adviser::Application.configure do
 
   # Mail server
   config.action_mailer.smtp_settings = {
-      :address => "croko.dp.ua",
+      :address => "mail.sba.in.ua",
       :port => 25,
       :domain => "sba.in.ua"
   }

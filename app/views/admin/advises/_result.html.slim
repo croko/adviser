@@ -1,7 +1,7 @@
 - @advises.each do |advise|
   tr.item
     td= link_to advise.id, admin_advise_path(advise)
-    td= advise.user.email
+    td= advise.user.try(:email)
     td= advise.last_name
     td= advise.full_name
     td= advise.city

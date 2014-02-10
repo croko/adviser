@@ -1,7 +1,20 @@
 = simple_form_for [:admin, @comment], :html => { :class => 'form-horizontal' } do |f|
+  / = f.association :commentable, as: :select, collection: Doctor.all.map{|doctor| [doctor.full_name, doctor.id]}
+  = f.input :doctor_last_name, url: autocomplete_doctor_last_name_admin_comments_path, as: :autocomplete,
+                           id_element: "#comment_doctor_id", autofocus: true 
+  = f.input :clinic_full_name, url: autocomplete_clinic_full_name_admin_comments_path, as: :autocomplete,
+                           id_element: "#comment_clinic_id"
+  = f.input :name
+  = f.input :doctor_id, as: :hidden 
+  = f.input :clinic_id, as: :hidden 
   = f.input :message, as: :text
+  / = f.input :rating
+  .control-group.string.optional
+    label.string.optional.control-label Ваша оценка:
+    .controls
+      #comment_rating.rating
+      #hint
   = f.input :published
   .form-actions
     = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), \
-      new_admin_comment_url, :class => 'btn'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_comments_url, :class => 'btn'
