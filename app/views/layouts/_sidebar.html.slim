@@ -4,8 +4,9 @@
   - if params[:action] == 'main'
     h3.text-center специальности
     ul.nav.nav-list
-      - Category.sorted.each do |category|
-        li= link_to category.name_and_items_count, category_path(category)
+      - @categories.each do |category|
+        - cache category do
+          li= link_to category.name_and_items_count, category_path(category)
     h5.text-center реклама
   - if @ad_skyscrapers.present?
     - @ad_skyscrapers.each do |ad|

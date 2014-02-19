@@ -7,7 +7,7 @@
   = f.input :employer, input_html: {class: 'span5'}
   = f.input :gender, collection: Doctor::GENDER, item_wrapper_class: 'inline', as: :radio_buttons
   = f.input :description, as: :text, input_html: {rows: 7, class: 'span6'}
-  = f.input :specialty, input_html: {class: 'span5'}
+  = f.input :specialty, input_html: {class: 'span5'}, placeholder: 'Косметолог, хирург и т.д.'
   = f.input :user_id, collection: User.all.map{|u| [u.full_name, u.id]}
   = f.input :rating
   = f.input :education, input_html: {class: 'span5'}

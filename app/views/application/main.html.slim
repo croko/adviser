@@ -4,9 +4,12 @@
   .offset5.span2
     = button_to 'Рекомендовать специалиста!', new_advise_path, method: :get, class: 'btn btn-warning btn-large'
 .row-fluid
-  = simple_format @left_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
-  = simple_format @center_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
-  = simple_format @right_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+  - cache [@left_column_key] do
+    = simple_format @left_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+  - cache [@center_column_key] do
+    = simple_format @center_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
+  - cache [@right_column_key] do
+    = simple_format @right_column, {class: 'marketing span4 align_justify'}, wrapper_tag: "div"
 p
 .row-fluid
   = render partial: 'items'

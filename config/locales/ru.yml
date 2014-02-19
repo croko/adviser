@@ -24,7 +24,7 @@ ru:
   helpers:
     submit:
       comment:
-        create: 'Добавить комментарий'
+        create: 'Добавить отзыв'
       user:
         update: 'Сохранить изменения'
       clinic:

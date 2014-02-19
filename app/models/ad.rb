@@ -31,7 +31,7 @@ class Ad < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: %w(image/jpg image/jpeg image/gif image/png)
 
   scope :nick, -> (name) { where(name: name) }
-  scope :active, -> () { where('now() between date_start and date_end') }
+  scope :active, -> () { where('published and now() between date_start and date_end') }
 
   def url(*args)
     image.url(*args)

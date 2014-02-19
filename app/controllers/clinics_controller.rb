@@ -9,6 +9,7 @@ class ClinicsController < ApplicationController
     @comments = @clinic.comments.page(params[:page]).per(5)
     @comment = @clinic.comments.build if current_user
     @items = @clinic.doctors.published
+    @cache_key = @items.pluck('id')
   end
 
   # GET /clinics/new

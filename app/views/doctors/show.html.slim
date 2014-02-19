@@ -3,14 +3,14 @@
 .page-header
   .row
     .span9
-      h4= @doctor.full_name
+      h1= @doctor.specialty + ' ' + @doctor.full_name
 - cache @doctor do
   .row
     .span2
       table.table.table-condensed
         tr
           td
-            = image_tag @doctor.photourl
+            = image_tag @doctor.photourl, alt: @doctor.specialty + ' ' + @doctor.full_name
         tr
           td
             = rating_box(@doctor.rating)
@@ -24,12 +24,6 @@
             .yashare-auto-init data-yasharedescription=("Советуем доктора!") data-yasharel10n="ru" data-yasharequickservices="facebook,vkontakte,twitter,gplus,odnoklassniki" data-yasharetype="none"
     .span7
       dl.dl-horizontal.pull-left
-        - if @doctor.specialty.present?
-          dt
-            strong
-              = model_class.human_attribute_name(:specialty)
-              |:
-          dd= @doctor.specialty
         - if @doctor.clinic_id.present?
           dt
             strong
@@ -141,13 +135,13 @@
   - if user_signed_in?
     - if @doctor.can_user_comment?(current_user.id)
       h4
-        | Добавить #{link_to("комментарий", '#new_comment_window', data: {toggle: "modal"})}
+        | Добавить #{link_to("отзыв", '#new_comment_window', data: {toggle: "modal"})}
   - else
-    h5 Только зарегистрированные пользователи могут оставлять комментарии.
+    h5 Только зарегистрированные пользователи могут оставлять отзывы.
     == render :partial => 'layouts/auth_links'
 .row
   - if @doctor.comments_count.to_i > 0
-    h3 Комментарии
+    h3 Отзывы о #{@doctor.full_name}
 .row
   == render @comments
 nav.pagination
@@ -155,7 +149,7 @@ nav.pagination
 #new_comment_window.modal.hide.fade aria-hidden="true" role="dialog" tabindex="-1"
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
-    h4#myModalLabel Оставьте пожалуйста свой комментарий
+    h4#myModalLabel Оставьте пожалуйста свой отзыв
   == render partial: 'comments/form', locals: {commentable: @doctor} if user_signed_in?
 - if can? :edit, @doctor
   .form-actions

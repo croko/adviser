@@ -3,14 +3,14 @@
 .page-header
   .row
     .span9
-      h4= @clinic.full_name
+      h1= @clinic.full_name
 - cache @clinic do
   .row
     .span2
       table.table.table-condensed
         tr
           td
-            = image_tag @clinic.photourl
+            = image_tag @clinic.photourl, alt: @clinic.specialty + ' ' + @clinic.full_name
         tr
           td
             = rating_box(@clinic.rating)
@@ -111,13 +111,13 @@
   - if user_signed_in?
     - if @clinic.can_user_comment?(current_user.id)
       h4
-        | Добавить #{link_to("комментарий", '#new_comment_window', data: {toggle: "modal"})}
+        | Добавить #{link_to("отзыв", '#new_comment_window', data: {toggle: "modal"})}
   - else
-    h5 Только зарегистрированные пользователи могут оставлять комментарии.
+    h5 Только зарегистрированные пользователи могут оставлять отзывы.
     == render :partial => 'layouts/auth_links'
 .row
   - if @clinic.comments_count.to_i > 0
-    h3 Комментарии
+    h3 Отзывы о #{@clinic.full_name}
 .row
   == render @comments
 nav.pagination
@@ -125,7 +125,7 @@ nav.pagination
 #new_comment_window.modal.hide.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
-    h4#myModalLabel Оставьте пожалуйста свой комментарий, на сайте будет видно только Ваше имя
+    h4#myModalLabel Оставьте пожалуйста свой отзыв, на сайте будет видно только Ваше имя
   == render partial: 'comments/form', locals: {commentable: @clinic} if user_signed_in?
 - if can? :edit, @clinic
   .form-actions

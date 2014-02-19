@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   respond_to :html, :js
-  before_action :set_banners
+  before_action :set_banners, :set_categories
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 #TODO
@@ -30,9 +30,14 @@ class ApplicationController < ActionController::Base
   def main
     page_nick = Page.nick('index')
     @top = page_nick.contents.nick('top').body rescue nil
-    @left_column = page_nick.contents.nick('left_column').body rescue nil
-    @center_column = page_nick.contents.nick('center_column').body rescue nil
-    @right_column = page_nick.contents.nick('right_column').body rescue nil
+    @left_column_key = page_nick.contents.nick('left_column')
+    @left_column = @left_column_key.body rescue nil
+
+    @center_column_key = page_nick.contents.nick('center_column')
+    @center_column = @center_column_key.body rescue nil
+
+    @right_column_key = page_nick.contents.nick('right_column')
+    @right_column = @right_column_key.body rescue nil
     @ad_squares = page_nick.ads.active.nick('square').sample(3)
     @ad_square_right = page_nick.ads.active.nick('square_right').sample
     @ad_skyscrapers = page_nick.ads.active.nick('skyscraper').sample(2)
@@ -42,7 +47,7 @@ class ApplicationController < ActionController::Base
 
     @items = @clinics + @doctors
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(24)
-    #@cache_key = (@doctors.pluck('id') + @clinics.pluck('id')).collect {|id| id}.join('')
+    @cache_key = (@doctors.pluck('id') + @clinics.pluck('id')).collect {|id| id}.join('')
 
     render stream: true
   end
@@ -114,6 +119,10 @@ class ApplicationController < ActionController::Base
   def set_banners
     @ad_square_right = Ad.active.nick('square_right').sample
     @ad_skyscrapers = Ad.active.nick('skyscraper').sample(2)
+  end
+
+  def set_categories
+    @categories = Category.sorted
   end
 
   protected
