@@ -10,6 +10,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_contents_on_page_id  (page_id)
+#
 
 class Content < ActiveRecord::Base
   belongs_to :page

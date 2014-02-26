@@ -1,3 +1,29 @@
+# == Schema Information
+#
+# Table name: clinics
+#
+#  id             :integer          not null, primary key
+#  description    :text
+#  status         :string(255)
+#  user_id        :integer
+#  published      :boolean          default(TRUE)
+#  comments_count :integer          default(0)
+#  rating         :float            default(0.0)
+#  likes_count    :integer          default(0)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  full_name      :string(255)
+#  starting_work  :date
+#  awards         :string(255)
+#  price          :decimal(8, 2)    default(0.0)
+#  specialty      :string(255)
+#  pediatric      :boolean          default(FALSE)
+#  advise_id      :integer
+#  visit_home     :boolean          default(FALSE)
+#  photos_count   :integer          default(0)
+#  end_promo      :date
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

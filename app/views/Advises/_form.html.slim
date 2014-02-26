@@ -9,7 +9,14 @@
     = f.input :city, input_html: {class: 'span5'}
     = f.input :phone_number, input_html: {class: 'span5'}
     = f.input :pediatric
-    = f.input :description, input_html: {class: 'span5'}
+    = f.input :description, input_html: {class: 'span5'}, placeholder: 'Краткая информация о докторе или клинике'
+    = f.input :comment, input_html: {class: 'span5'}, placeholder: 'Ваш отзыв о докторе или клинике'
+    / = f.input :rating
+    .control-group.string.optional
+      label.string.optional.control-label Ваша оценка:
+      .controls
+        #advise_rating.rating
+        #hint
     = f.input :idoctor
     = f.input :iclinic
     .form-actions

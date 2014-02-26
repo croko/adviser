@@ -11,7 +11,7 @@
 #  specialty    :string(255)
 #  city         :string(255)
 #  phone_number :string(255)
-#  description  :string(255)
+#  description  :text
 #  created_at   :datetime
 #  updated_at   :datetime
 #  pediatric    :boolean          default(FALSE)
@@ -19,6 +19,8 @@
 #  email_sent   :boolean          default(FALSE)
 #  idoctor      :boolean          default(FALSE)
 #  iclinic      :boolean          default(FALSE)
+#  comment      :text
+#  rating       :integer          default(0)
 #
 
 require 'spec_helper'

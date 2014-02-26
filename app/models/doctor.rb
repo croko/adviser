@@ -27,6 +27,13 @@
 #  advise_id            :integer
 #  visit_home           :boolean          default(FALSE)
 #  photos_count         :integer          default(0)
+#  employer             :string(255)
+#  end_promo            :date
+#
+# Indexes
+#
+#  index_doctors_on_clinic_id  (clinic_id)
+#  index_doctors_on_user_id    (user_id)
 #
 
 class Doctor < ActiveRecord::Base
@@ -47,7 +54,8 @@ class Doctor < ActiveRecord::Base
 
   accepts_nested_attributes_for :addresses, allow_destroy: true
   accepts_nested_attributes_for :doctor_category_relations, :reject_if => lambda { |a| a[:category_id].nil? }, allow_destroy: true
-  accepts_nested_attributes_for :photos, :allow_destroy => true
+  accepts_nested_attributes_for :photos, allow_destroy: true
+  accepts_nested_attributes_for :comments, allow_destroy: true
 
   validates :doctor_category_relations, :addresses, :last_name, presence: true
 

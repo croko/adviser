@@ -27,6 +27,13 @@ class Admin::ClinicsController < Admin::BaseController
       @clinic.addresses.build(
           city: advise.city,
           phone_number: advise.phone_number)
+
+      if advise.comment.present?
+        @clinic.comments.build(message: advise.comment,
+          rating: advise.rating,
+          user_id: advise.user_id)
+      end
+
     else
       @clinic = Clinic.new
     end
@@ -40,6 +47,10 @@ class Admin::ClinicsController < Admin::BaseController
   # POST /clinics.json
   def create
     @clinic = Clinic.new(clinic_params)
+
+    if @clinic.advise.present?
+      @clinic.advise.update_column('processed', true)
+    end
 
     respond_to do |format|
       if @clinic.save!
@@ -91,6 +102,7 @@ class Admin::ClinicsController < Admin::BaseController
                                    photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
                                    addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
                                                           :website_url, :email, :district, :phone_number,
-                                                          :mobile_phone_number, :_destroy])
+                                                          :mobile_phone_number, :_destroy],
+                                                  comments_attributes: [:id, :message, :rating, :user_id, :name])
   end
 end

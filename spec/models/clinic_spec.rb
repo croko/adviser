@@ -21,6 +21,7 @@
 #  advise_id      :integer
 #  visit_home     :boolean          default(FALSE)
 #  photos_count   :integer          default(0)
+#  end_promo      :date
 #
 
 require 'spec_helper'

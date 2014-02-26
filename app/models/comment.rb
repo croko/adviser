@@ -4,13 +4,14 @@
 #
 #  id               :integer          not null, primary key
 #  user_id          :integer
-#  message          :string(255)
+#  message          :text
 #  rating           :integer          default(0)
 #  commentable_type :string(255)
 #  commentable_id   :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #  published        :boolean          default(TRUE)
+#  name             :string(255)
 #
 
 class Comment < ActiveRecord::Base
@@ -19,7 +20,8 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :message
   validates :user_id, :uniqueness => {:scope => [:commentable_type, :commentable_id]}
-  #scope :latest, order(:created_at).limit(5)
+  validates :name, presence: true, if: Proc.new { |u| u.user_id.nil?}
+
   before_save :set_name, :set_commentable
   after_save :update_rating
   after_destroy :update_rating

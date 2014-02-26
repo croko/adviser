@@ -30,6 +30,12 @@
     tr
       td colspan="3"
         = f.link_to_add "Добавить фото", :photos
+  h4 Комментарии
+  table.table.table-striped
+      = f.fields_for :comments, wrapper: false
+      tr
+        td colspan="3"
+          = f.link_to_add "Добавить коммент", :comments
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), \

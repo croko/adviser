@@ -28,6 +28,13 @@ class Admin::DoctorsController < Admin::BaseController
       @doctor.addresses.build(
           city: advise.city,
           phone_number: advise.phone_number)
+
+      if advise.comment.present?
+        @doctor.comments.build(message: advise.comment,
+          rating: advise.rating,
+          user_id: advise.user_id)
+      end
+
     else
       @doctor = Doctor.new
     end
@@ -41,6 +48,10 @@ class Admin::DoctorsController < Admin::BaseController
   # POST /doctors.json
   def create
     @doctor = Doctor.new(doctor_params)
+
+    if @doctor.advise.present?
+      @doctor.advise.update_column('processed', true)
+    end
 
     respond_to do |format|
       if @doctor.save
@@ -92,6 +103,7 @@ class Admin::DoctorsController < Admin::BaseController
                            photos_attributes: [:id, :image, :image_file_name, :_destroy, :filename],
                            addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
                                                   :website_url, :email, :district, :phone_number,
-                                                  :mobile_phone_number, :_destroy])
+                                                  :mobile_phone_number, :_destroy],
+                                                  comments_attributes: [:id, :message, :rating, :user_id, :name])
   end
 end

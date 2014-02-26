@@ -27,6 +27,13 @@
 #  advise_id            :integer
 #  visit_home           :boolean          default(FALSE)
 #  photos_count         :integer          default(0)
+#  employer             :string(255)
+#  end_promo            :date
+#
+# Indexes
+#
+#  index_doctors_on_clinic_id  (clinic_id)
+#  index_doctors_on_user_id    (user_id)
 #
 
 require 'spec_helper'

@@ -8,6 +8,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  clinic_category_id_index  (category_id)
+#  clinic_clinic_id_index    (clinic_id)
+#
 
 class ClinicCategoryRelation < ActiveRecord::Base
   belongs_to :category

@@ -19,6 +19,15 @@
 #  updated_at         :datetime
 #  baseurl            :string(255)
 #
+# Indexes
+#
+#  ads_date_end_index        (date_end)
+#  ads_date_start_index      (date_start)
+#  index_ads_on_category_id  (category_id)
+#  index_ads_on_clinic_id    (clinic_id)
+#  index_ads_on_doctor_id    (doctor_id)
+#  index_ads_on_page_id      (page_id)
+#
 
 class Ad < ActiveRecord::Base
   belongs_to :page

@@ -8,6 +8,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  index_doctor_category_relations_on_category_id  (category_id)
+#  index_doctor_category_relations_on_doctor_id    (doctor_id)
+#
 
 class DoctorCategoryRelation < ActiveRecord::Base
   belongs_to :doctor

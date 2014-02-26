@@ -1,0 +1,9 @@
+tr.fields
+  td
+    = f.input :rating
+    = f.input :message
+    = f.input :name, placeholder: 'Имя нашего комментатора'
+    = f.input :user_id, as: :hidden
+
+  td style="width:100px;" 
+    = f.link_to_remove t("helpers.links.remove"), :class => 'btn btn-danger'

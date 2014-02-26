@@ -21,6 +21,7 @@
 #  advise_id      :integer
 #  visit_home     :boolean          default(FALSE)
 #  photos_count   :integer          default(0)
+#  end_promo      :date
 #
 
 class Clinic < ActiveRecord::Base
@@ -41,6 +42,7 @@ class Clinic < ActiveRecord::Base
   accepts_nested_attributes_for :addresses, allow_destroy: true
   accepts_nested_attributes_for :clinic_category_relations, :reject_if => lambda { |a| a[:category_id].nil? }, allow_destroy: true
   accepts_nested_attributes_for :photos, :allow_destroy => true
+  accepts_nested_attributes_for :comments, allow_destroy: true
 
   validates :clinic_category_relations, :addresses, :full_name, presence: true
 

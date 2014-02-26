@@ -23,13 +23,13 @@
   table.table.table-striped
     = f.fields_for :doctor_category_relations, wrapper: false
     tr
-      td colspan="3" 
+      td colspan="3"
         = f.link_to_add "Добавить категорию", :doctor_category_relations
   h4 Адреса  (обязательное поле)
   table.table.table-striped
     = f.fields_for :addresses, wrapper: false
     tr
-      td colspan="3" 
+      td colspan="3"
         = f.link_to_add "Добавить адрес", :addresses
   h4 Фотографии
   table.table.table-striped
@@ -37,6 +37,12 @@
     tr
       td colspan="3"
         = f.link_to_add "Добавить фото", :photos
+  h4 Комментарии
+  table.table.table-striped
+      = f.fields_for :comments, wrapper: false
+      tr
+        td colspan="3"
+          = f.link_to_add "Добавить коммент", :comments
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), \
