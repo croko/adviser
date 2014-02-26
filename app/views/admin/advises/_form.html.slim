@@ -7,7 +7,6 @@
   = f.input :city
   = f.input :phone_number
   = f.input :pediatric
-  = f.input :gender, collection: Doctor::GENDER, as: :radio_buttons, item_wrapper_class: 'inline'
   = f.input :description, as: :text
   .form-actions
     = f.button :submit, :class => 'btn-primary'

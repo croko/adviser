@@ -141,7 +141,7 @@
     == render :partial => 'layouts/auth_links'
 .row
   - if @doctor.comments_count.to_i > 0
-    h3 Отзывы о #{@doctor.full_name}
+    h3 Отзывы:
 .row
   == render @comments
 nav.pagination
