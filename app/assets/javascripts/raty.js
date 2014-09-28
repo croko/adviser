@@ -1,7 +1,7 @@
 $('#comment_rating').raty({
     scoreName: 'comment[rating]',
     scoreId: 'comment_rating',
-    path: '/assets',
+    path: '/images',
     starOn:  "star_activ.png",
     starHalf: "half_star_activ.png",
     starOff:  "star_inactiv.png",
@@ -14,7 +14,7 @@ $('#comment_rating').raty({
 $('#advise_rating').raty({
     scoreName: 'advise[rating]',
     scoreId: 'advise_rating',
-    path: '/assets',
+    path: '/images',
     starOn:  "star_activ.png",
     starHalf: "half_star_activ.png",
     starOff:  "star_inactiv.png",

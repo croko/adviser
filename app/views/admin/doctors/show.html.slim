@@ -54,7 +54,7 @@
           strong
             = model_class.human_attribute_name(:price)
         dd= @doctor.price
-      - if @doctor.price.present?
+      - if @doctor.description.present?
         dt
           strong
             = model_class.human_attribute_name(:description)

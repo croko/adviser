@@ -224,9 +224,9 @@ Devise.setup do |config|
   SOCIALS_CONFIG = YAML::load(File.open("#{Rails.root.to_s}/config/omniauth.yml"))[Rails.env]
   #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? || Rails.env.test?
 
-  config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {:scope => 'publish_stream,offline_access,email'}
+  config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {scope: 'publish_stream,offline_access,email'}
   config.omniauth :twitter, SOCIALS_CONFIG['twitter']['key'], SOCIALS_CONFIG['twitter']['secret']
-  config.omniauth :vkontakte, SOCIALS_CONFIG['vkontakte']['key'], SOCIALS_CONFIG['vkontakte']['secret'], {:scope => 'friends'}
+  config.omniauth :vkontakte, SOCIALS_CONFIG['vkontakte']['key'], SOCIALS_CONFIG['vkontakte']['secret'], {scope: 'friends, photos, wall, offline'}
   config.omniauth :google_oauth2, SOCIALS_CONFIG['google']['key'], SOCIALS_CONFIG['google']['secret'],{ access_type: 'offline', approval_prompt: ''}
 
   #config.omniauth :facebook, SOCIALS_CONFIG['facebook']['key'], SOCIALS_CONFIG['facebook']['secret'], {:client_options => { :ssl => { :ca_file => "#{Rails.root.to_s}/config/ca-bundle.crt" }}, :scope => 'publish_stream,offline_access,email'}

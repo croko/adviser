@@ -1,11 +1,11 @@
 - cache comment do
-  .row-fluid
-    .span2
+  .row
+    .col-lg-2
       = (comment.created_at).strftime("%d.%m.%Y")
-    .span2
+    .col-lg-2
       = comment.name
-    .span2
+    .col-lg-2
       = rating_box(comment.rating)
-  .row-fluid
-    .span10
+  .row
+    .col-lg-10
       = comment.message

@@ -104,6 +104,6 @@ class Admin::DoctorsController < Admin::BaseController
                            addresses_attributes: [:id, :address_1, :address_2, :city, :state, :zip_code,
                                                   :website_url, :email, :district, :phone_number,
                                                   :mobile_phone_number, :_destroy],
-                                                  comments_attributes: [:id, :message, :rating, :user_id, :name])
+                                                  comments_attributes: [:id, :message, :rating, :user_id, :name, :_destroy])
   end
 end
