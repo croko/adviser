@@ -25,6 +25,8 @@ Gemfile.lock
 .DS_Store
 /.sass-cache/
 /config/database.yml
+/config/consultor.conf
+/config/omniauth.yml
 .rvmrc
 .ruby-gemset
 .ruby-version
